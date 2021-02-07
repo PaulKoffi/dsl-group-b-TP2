@@ -1,9 +1,9 @@
-textClip "begin" "beginning text" lasting 10 s
+textClip begin beginningText lasting 10 s
 
-video named "video1" "test3.mp4"
+video named video1 test3.mp4
 
-video named "video2" "V2.mp4"
+video named video2 va2.mp4
 
-textClip "end" "ending text" lasting 10 s
+textClip end endingText lasting 10 s
 
-export "result"
+export result

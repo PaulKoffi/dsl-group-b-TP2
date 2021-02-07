@@ -10,7 +10,7 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 public class App implements NamedElement, Visitable {
 
 	private String name;
-	private ArrayList<Sequence> sequences;
+	private ArrayList<Sequence> sequences = new ArrayList<>();
 
 	public ArrayList<Sequence> getSequences() {
 		return sequences;

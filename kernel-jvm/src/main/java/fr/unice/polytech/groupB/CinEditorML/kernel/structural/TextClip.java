@@ -3,9 +3,13 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.generator.*;
 
 public class TextClip extends Sequence{
-    private String name;
-    private String text;
-    private int time;
+    private String name= "";
+    private String text= "";
+    private int time= 0;
+
+    public TextClip(){
+
+    }
 
     @Override
     public SequenceType getType() {

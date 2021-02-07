@@ -10,12 +10,12 @@ root            : sequences export;
 sequences       : sequence+;
 
 sequence        : (textClip| video | image| specificVideo);
-textClip        : 'textClip' name=IDENTIFIER path=IDENTIFIER 'lasting' time=TIME;
+textClip        : 'textClip' name=IDENTIFIER text=IDENTIFIER 'lasting' time=TIME 's'?;
 video           : 'video named' name=IDENTIFIER path=FILE_NAME ;
 specificVideo   : 'video named' name=IDENTIFIER path=FILE_NAME 'from' start=TIMELINE 'to' end=TIMELINE;
-image           : 'image' name=IDENTIFIER value= FILE_NAME 'lasting' time=TIME;
+image           : 'image' name=IDENTIFIER path= FILE_NAME 'lasting' time=TIME 's';
 
-export          : 'export' name=FILE_NAME;
+export          : 'export' name=IDENTIFIER;
 //
 //tonality        :   'tonality' value=IDENTIFIER;
 //
@@ -48,16 +48,21 @@ export          : 'export' name=FILE_NAME;
 /*****************
  ** Lexer rules **
  *****************/
-OPERATOR        :   'and' | 'or' ;
-SIGNAL          :   'high' | 'low' ;
-TIMELINE        :   NUMBER NUMBER? ':'NUMBER NUMBER ;
-PORT_NUMBER     :   [1-9] | '10' |'11' | '12'| '13';
-TIME          :   [1-9] [0-9]+;
-DEFINITION      :   '"' LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER? '"';
-FILE_NAME      :   LOWERCASE (LOWERCASE|UPPERCASE)+ '.' LOWERCASE (LOWERCASE|UPPERCASE)+;
-IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER?;
 
-APPLLICATION      : '"' (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|' ')+ '"';
+TIMELINE        :   NUMBER NUMBER? ':'NUMBER NUMBER ;
+TIME            :   NUMBER+;
+//IDENTIFIER      :     LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER? FILE_EXTENSION?;
+IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER?;
+FILE_NAME       :   (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER? '.' (LOWERCASE|UPPERCASE|NUMBER)+;
+
+FILE_EXTENSION  : '.mp4';
+
+
+//DEFINITION      :   '"' LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER? '"';
+
+
+
+//APPLLICATION      : '"' (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|' ')+ '"';
 
 
 

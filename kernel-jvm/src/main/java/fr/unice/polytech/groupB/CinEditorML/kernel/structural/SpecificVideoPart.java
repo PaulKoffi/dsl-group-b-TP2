@@ -4,6 +4,10 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.Sequence;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.SequenceType;
 
 public class SpecificVideoPart extends Sequence {
+
+    public SpecificVideoPart(){
+
+    }
     @Override
     public SequenceType getType() {
         return SequenceType.SPECIFIC_VIDEO;

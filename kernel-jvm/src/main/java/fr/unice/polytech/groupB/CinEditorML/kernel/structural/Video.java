@@ -4,8 +4,11 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.generator.*;
 
 public class Video extends Sequence {
-    private String name;
-    private String path;
+    private String name = "";
+    private String path = "";
+
+    public Video(){
+    }
 
     @Override
     public SequenceType getType() {
