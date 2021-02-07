@@ -18,8 +18,7 @@ public class ToWiring extends Visitor<StringBuffer> {
 //    private int INT_MAX= 32000;
 //    private ArrayList<TemporalTransition> temporalTransitions = new ArrayList<>();
 //
-
-    private boolean utilForText = false;
+//    private boolean utilForText = false;
 
     public ToWiring() {
         this.result = new StringBuffer();
@@ -51,10 +50,11 @@ public class ToWiring extends Visitor<StringBuffer> {
 
         boolean first = true;
         //        Generate video
-        wln("final = concatenate_videoclips([");
+        w("final = concatenate_videoclips([");
         for(Sequence s: app.getSequences()){
             if(first){
                 w(String.format("%s", s.getName()));
+                first = false;
             }else{
                 w(String.format(", %s", s.getName()));
             }
