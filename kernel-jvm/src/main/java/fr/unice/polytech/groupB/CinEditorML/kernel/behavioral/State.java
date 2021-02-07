@@ -1,0 +1,58 @@
+package fr.unice.polytech.groupB.CinEditorML.kernel.behavioral;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.unice.polytech.groupB.CinEditorML.kernel.NamedElement;
+import fr.unice.polytech.groupB.CinEditorML.kernel.generator.Visitable;
+import fr.unice.polytech.groupB.CinEditorML.kernel.generator.Visitor;
+
+public class State implements NamedElement, Visitable {
+
+	private String name;
+	private List<Action> actions = new ArrayList<Action>();
+//	private Transition transition;
+	private int id;
+	private boolean tune;
+
+	public boolean isTune() {
+		return tune;
+	}
+
+	public void setTune(boolean tune) {
+		this.tune = tune;
+	}
+
+
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Action> getActions() {
+		return actions;
+	}
+
+	public void setActions(List<Action> actions) {
+		this.actions = actions;
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+}
