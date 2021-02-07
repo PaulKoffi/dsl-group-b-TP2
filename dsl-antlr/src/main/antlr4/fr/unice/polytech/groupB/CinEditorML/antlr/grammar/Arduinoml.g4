@@ -5,7 +5,17 @@ grammar Arduinoml;
  ** Parser rules **
  ******************/
 
-//root            :    bricks tonality? states initial interrupt? transitions declaration EOF;
+root            : sequences export;
+
+sequences       : sequence+;
+
+sequence        : (textClip| video | image);
+textClip        : 'textClip' value=IDENTIFIER 'lasting' time=TIME;
+video           : 'video named' value=FILE_NAME ;
+specificVideo           : 'video named' value=FILE_NAME 'from' start=TIMELINE 'to' end=TIMELINE;
+image           : 'image' value= FILE_NAME 'lasting' time=TIME;
+
+export          : 'export' name=FILE_NAME;
 //
 //tonality        :   'tonality' value=IDENTIFIER;
 //
@@ -40,10 +50,11 @@ grammar Arduinoml;
  *****************/
 OPERATOR        :   'and' | 'or' ;
 SIGNAL          :   'high' | 'low' ;
-
+TIMELINE        :   NUMBER NUMBER? ':'NUMBER NUMBER ;
 PORT_NUMBER     :   [1-9] | '10' |'11' | '12'| '13';
 TIME          :   [1-9] [0-9]+;
 DEFINITION      :   '"' LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER? '"';
+FILE_NAME      :   LOWERCASE (LOWERCASE|UPPERCASE)+ '.' LOWERCASE (LOWERCASE|UPPERCASE)+;
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER?;
 
 APPLLICATION      : '"' (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|' ')+ '"';
