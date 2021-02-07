@@ -1,6 +1,8 @@
-package fr.unice.polytech.groupB.CinEditorML.kernel.behavioral;
+package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
+import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.generator.*;
 
-public class TextClip implements Sequence{
+public class TextClip extends Sequence{
     private String name;
     private String text;
 

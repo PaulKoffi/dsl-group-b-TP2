@@ -1,8 +1,9 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.behavioral;
+import fr.unice.polytech.groupB.CinEditorML.kernel.generator.*;
 
 public abstract class Sequence implements Visitable {
 
-    abstract SequenceType getType();
+    public abstract SequenceType getType();
 
     @Override
     public void accept(Visitor visitor) {

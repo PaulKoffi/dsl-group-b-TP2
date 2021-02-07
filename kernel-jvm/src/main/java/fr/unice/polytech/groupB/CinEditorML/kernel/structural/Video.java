@@ -1,6 +1,9 @@
-package fr.unice.polytech.groupB.CinEditorML.kernel.behavioral;
+package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
 
-public class Video implements Sequence{
+import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.generator.*;
+
+public class Video extends Sequence {
     private String name;
     private String path;
 
