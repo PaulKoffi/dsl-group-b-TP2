@@ -9,11 +9,11 @@ root            : sequences export;
 
 sequences       : sequence+;
 
-sequence        : (textClip| video | image);
-textClip        : 'textClip' value=IDENTIFIER 'lasting' time=TIME;
-video           : 'video named' value=FILE_NAME ;
-specificVideo           : 'video named' value=FILE_NAME 'from' start=TIMELINE 'to' end=TIMELINE;
-image           : 'image' value= FILE_NAME 'lasting' time=TIME;
+sequence        : (textClip| video | image| specificVideo);
+textClip        : 'textClip' name=IDENTIFIER value=IDENTIFIER 'lasting' time=TIME;
+video           : 'video named' name=IDENTIFIER value=FILE_NAME ;
+specificVideo   : 'video named' name=IDENTIFIER value=FILE_NAME 'from' start=TIMELINE 'to' end=TIMELINE;
+image           : 'image' name=IDENTIFIER value= FILE_NAME 'lasting' time=TIME;
 
 export          : 'export' name=FILE_NAME;
 //
