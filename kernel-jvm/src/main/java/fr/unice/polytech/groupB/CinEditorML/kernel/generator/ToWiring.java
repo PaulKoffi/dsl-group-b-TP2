@@ -18,6 +18,9 @@ public class ToWiring extends Visitor<StringBuffer> {
 //    private int INT_MAX= 32000;
 //    private ArrayList<TemporalTransition> temporalTransitions = new ArrayList<>();
 //
+
+    private boolean utilForText = false;
+
     public ToWiring() {
         this.result = new StringBuffer();
     }
@@ -30,178 +33,106 @@ public class ToWiring extends Visitor<StringBuffer> {
         result.append(String.format("%s", s));
     }
 
-//
-//    @Override
-//    public void visit(App app) {
-//        for (Transition transition: app.getTransitions()   ) {
-//            if (transition.isTemporal()){
-//                TemporalTransition temporalTransition = (TemporalTransition) transition;
-//                temporalTransitions.add(temporalTransition);
-//            }
-//
-//        }
-//        interrupt=app.isInterrupt();
-//        context.put("pass", PASS.ONE);
-//        wln("// Wiring code generated from an ArduinoML model");
-//        wln(String.format("// Application name: %s\n", app.getName()));
-//        this.tonality= app.getTonality();
-//        if (temporalTransitions.size()>0){
-//            wln("volatile int change =0;");
-//        }
-//        if (tonality) {
-//            int buzzerAlarm = 0;
-//            for (Brick brick : app.getBricks()) {
-//                if (brick.getName().equals("buzzerAlarm")) {
-//                    buzzerAlarm = brick.getPin();
-//                }
-//            }
-//            wln(String.format("int buzzerAlarm = %d;\n", buzzerAlarm));
-//
-//        }
-//        wln("void setup(){");
-//        if (interrupt){
-//            wln("  attachInterrupt( digitalPinToInterrupt(2), gotToStateOff, FALLING );");
-//        }
-//        if (tonality){
-//            wln("Serial.begin(9600);");
-//
-//        }
-//        for (Brick brick : app.getBricks()) {
-//            brick.accept(this);
-//        }
-//        wln("}\n");
-//
-//        if (interrupt){
-//            wln("void gotToStateOff(){");
-//            wln(String.format(" change = %d;", INT_MAX));
-//            wln("}\n");
-//        }
-//		wln("long time = 0; long debounce = 200;\n");
-//
-//        for (State state : app.getStates()) {
-//            state.accept(this);
-//            for (Transition transition : app.getTransitions()) {
-//                if (transition.getFrom().getName().equals(state.getName()) && !transition.isTemporal()) {
-//                    transition.accept(this);
-//                }
-//            }
-//            nbState+=1;
-//            wln("}\n");
-//        }
-//
-//        //second pass, setup and loop
-//        context.put("pass",PASS.TWO);
-//
-//        if (app.getInitial() != null)
-//            wln(String.format("int state = %d;", nbState));
-//        wln("void loop() {");
-//
-//        if (!app.getStates().isEmpty()) {
-//            wln("  switch(state) {");
-//            for (State state : app.getStates()) {
-//                wln(String.format("    case %d:", state.getId()));
-//                wln(String.format("      state = state_%s();", state.getName()));
-//                wln("      break;");
-//            }
-//            wln("    default:");
-//            wln("      break;");
-//            wln("  }");
-//        }
-//        wln("}");
-//    }
-//
+
+    @Override
+    public void visit(App app) {
+        wln("# Wiring code generated from an CinEditorML model");
+        wln(String.format("# Result Video Name: %s\n", app.getName()));
+        wln("");
+        wln("from moviepy.editor import *");
+        wln("import numpy as np");
+        wln("from moviepy.video.tools.segmenting import findObjects");
+        wln("");
+        wln("");
+
+        for(Sequence s: app.getSequences()){
+            s.accept(this);
+        }
+
+        boolean first = true;
+        //        Generate video
+        wln("final = concatenate_videoclips([");
+        for(Sequence s: app.getSequences()){
+            if(first){
+                w(String.format("%s", s.getName()));
+            }else{
+                w(String.format(", %s", s.getName()));
+            }
+        }
+        w("], method='compose')");
+        wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
+        wln("");
+        wln("");
+    }
+
     @Override
     public void visit(Video video) {
-//            wln(String.format("  pinMode(%d, OUTPUT); // %s [Actuator]", actuator.getPin(), actuator.getName()));
+        wln("### Video ");
+        wln("");
+        wln(String.format("%s = VideoFileClip('%s')", video.getName(), video.getPath()));
+        wln("");
     }
 
     @Override
     public void visit(Sequence sequence) {
-//            wln(String.format("  pinMode(%d, INPUT);  // %s [Sensor]", sensor.getPin(), sensor.getName()));
+
     }
 
     @Override
     public void visit(TextClip textClip) {
-//            wln(String.format("  pinMode(%d, INPUT);  // %s [Sensor]", sensor.getPin(), sensor.getName()));
+//        wln("####################################################################");
+//        wln("# WE CREATE THE TEXT THAT IS GOING TO MOVE, WE CENTER IT.");
+//        wln("");
+//        wln("screensize = (720, 460)");
+//        wln("txtClip = TextClip('Cool effect', color='white', font=\"Amiri-Bold\",\n" +
+//                "                   kerning=5, fontsize=100)");
+//        wln("cvc = CompositeVideoClip([txtClip.set_pos('center')],\n" +
+//                "                         size=screensize)");
+//        wln("");
+//        wln("# THE NEXT FOUR FUNCTIONS DEFINE FOUR WAYS OF MOVING THE LETTERS");
+//        wln("");
+//        wln("");
+//        wln("# helper function");
+//        wln("rotMatrix = lambda a: np.array([[np.cos(a), np.sin(a)],\n" +
+//                "                                [-np.sin(a), np.cos(a)]])");
+//        wln("");
+//        wln("");
+//        wln("def vortex(screenpos, i, nletters):");
+//        wln("    d = lambda t: 1.0 / (0.3 + t ** 8)  # damping");
+//        wln("    a = i * np.pi / nletters  # angle of the movement");
+//        wln("    v = rotMatrix(a).dot([-1, 0])");
+//        wln("    if i % 2: v[1] = -v[1]");
+//        wln("    return lambda t: screenpos + 400 * d(t) * rotMatrix(0.5 * d(t) * a).dot(v)");
+//        wln("");
+//        wln("");
+//        wln("def cascade(screenpos, i, nletters):");
+//        wln("    v = np.array([0, -1])");
+//        wln("    d = lambda t: 1 if t < 0 else abs(np.sinc(t) / (1 + t ** 4))");
+//        wln("    return lambda t: screenpos + v * 400 * d(t - 0.15 * i)");
+//        wln("");
+//        wln("");
+//        wln("def arrive(screenpos, i, nletters):");
+//        wln("    v = np.array([-1, 0])");
+//        wln("    d = lambda t: max(0, 3 - 3 * t)");
+//        wln("    return lambda t: screenpos - 400 * v * d(t - 0.2 * i)");
+//        wln("");
+//        wln("");
+//        wln("def vortexout(screenpos, i, nletters):");
+//        wln("    d = lambda t: max(0, t)  # damping");
+//        wln("    a = i * np.pi / nletters  # angle of the movement");
+//        wln("    v = rotMatrix(a).dot([-1, 0])");
+//        wln("    if i % 2: v[1] = -v[1]");
+//        wln("    return lambda t: screenpos + 400 * d(t - 0.1 * i) * rotMatrix(-0.2 * d(t) * a).dot(v)");
+//        wln("");
+//        wln("");
+//        wln("# WE USE THE PLUGIN findObjects TO LOCATE AND SEPARATE EACH LETTER\n");
+//        wln("letters = findObjects(cvc)  # a list of ImageClips");
+//
+          wln("### Text ");
+          wln("");
+          wln(String.format("_%s =  TextClip(\"%s\", fontsize=70, color='white')", textClip.getName(), textClip.getText()));
+          wln(String.format("_%s =  _%s.set_position('center').set_duration(10)", textClip.getName(), textClip.getName()));
+          wln(String.format("%s = CompositeVideoClip([_%s], size=video_one.size)", textClip.getName(), textClip.getName()));
+          wln("");
     }
-
-    @Override
-    public void visit(App app) {
-//            wln(String.format("  pinMode(%d, INPUT);  // %s [Sensor]", sensor.getPin(), sensor.getName()));
-    }
-
-//    @Override
-//    public void visit(State state) {
-//        wln(String.format("int state_%s() {", state.getName()));
-//        if(tonality && state.isTune()){
-//            wln(String.format("      tone(buzzerAlarm,400,100);"));
-//            wln(String.format("      delay(100);" ));
-//            wln(String.format("      tone(buzzerAlarm,400,100);" ));
-//            wln(String.format("      delay(100);" ));
-//            wln(String.format("      tone(buzzerAlarm,400,100);" ));
-//            wln(String.format("      delay(100);"));
-//        }
-//        for (Action action : state.getActions()) {
-//            action.accept(this);
-//        }
-//        wln("  boolean guard = millis() - time > debounce;");
-//
-//        if(tonality && state.isTune()){
-//            wln(String.format("delay(500);"));
-//            wln(String.format("tone(buzzerAlarm,450,500);"));
-//        }
-//        context.put(CURRENT_STATE, state);
-//    }
-//
-//    @Override
-//    public void visit(Transition transition) {
-//        w(String.format("  if("));
-//        w(String.format("digitalRead(%d) == %s ", transition.getConditionActions().get(0).getSensor().getPin(), transition.getConditionActions().get(0).getValue() == SIGNAL.HIGH?"1":"0"));
-//
-//        if (transition.getCondition() != null) {
-//            if (transition.getCondition().equals(Condition.AND)) {
-//                w(String.format("&& digitalRead(%d) == %s ", transition.getConditionActions().get(1).getSensor().getPin(), transition.getConditionActions().get(1).getValue() == SIGNAL.HIGH?"1":"0"));
-//            }
-//            if (transition.getCondition().equals(Condition.OR)) {
-//                w(String.format("|| digitalRead(%d) == %s ", transition.getConditionActions().get(1).getSensor().getPin(), transition.getConditionActions().get(1).getValue() == SIGNAL.HIGH?"1":"0"));
-//            }
-//
-//        }
-//
-//        boolean temporal =false;
-//        wln("&& guard) {");
-//        wln("    time = millis();");
-//
-//        wln(String.format("    return %d;", transition.getNext().getId()));
-//        wln("  } else {");
-//        for (TemporalTransition temporalTransition:temporalTransitions ) {
-//            if(temporalTransition.getNext().getName().equals(transition.getNext().getName()) &&
-//                    temporalTransition.getFrom().getName().equals(transition.getFrom().getName())){
-//                temporal=true;
-//                temporalTransition.accept(this);
-//            }
-//        }
-//        if(temporal){
-//            wln(String.format("    return %d;", transition.getNext().getId()));
-//        }
-//        else {
-//            wln(String.format("    return %d;", transition.getFrom().getId()));
-//        }
-//        wln("  }");
-//    }
-//
-//    @Override
-//    public void visit(Action action) {
-//            wln(String.format("  digitalWrite(%d,%s);", action.getActuator().getPin(), action.getValue()));
-//    }
-//
-//
-//    @Override
-//    public void visit(TemporalTransition temporalTransition){
-//        wln(String.format("    while( change < %d) {", temporalTransition.getTime()));
-//        wln("       delay(1);");
-//        wln("       change ++;");
-//        wln("    } ");
-//        wln("    change = 0;");
-//    }
 }

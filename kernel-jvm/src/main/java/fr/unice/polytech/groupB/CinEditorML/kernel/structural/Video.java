@@ -12,6 +12,7 @@ public class Video extends Sequence {
         return SequenceType.VIDEO;
     }
 
+    @Override
     public String getName() {
         return name;
     }

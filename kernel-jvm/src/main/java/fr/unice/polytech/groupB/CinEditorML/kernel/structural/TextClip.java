@@ -12,6 +12,7 @@ public class TextClip extends Sequence{
         return SequenceType.TEXT_CLIP;
     }
 
+    @Override
     public String getName() {
         return name;
     }
