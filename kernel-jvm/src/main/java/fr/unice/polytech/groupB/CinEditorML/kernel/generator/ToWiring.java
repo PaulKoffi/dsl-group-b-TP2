@@ -131,7 +131,7 @@ public class ToWiring extends Visitor<StringBuffer> {
           wln("### Text ");
           wln("");
           wln(String.format("_%s =  TextClip(\"%s\", fontsize=70, color='white')", textClip.getName(), textClip.getText()));
-          wln(String.format("_%s =  _%s.set_position('center').set_duration(10)", textClip.getName(), textClip.getName()));
+          wln(String.format("_%s =  _%s.set_position('center').set_duration(%d)", textClip.getName(), textClip.getName(), textClip.getTime()));
           wln(String.format("%s = CompositeVideoClip([_%s], size=video_one.size)", textClip.getName(), textClip.getName()));
           wln("");
     }
