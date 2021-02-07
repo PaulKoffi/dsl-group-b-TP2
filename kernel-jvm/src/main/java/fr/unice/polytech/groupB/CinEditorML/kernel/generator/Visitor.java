@@ -17,6 +17,7 @@ public abstract class Visitor<T> {
 
 	public abstract void visit(App app);
 
+
 	public abstract void visit(State state);
 	public abstract void visit(Transition transition);
 	public abstract void visit(TemporalTransition temporalTransition);
