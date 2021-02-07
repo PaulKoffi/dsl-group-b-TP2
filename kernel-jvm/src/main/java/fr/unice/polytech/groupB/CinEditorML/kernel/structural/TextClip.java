@@ -25,4 +25,9 @@ public class TextClip implements Sequence{
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }

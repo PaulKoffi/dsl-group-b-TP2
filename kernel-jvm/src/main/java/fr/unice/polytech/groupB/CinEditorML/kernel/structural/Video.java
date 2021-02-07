@@ -24,4 +24,9 @@ public class Video implements Sequence{
     public void setPath(String path) {
         this.path = path;
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }
