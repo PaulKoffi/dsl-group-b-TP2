@@ -18,17 +18,18 @@ public class ToWiring extends Visitor<StringBuffer> {
 //    private int INT_MAX= 32000;
 //    private ArrayList<TemporalTransition> temporalTransitions = new ArrayList<>();
 //
-//    public ToWiring() {
-//        this.result = new StringBuffer();
-//    }
-//
-//    private void wln(String s) {
-//        result.append(String.format("%s\n", s));
-//    }
-//
-//    private void w(String s) {
-//        result.append(String.format("%s", s));
-//    }
+    public ToWiring() {
+        this.result = new StringBuffer();
+    }
+
+    private void wln(String s) {
+        result.append(String.format("%s\n", s));
+    }
+
+    private void w(String s) {
+        result.append(String.format("%s", s));
+    }
+
 //
 //    @Override
 //    public void visit(App app) {

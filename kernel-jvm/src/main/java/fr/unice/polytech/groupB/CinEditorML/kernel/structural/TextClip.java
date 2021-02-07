@@ -5,7 +5,7 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.generator.*;
 public class TextClip extends Sequence{
     private String name;
     private String text;
-
+    private int time;
 
     @Override
     public SequenceType getType() {
@@ -31,5 +31,13 @@ public class TextClip extends Sequence{
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }
