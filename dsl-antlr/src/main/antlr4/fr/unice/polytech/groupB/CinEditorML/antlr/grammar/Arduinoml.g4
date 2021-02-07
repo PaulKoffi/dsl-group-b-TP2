@@ -10,9 +10,9 @@ root            : sequences export;
 sequences       : sequence+;
 
 sequence        : (textClip| video | image| specificVideo);
-textClip        : 'textClip' name=IDENTIFIER value=IDENTIFIER 'lasting' time=TIME;
-video           : 'video named' name=IDENTIFIER value=FILE_NAME ;
-specificVideo   : 'video named' name=IDENTIFIER value=FILE_NAME 'from' start=TIMELINE 'to' end=TIMELINE;
+textClip        : 'textClip' name=IDENTIFIER path=IDENTIFIER 'lasting' time=TIME;
+video           : 'video named' name=IDENTIFIER path=FILE_NAME ;
+specificVideo   : 'video named' name=IDENTIFIER path=FILE_NAME 'from' start=TIMELINE 'to' end=TIMELINE;
 image           : 'image' name=IDENTIFIER value= FILE_NAME 'lasting' time=TIME;
 
 export          : 'export' name=FILE_NAME;

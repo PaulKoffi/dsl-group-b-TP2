@@ -7,9 +7,8 @@ import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.*;
 
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
-import fr.unice.polytech.groupB.CinEditorML.kernel.structural.Actuator;
-import fr.unice.polytech.groupB.CinEditorML.kernel.structural.SIGNAL;
-import fr.unice.polytech.groupB.CinEditorML.kernel.structural.Sensor;
+import fr.unice.polytech.groupB.CinEditorML.kernel.structural.TextClip;
+import fr.unice.polytech.groupB.CinEditorML.kernel.structural.Video;
 
 
 import java.util.ArrayList;
@@ -65,12 +64,18 @@ public class ModelBuilder extends ArduinomlBaseListener {
         theApp = new App();
     }
 
+    public void enterTextClip(ArduinomlParser.TextClipContext ctx){
+        TextClip textClip= new TextClip();
+        textClip.setText(ctx.path.getText());
+        textClip.setName(ctx.name.getText());
+    }
+
+    public void enterVideo(ArduinomlParser.VideoContext ctx){
+        Video video = new Video();
+        video.setPath(ctx.path.getText());
+    }
+
     @Override public void exitRoot(ArduinomlParser.RootContext ctx) {
-        // Resolving states in transitions
-//        bindings.forEach((key, binding) ->  {
-//            Transition t = new Transition();
-//            t.setNext(states.get(binding.next));
-//        });
         this.built = true;
     }
 
