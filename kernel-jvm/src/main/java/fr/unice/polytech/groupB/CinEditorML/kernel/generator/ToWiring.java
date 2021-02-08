@@ -59,7 +59,7 @@ public class ToWiring extends Visitor<StringBuffer> {
                 w(String.format(", %s", s.getName()));
             }
         }
-        w("], method='compose')");
+        w("], method='compose')\n");
         wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
         wln("");
         wln("");
@@ -132,7 +132,7 @@ public class ToWiring extends Visitor<StringBuffer> {
           wln("");
           wln(String.format("_%s =  TextClip(\"%s\", fontsize=70, color='white')", textClip.getName(), textClip.getText()));
           wln(String.format("_%s =  _%s.set_position('center').set_duration(%d)", textClip.getName(), textClip.getName(), textClip.getTime()));
-          wln(String.format("%s = CompositeVideoClip([_%s], size=video_one.size)", textClip.getName(), textClip.getName()));
+          wln(String.format("%s = CompositeVideoClip([_%s], size=[1920, 1080])", textClip.getName(), textClip.getName()));
           wln("");
     }
 }

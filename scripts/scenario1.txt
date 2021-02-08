@@ -2,7 +2,7 @@ textClip begin beginningText lasting 10 s
 
 video named video1 test3.mp4
 
-video named video2 va2.mp4
+video named video2 V2.mp4
 
 textClip end endingText lasting 10 s
 
