@@ -1,4 +1,4 @@
-package fr.unice.polytech.groupB.CinEditorML.kernel.generator;
+package fr.unice.polytech.groupB.CinEditorML.kernel.assemblor;
 
 public interface Visitable {
 

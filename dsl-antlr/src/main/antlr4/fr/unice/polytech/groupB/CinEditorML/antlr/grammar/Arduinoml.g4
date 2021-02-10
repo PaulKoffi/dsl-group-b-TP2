@@ -10,10 +10,15 @@ root            : sequences export;
 sequences       : sequence+;
 
 sequence        : (textClip| video | image| specificVideo);
-textClip        : 'textClip' name=IDENTIFIER text=IDENTIFIER 'lasting' time=TIME 's'?;
-video           : 'video named' name=IDENTIFIER path=FILE_NAME ;
-specificVideo   : 'video named' name=IDENTIFIER path=FILE_NAME 'from' start=TIMELINE 'to' end=TIMELINE;
-image           : 'image' name=IDENTIFIER path= FILE_NAME 'lasting' time=TIME 's';
+textClip        : name=IDENTIFIER '= textClip('text=IDENTIFIER ').setDuration('time=TIME')' /*time=TIME 's'?*/;
+video           : name=IDENTIFIER '= video(' path=FILE_NAME ')' ;
+specificVideo   : name=IDENTIFIER '= video(' path=FILE_NAME ').from(' start=TIMELINE ').to(' end=TIMELINE')';
+subtitle        : name=IDENTIFIER '= subtitle(' element=IDENTIFIER ('.afterBegining'|'.beforeBegining'|'.afterEnding'|'.beforeEnding');
+image           : 'Image' name=IDENTIFIER path= FILE_NAME 'lasting' time=TIME 's';
+//chainage
+//Plusieurs videos extraites de la meme vido ?
+
+//setTextClipTime : name=IDENTIFIER '.setTime(' time=TIME ')';
 
 export          : 'export' name=IDENTIFIER;
 //
@@ -49,9 +54,9 @@ export          : 'export' name=IDENTIFIER;
  ** Lexer rules **
  *****************/
 
+LINE_TERMINAISON:  ';';
 TIMELINE        :   NUMBER NUMBER? ':'NUMBER NUMBER ;
 TIME            :   NUMBER+;
-//IDENTIFIER      :     LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER? FILE_EXTENSION?;
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER?;
 FILE_NAME       :   (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER? '.' (LOWERCASE|UPPERCASE|NUMBER)+;
 

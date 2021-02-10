@@ -1,7 +1,7 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
 
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.Sequence;
-import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.SequenceType;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
 
 public class SpecificVideoPart extends Sequence {
 
@@ -9,8 +9,8 @@ public class SpecificVideoPart extends Sequence {
 
     }
     @Override
-    public SequenceType getType() {
-        return SequenceType.SPECIFIC_VIDEO;
+    public BackGroundElementType getType() {
+        return BackGroundElementType.VIDEO;
     }
 
     @Override

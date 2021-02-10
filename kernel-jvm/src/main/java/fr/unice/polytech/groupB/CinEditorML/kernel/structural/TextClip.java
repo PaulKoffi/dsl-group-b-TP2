@@ -1,19 +1,20 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
-import fr.unice.polytech.groupB.CinEditorML.kernel.generator.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
 
-public class TextClip extends Sequence{
-    private String name= "";
-    private String text= "";
-    private int time= 0;
+public class TextClip implements BackGroundElement {
+    private String name;
+    private String text;
+    private int time;
 
     public TextClip(){
 
     }
 
     @Override
-    public SequenceType getType() {
-        return SequenceType.TEXT_CLIP;
+    public BackGroundElementType getBackGroundElementType() {
+        return BackGroundElementType.TEXT_CLIP;
     }
 
     @Override

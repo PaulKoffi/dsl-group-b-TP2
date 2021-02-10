@@ -1,15 +1,13 @@
-package fr.unice.polytech.groupB.CinEditorML.kernel.generator;
+package fr.unice.polytech.groupB.CinEditorML.kernel.assemblor;
 
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
 
-import java.util.ArrayList;
-
 /**
  * Quick and dirty visitor to support the generation of Wiring code
  */
-public class ToWiring extends Visitor<StringBuffer> {
+public class VideoConstructor extends Visitor<StringBuffer> {
 //    enum PASS {ONE, TWO}
 //    private final static String CURRENT_STATE = "current_state";
 //    private int nbState = 0;
@@ -20,7 +18,7 @@ public class ToWiring extends Visitor<StringBuffer> {
 //
 //    private boolean utilForText = false;
 
-    public ToWiring() {
+    public VideoConstructor() {
         this.result = new StringBuffer();
     }
 
@@ -44,19 +42,19 @@ public class ToWiring extends Visitor<StringBuffer> {
         wln("");
         wln("");
 
-        for(Sequence s: app.getSequences()){
-            s.accept(this);
+        for(BackGroundElement backGroundElement: app.getBackGroundElements()){
+            backGroundElement.accept(this);
         }
 
         boolean first = true;
         //        Generate video
         w("final = concatenate_videoclips([");
-        for(Sequence s: app.getSequences()){
+        for(BackGroundElement backGroundElement: app.getBackGroundElements()){
             if(first){
-                w(String.format("%s", s.getName()));
+                w(String.format("%s", backGroundElement.getName()));
                 first = false;
             }else{
-                w(String.format(", %s", s.getName()));
+                w(String.format(", %s", backGroundElement.getName()));
             }
         }
         w("], method='compose')\n");

@@ -1,23 +1,31 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import fr.unice.polytech.groupB.CinEditorML.kernel.generator.*;
-import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 
 public class App implements NamedElement, Visitable {
 
 	private String name;
-	private ArrayList<Sequence> sequences = new ArrayList<>();
+	private ArrayList<BackGroundElement> backGroundElements = new ArrayList<>();
+	private ArrayList<FrontElement> frontElements = new ArrayList<>();
 
-	public ArrayList<Sequence> getSequences() {
-		return sequences;
+	public ArrayList<BackGroundElement> getBackGroundElements() {
+		return backGroundElements;
 	}
 
-	public void addSequence(Sequence sequence){
-		sequences.add(sequence);
+	public ArrayList<FrontElement> getFrontElements() {
+		return frontElements;
+	}
+
+
+	public void addBackGroundElement(BackGroundElement backGroundElement){
+		backGroundElements.add(backGroundElement);
+	}
+
+	public void addFrontElement(FrontElement frontElement){
+		frontElements.add(frontElement);
 	}
 
 	@Override

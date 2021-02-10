@@ -5,9 +5,8 @@ import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.ArduinomlParser;
 
 
 import fr.unice.polytech.groupB.CinEditorML.kernel.*;
-import fr.unice.polytech.groupB.CinEditorML.kernel.generator.ToWiring;
-import fr.unice.polytech.groupB.CinEditorML.kernel.generator.Visitor;
-import org.antlr.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.VideoConstructor;
+import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.Visitor;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -52,7 +51,7 @@ public class Main {
     }
 
     private static void exportToCode(App theApp) {
-        Visitor codeGenerator = new ToWiring();
+        Visitor codeGenerator = new VideoConstructor();
         theApp.accept(codeGenerator);
         System.out.println(codeGenerator.getResult());
     }

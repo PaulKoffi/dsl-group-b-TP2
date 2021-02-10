@@ -69,14 +69,14 @@ public class ModelBuilder extends ArduinomlBaseListener {
         textClip.setTime(Integer.parseInt(ctx.time.getText()));
         textClip.setText(ctx.text.getText());
         textClip.setName(ctx.name.getText());
-        theApp.addSequence(textClip);
+        theApp.addBackGroundElement(textClip);
     }
 
     public void exitVideo(ArduinomlParser.VideoContext ctx){
         Video video = new Video();
         video.setName(ctx.name.getText());
         video.setPath(ctx.path.getText());
-        theApp.addSequence(video);
+        theApp.addBackGroundElement(video);
     }
 
     @Override

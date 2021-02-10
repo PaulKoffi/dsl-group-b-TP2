@@ -1,4 +1,4 @@
-package fr.unice.polytech.groupB.CinEditorML.kernel.generator;
+package fr.unice.polytech.groupB.CinEditorML.kernel.assemblor;
 
 import java.util.HashMap;
 import java.util.Map;
