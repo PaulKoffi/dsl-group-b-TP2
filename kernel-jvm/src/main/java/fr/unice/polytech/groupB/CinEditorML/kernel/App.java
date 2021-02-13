@@ -1,6 +1,7 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
@@ -8,25 +9,25 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 public class App implements NamedElement, Visitable {
 
 	private String name;
-	private ArrayList<BackGroundElement> backGroundElements = new ArrayList<>();
-	private ArrayList<FrontElement> frontElements = new ArrayList<>();
+	private HashMap<String,BackGroundElement> backGroundElements = new HashMap<>();
+	private HashMap<String,FrontElement> frontElements = new HashMap<>();
 	private ArrayList<String> sequence = new ArrayList<>();
 
-	public ArrayList<BackGroundElement> getBackGroundElements() {
+	public HashMap<String,BackGroundElement> getBackGroundElements() {
 		return backGroundElements;
 	}
 
-	public ArrayList<FrontElement> getFrontElements() {
+	public HashMap<String,FrontElement> getFrontElements() {
 		return frontElements;
 	}
 
 
-	public void addBackGroundElement(BackGroundElement backGroundElement){
-		backGroundElements.add(backGroundElement);
+	public void addBackGroundElement(String key,BackGroundElement backGroundElement){
+		backGroundElements.put(key,backGroundElement);
 	}
 
-	public void addFrontElement(FrontElement frontElement){
-		frontElements.add(frontElement);
+	public void addFrontElement(String key,FrontElement frontElement){
+		frontElements.put(key,frontElement);
 	}
 
 	@Override
@@ -42,14 +43,6 @@ public class App implements NamedElement, Visitable {
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
-	}
-
-	public void setBackGroundElements(ArrayList<BackGroundElement> backGroundElements) {
-		this.backGroundElements = backGroundElements;
-	}
-
-	public void setFrontElements(ArrayList<FrontElement> frontElements) {
-		this.frontElements = frontElements;
 	}
 
 	public ArrayList<String> getSequence() {

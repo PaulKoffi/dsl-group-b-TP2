@@ -1,26 +1,19 @@
 package fr.unice.polytech.groupB.CinEditorML.antlr;
 
-import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.ArduinomlBaseListener;
-import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.ArduinomlParser;
-import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.*;
-
-
+import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.CinEditorBaseListener;
+import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.CinEditorParser;
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
-import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.structural.SpecificVideoPart;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.TextClip;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.Video;
 
+public class ModelBuilder extends CinEditorBaseListener {
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-public class ModelBuilder extends ArduinomlBaseListener {
-
+    String videoExtension = ".mp4";
     /********************
      ** Business Logic **
      ********************/
+
 
     private App theApp = null;
     private boolean built = false;
@@ -35,62 +28,72 @@ public class ModelBuilder extends ArduinomlBaseListener {
      *******************/
 
 
-    private ArrayList<Sequence> sequencesList;
-//    private Map<String, Sensor>   sensors   = new HashMap<>();
-//    private Map<String, Actuator> actuators = new HashMap<>();
-//    private Map<String, State>    states  = new HashMap<>();
-//    private Map<String, Binding>  bindings  = new HashMap<>();
-//
-//    private class Binding { // used to support state resolution for transitions
-//        private State next;
-//        private State from;
-//        private List<ConditionAction> conditionActions=new ArrayList<>();
-//        private Condition condition = Condition.NULL;
-//        private int time = 0;
-//    }
-//
-//    int stateId = 1;
-//    private final int avoidSpecials =1;
-//    private State currentState = null;
-//    private Binding currentBinding =null;
 
     /**************************
      ** Listening mechanisms **
      **************************/
 
     @Override
-    public void enterRoot(ArduinomlParser.RootContext ctx) {
+    public void enterRoot(CinEditorParser.RootContext ctx) {
         built = false;
         theApp = new App();
     }
 
-    public void exitTextClip(ArduinomlParser.TextClipContext ctx){
+    public void exitTextClip(CinEditorParser.TextClipContext ctx){
         TextClip textClip= new TextClip();
         textClip.setTime(Integer.parseInt(ctx.time.getText()));
         textClip.setText(ctx.text.getText());
         textClip.setName(ctx.name.getText());
-        theApp.addBackGroundElement(textClip);
+        theApp.addBackGroundElement(textClip.getName(),textClip);
     }
 
-    public void exitVideo(ArduinomlParser.VideoContext ctx){
+    public void exitVideo(CinEditorParser.VideoContext ctx){
         Video video = new Video();
         video.setName(ctx.name.getText());
         video.setPath(ctx.path.getText());
-        theApp.addBackGroundElement(video);
+        theApp.addBackGroundElement(video.getName(),video);
     }
 
     @Override
-    public void exitRoot(ArduinomlParser.RootContext ctx) {
+    public void exitRoot(CinEditorParser.RootContext ctx) {
         this.built = true;
     }
 
     @Override
-    public void enterExport(ArduinomlParser.ExportContext ctx) {
+    public void enterExport(CinEditorParser.ExportContext ctx) {
         theApp.setName(ctx.name.getText());
     }
+
+    @Override
+    public void exitCreateVideo(CinEditorParser.CreateVideoContext ctx){
+        String[] text = ctx.list.getText().trim().split(",");
+        for (String identifier : text) {
+            theApp.getSequence().add(identifier);
+        }
+    }
+
+    @Override
+    public void exitSpecificPartOfVideo(CinEditorParser.SpecificPartOfVideoContext ctx){
+        SpecificVideoPart part = new SpecificVideoPart();
+        part.setName(ctx.name.getText());
+        part.setPath(ctx.path.getText());
+        part.setBeginning(ctx.start.getText());
+        part.setEnding(ctx.end.getText());
+    }
+
+
+    @Override
+    public void exitCutVideo(CinEditorParser.CutVideoContext ctx){
+        SpecificVideoPart part = new SpecificVideoPart();
+        part.setName(ctx.name.getText());
+        part.setPath(ctx.source.getText()+ videoExtension);
+        part.setBeginning(ctx.start.getText());
+        part.setEnding(ctx.end.getText());
+    }
+
 //
 //    @Override
-//    public void enterSensor(ArduinomlParser.SensorContext ctx) {
+//    public void enterSensor(CinEditorParser.SensorContext ctx) {
 //        Sensor sensor = new Sensor();
 //        sensor.setName(ctx.location().id.getText().substring(avoidSpecials,ctx.location().id.getText().length()-avoidSpecials));
 //        sensor.setPin(Integer.parseInt(ctx.location().port.getText()));
@@ -99,7 +102,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
 //    }
 //
 //    @Override
-//    public void enterActuator(ArduinomlParser.ActuatorContext ctx) {
+//    public void enterActuator(CinEditorParser.ActuatorContext ctx) {
 //        Actuator actuator = new Actuator();
 //        actuator.setName(ctx.location().id.getText().substring(avoidSpecials,ctx.location().id.getText().length()-avoidSpecials));
 //        actuator.setPin(Integer.parseInt(ctx.location().port.getText()));
@@ -108,7 +111,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
 //    }
 //
 //    @Override
-//    public void enterState(ArduinomlParser.StateContext ctx) {
+//    public void enterState(CinEditorParser.StateContext ctx) {
 //        State local = new State();
 //        local.setName(ctx.name.getText().substring(avoidSpecials,ctx.name.getText().length()-avoidSpecials));
 //        this.currentState = local;
@@ -122,14 +125,14 @@ public class ModelBuilder extends ArduinomlBaseListener {
 //    }
 //
 //    @Override
-//    public void exitState(ArduinomlParser.StateContext ctx) {
+//    public void exitState(CinEditorParser.StateContext ctx) {
 //        this.theApp.getStates().add(this.currentState);
 //        this.currentState = null;
 //
 //    }
 //
 //    @Override
-//    public void enterAction(ArduinomlParser.ActionContext ctx) {
+//    public void enterAction(CinEditorParser.ActionContext ctx) {
 //        Action action = new Action();
 //        action.setActuator(actuators.get(ctx.receiver.getText()));
 //        action.setValue(SIGNAL.valueOf(ctx.value.getText().toUpperCase()));
@@ -137,7 +140,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
 //    }
 //
 //    @Override
-//    public void enterTransition(ArduinomlParser.TransitionContext ctx) {
+//    public void enterTransition(CinEditorParser.TransitionContext ctx) {
 //         //Creating a placeholder as the next state might not have been compiled yet.
 //        Binding toBeResolvedLater = new Binding();
 //        this.currentBinding = toBeResolvedLater;
@@ -151,7 +154,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
 //    }
 //
 //    @Override
-//    public void exitTransition(ArduinomlParser.TransitionContext ctx) {
+//    public void exitTransition(CinEditorParser.TransitionContext ctx) {
 //        Transition transition = new Transition();
 //        transition.setNext(currentBinding.next);
 //        transition.setFrom(currentBinding.from);
@@ -167,7 +170,7 @@ public class ModelBuilder extends ArduinomlBaseListener {
 //    }
 //
 //    @Override
-//    public void enterCombinationAction(ArduinomlParser.CombinationActionContext ctx){
+//    public void enterCombinationAction(CinEditorParser.CombinationActionContext ctx){
 //        ConditionAction conditionAction =new ConditionAction();
 //        conditionAction.setSensor(sensors.get(ctx.source.getText()));
 //        conditionAction.setValue(SIGNAL.valueOf(ctx.value.getText().toUpperCase()));
@@ -175,22 +178,22 @@ public class ModelBuilder extends ArduinomlBaseListener {
 //    }
 //
 //    @Override
-//    public void enterInitial(ArduinomlParser.InitialContext ctx) {
+//    public void enterInitial(CinEditorParser.InitialContext ctx) {
 //        this.theApp.setInitial(states.get(ctx.starting.getText()));
 //    }
 //
 //    @Override
-//    public void enterTonality(ArduinomlParser.TonalityContext ctx){
+//    public void enterTonality(CinEditorParser.TonalityContext ctx){
 //        this.theApp.setTonality(Tonality.valueOf(ctx.value.getText().toUpperCase()).equals(Tonality.ON));
 //    }
 //
 //    @Override
-//    public void enterInterrupt(ArduinomlParser.InterruptContext ctx){
+//    public void enterInterrupt(CinEditorParser.InterruptContext ctx){
 //        this.theApp.setInterrupt(Tonality.valueOf(ctx.value.getText().toUpperCase()).equals(Tonality.ON));
 //    }
 //
 //    @Override
-//    public void enterTemporal(ArduinomlParser.TemporalContext ctx){
+//    public void enterTemporal(CinEditorParser.TemporalContext ctx){
 //        TemporalTransition temporalTransition = new TemporalTransition();
 //        temporalTransition.setNext(states.get(ctx.end.getText()));
 //        temporalTransition.setFrom(states.get(ctx.begin.getText()));

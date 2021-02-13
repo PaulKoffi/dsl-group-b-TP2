@@ -1,10 +1,12 @@
-begin = textClip(beginningText).setDuration(10)
-video1 = video(test3.mp4)
-video2 = video(va2.mp4)
-end = textClip(endingText).setDuration(10)
-
+#begin = textClip(beginningText, 10)
+#video1 = video(test3.mp4)
+#video2 = video(va2.mp4)
+#end = textClip(endingText).setDuration(10)
+#video4 = video1.from(1:00).to(02:00)    #save path as video1.mp4
 #finalClip =
-export result
+
+createVideo(video1, video, video3)
+#export result
 
 #video named video1 test3.mp4
 #video named video2 va2.mp4
