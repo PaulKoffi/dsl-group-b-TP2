@@ -5,7 +5,7 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.utils.TimeType;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Position;
 
 public class RelativeTime extends Time{
-    Element element;
+    String element;
     public Position position;
     private int timeComparedToPosition;
 
@@ -14,11 +14,11 @@ public class RelativeTime extends Time{
         return TimeType.RELATIVE;
     }
 
-    public Element getElement() {
+    public String getElement() {
         return element;
     }
 
-    public void setElement(Element element) {
+    public void setElement(String element) {
         this.element = element;
     }
 

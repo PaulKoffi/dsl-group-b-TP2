@@ -1,15 +1,14 @@
-#begin = textClip(beginningText, 10)
-#video1 = video(test3.mp4)
-#video2 = video(va2.mp4)
-#end = textClip(endingText).setDuration(10)
-#video4 = video1.from(1:00).to(02:00)    #save path as video1.mp4
-#finalClip =
+begin=textClip("beginningText")->during(10)
+video1=video(test3.mp4)
+video2=video(va2.mp4)
+end=textClip("endingText")->during(10)
+video4=video2->from(01:00)->to(02:00)
+home=subtitle(" I m good")->at()->of(video1)
 
-createVideo(video1, video, video3)
-#export result
+#audio1=audio(home.mp3)->at()->of(video1)
 
-#video named video1 test3.mp4
-#video named video2 va2.mp4
-#textClip end endingText lasting 10 s
+createVideo("video1, video2, video3")
+export result
+
 
 
