@@ -10,6 +10,7 @@ public class App implements NamedElement, Visitable {
 	private String name;
 	private ArrayList<BackGroundElement> backGroundElements = new ArrayList<>();
 	private ArrayList<FrontElement> frontElements = new ArrayList<>();
+	private ArrayList<String> sequence = new ArrayList<>();
 
 	public ArrayList<BackGroundElement> getBackGroundElements() {
 		return backGroundElements;
@@ -41,5 +42,21 @@ public class App implements NamedElement, Visitable {
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
+	}
+
+	public void setBackGroundElements(ArrayList<BackGroundElement> backGroundElements) {
+		this.backGroundElements = backGroundElements;
+	}
+
+	public void setFrontElements(ArrayList<FrontElement> frontElements) {
+		this.frontElements = frontElements;
+	}
+
+	public ArrayList<String> getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(ArrayList<String> sequence) {
+		this.sequence = sequence;
 	}
 }

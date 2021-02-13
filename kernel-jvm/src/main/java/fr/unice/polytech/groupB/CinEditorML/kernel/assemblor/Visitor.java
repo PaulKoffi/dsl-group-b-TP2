@@ -9,7 +9,7 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
 public abstract class Visitor<T> {
 
 	public abstract void visit(App app);
-	public abstract void visit(Sequence sequence);
+//	public abstract void visit(Sequence sequence);
 	public abstract void visit(Video video);
 	public abstract void visit(TextClip textClip);
 

@@ -71,10 +71,10 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln("");
     }
 
-    @Override
-    public void visit(Sequence sequence) {
-
-    }
+//    @Override
+//    public void visit(Sequence sequence) {
+//
+//    }
 
     @Override
     public void visit(TextClip textClip) {

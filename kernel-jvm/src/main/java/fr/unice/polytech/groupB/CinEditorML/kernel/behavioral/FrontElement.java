@@ -6,5 +6,4 @@ public interface FrontElement extends Element, Visitable {
     int duration= 0;
 
     public String getName();
-
 }

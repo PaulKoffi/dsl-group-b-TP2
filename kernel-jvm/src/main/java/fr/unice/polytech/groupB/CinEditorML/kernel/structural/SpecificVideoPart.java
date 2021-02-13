@@ -1,20 +1,40 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
 
-import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.Sequence;
+import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.BackGroundElement;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
 
-public class SpecificVideoPart extends Sequence {
+public class SpecificVideoPart extends Video implements BackGroundElement {
+
+    private String beginning;
+    private String ending;
 
     public SpecificVideoPart(){
 
     }
+
     @Override
-    public BackGroundElementType getType() {
-        return BackGroundElementType.VIDEO;
+    public BackGroundElementType getBackGroundElementType() {
+        return BackGroundElementType.SPECIFIC_VIDEO;
     }
 
     @Override
     public String getName() {
         return "";
+    }
+
+    public String getBeginning() {
+        return beginning;
+    }
+
+    public void setBeginning(String beginning) {
+        this.beginning = beginning;
+    }
+
+    public String getEnding() {
+        return ending;
+    }
+
+    public void setEnding(String ending) {
+        this.ending = ending;
     }
 }
