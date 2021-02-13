@@ -2,7 +2,7 @@ from moviepy.editor import *
 # from moviepy.video.fx import volumex
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
-audio_clip = AudioFileClip("songTest.mp4")
+audio_clip = AudioFileClip("songTest.mp4").subclip('00:30','1:00')
 # audio_clip.volumex(0.2)
 my_video_two = VideoFileClip("atletico_celta.mp4").subclip('02:21','02:41')
 audio_clip_2 = my_video_two.audio
