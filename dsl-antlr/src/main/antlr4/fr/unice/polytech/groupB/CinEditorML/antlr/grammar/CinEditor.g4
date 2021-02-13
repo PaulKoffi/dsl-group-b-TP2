@@ -9,7 +9,7 @@ root            : sequences createVideo export ;
 
 sequences       : sequence+;
 
-createVideo     : 'createVideo(' list=TEXT ')';
+createVideo     : 'createVideo' list=FINAL_VIDEO;
 
 sequence        : (backgroundElement |frontElement |action);
 
@@ -52,6 +52,7 @@ TIMELINE        :   (NUMBER NUMBER? ':'NUMBER NUMBER) ;
 TIME            :   NUMBER+;
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ ;
 TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ '"';
+FINAL_VIDEO     : '(' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ ')';
 
 FILE_NAME       :   (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER? '.' (LOWERCASE|UPPERCASE|NUMBER)+;
 

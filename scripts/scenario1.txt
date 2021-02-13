@@ -7,7 +7,7 @@ home=subtitle(" I m good")->at()->of(video1)
 
 #audio1=audio(home.mp3)->at()->of(video1)
 
-createVideo("video1, video2, video3")
+createVideo(video1, video2, video3)
 export result
 
 
