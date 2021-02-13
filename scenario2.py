@@ -2,10 +2,10 @@ from moviepy.editor import *
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
 # my_video_One = VideoFileClip("atletico_celta.mp4").subclip(37,100).subclip(20,35)
-my_video_One = VideoFileClip("test.mp4").subclip(5, 20)
-my_video_One.write_videofile("myvideoone.mp4", fps=30)
-my_video_two = VideoFileClip("myvideoone.mp4").subclip(4,13)
-# my_video_Two = VideoFileClip("atletico_celta.mp4").subclip(121,141)
+# my_video_One = VideoFileClip("test.mp4").subclip(5, 20)
+# my_video_One.write_videofile("myvideoone.mp4", fps=30)
+# my_video_two = VideoFileClip("myvideoone.mp4").subclip(4,13)
+my_video_two = VideoFileClip("atletico_celta.mp4").subclip('02:21','02:41')
 
 # #Texte 1
 # _txt_begin=TextClip("this is the beginning", fontsize=70, color='white')
