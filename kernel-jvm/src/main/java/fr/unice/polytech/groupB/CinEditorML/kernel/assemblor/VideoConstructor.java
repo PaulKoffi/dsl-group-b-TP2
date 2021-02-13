@@ -143,4 +143,14 @@ public class VideoConstructor extends Visitor<StringBuffer> {
     public void visit(Subtitle subtitle) {
 
     }
+
+    @Override
+    public void visit(SpecificAudioPart specificAudioPart) {
+
+    }
+
+    @Override
+    public void visit(SpecificVideoPart specificVideoPart) {
+
+    }
 }

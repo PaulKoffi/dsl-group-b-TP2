@@ -1,5 +1,5 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.utils;
 
 public enum FrontElementType {
-    SUBTITLE, AUDIO
+    SUBTITLE, AUDIO, SPECIFIC_AUDIO
 }
