@@ -133,4 +133,14 @@ public class VideoConstructor extends Visitor<StringBuffer> {
           wln(String.format("%s = CompositeVideoClip([_%s], size=[1920, 1080])", textClip.getName(), textClip.getName()));
           wln("");
     }
+
+    @Override
+    public void visit(Audio audio) {
+
+    }
+
+    @Override
+    public void visit(Subtitle subtitle) {
+
+    }
 }
