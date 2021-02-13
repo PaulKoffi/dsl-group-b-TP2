@@ -2,7 +2,7 @@ from moviepy.editor import *
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
 my_video_One = VideoFileClip("atletico_celta.mp4").subclip('00:23','01:47')
-my_video_two = VideoFileClip("atletico_celta.mp4").subclip('02:01','02:21')
+my_video_Two = VideoFileClip("atletico_celta.mp4").subclip('02:01','02:21')
 
 # #Texte 1
 _txt_begin=TextClip("this is the beginning", fontsize=70, color='white')
@@ -36,4 +36,4 @@ second_clip = CompositeVideoClip([my_video_Two,_txt_sub_3],size=my_video_One.siz
 
 # Concatenation des clips
 final = concatenate_videoclips([txt_begin,first_clip,second_clip,txt_end],method='compose')
-my_video_two.write_videofile("videoscenario4.mp4", fps=30)
+final.write_videofile("videoscenario4.mp4", fps=30)
