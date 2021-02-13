@@ -1,20 +1,36 @@
-grammar Arduinoml;
+grammar CinEditor;
 
 
 /******************
  ** Parser rules **
  ******************/
 
-root            : sequences export;
+root            : sequences createVideo export ;
 
 sequences       : sequence+;
 
-sequence        : (textClip| video | image| specificVideo);
-textClip        : name=IDENTIFIER '= textClip('text=IDENTIFIER ').setDuration('time=TIME')' /*time=TIME 's'?*/;
+createVideo     : 'createVideo' '(' list=TEXT ')';
+
+sequence        : (backgroundElement |frontElement |action);
+
+backgroundElement : (textClip| video |specificPartOfVideo);
+textClip        : name=IDENTIFIER '= textClip('text=IDENTIFIER ','time=TIME')' /*time=TIME 's'?*/;
 video           : name=IDENTIFIER '= video(' path=FILE_NAME ')' ;
-specificVideo   : name=IDENTIFIER '= video(' path=FILE_NAME ').from(' start=TIMELINE ').to(' end=TIMELINE')';
+specificPartOfVideo   : name=IDENTIFIER '= video(' path=FILE_NAME ').from(' start=TIMELINE ').to(' end=TIMELINE')';
+
+frontElement    : (subtitle| audio | specificPartOfAudio);
+audio           : name=IDENTIFIER '= audio(' path=FILE_NAME ')' ;
+specificPartOfAudio   : name=IDENTIFIER '= audio(' path=FILE_NAME ').from(' start=TIMELINE ').to(' end=TIMELINE')';
+
+
+
+
+
 subtitle        : name=IDENTIFIER '= subtitle(' element=IDENTIFIER ('.afterBegining'|'.beforeBegining'|'.afterEnding'|'.beforeEnding');
-image           : 'Image' name=IDENTIFIER path= FILE_NAME 'lasting' time=TIME 's';
+
+
+action          : cutVideo;
+cutVideo        : name=IDENTIFIER '=' source=IDENTIFIER '.from('start=TIMELINE').to('end=TIMELINE')';
 //chainage
 //Plusieurs videos extraites de la meme vido ?
 
@@ -57,7 +73,8 @@ export          : 'export' name=IDENTIFIER;
 LINE_TERMINAISON:  ';';
 TIMELINE        :   NUMBER NUMBER? ':'NUMBER NUMBER ;
 TIME            :   NUMBER+;
-IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER?;
+IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ ;
+TEXT            : (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|','|' '|NUMBER)+;
 FILE_NAME       :   (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER? '.' (LOWERCASE|UPPERCASE|NUMBER)+;
 
 FILE_EXTENSION  : '.mp4';
@@ -67,7 +84,7 @@ FILE_EXTENSION  : '.mp4';
 
 
 
-//APPLLICATION      : '"' (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|' ')+ '"';
+
 
 
 

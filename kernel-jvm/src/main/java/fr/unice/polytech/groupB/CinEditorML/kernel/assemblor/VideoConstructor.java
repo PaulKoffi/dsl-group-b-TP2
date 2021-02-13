@@ -42,14 +42,14 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln("");
         wln("");
 
-        for(BackGroundElement backGroundElement: app.getBackGroundElements()){
+        for(BackGroundElement backGroundElement: app.getBackGroundElements().values()){
             backGroundElement.accept(this);
         }
 
         boolean first = true;
         //        Generate video
         w("final = concatenate_videoclips([");
-        for(BackGroundElement backGroundElement: app.getBackGroundElements()){
+        for(BackGroundElement backGroundElement: app.getBackGroundElements().values()){
             if(first){
                 w(String.format("%s", backGroundElement.getName()));
                 first = false;

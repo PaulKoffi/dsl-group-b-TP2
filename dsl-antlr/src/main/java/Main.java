@@ -1,7 +1,6 @@
 import fr.unice.polytech.groupB.CinEditorML.antlr.ModelBuilder;
 import fr.unice.polytech.groupB.CinEditorML.antlr.StopErrorListener;
-import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.ArduinomlLexer;
-import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.ArduinomlParser;
+import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.*;
 
 
 import fr.unice.polytech.groupB.CinEditorML.kernel.*;
@@ -34,11 +33,11 @@ public class Main {
     }
 
     private static App buildModel(CharStream stream) {
-        ArduinomlLexer lexer   = new ArduinomlLexer(stream);
+        CinEditorLexer lexer   = new CinEditorLexer(stream);
         lexer.removeErrorListeners();
         lexer.addErrorListener(new StopErrorListener());
 
-        ArduinomlParser parser  = new ArduinomlParser(new CommonTokenStream(lexer));
+        CinEditorParser parser  = new CinEditorParser(new CommonTokenStream(lexer));
         parser.removeErrorListeners();
         parser.addErrorListener(new StopErrorListener());
 
