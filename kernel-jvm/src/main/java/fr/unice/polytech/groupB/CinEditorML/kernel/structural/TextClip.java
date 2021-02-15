@@ -46,4 +46,9 @@ public class TextClip implements BackGroundElement {
     public void setTime(int time) {
         this.time = time;
     }
+
+    @Override
+    public boolean isBackground(){
+        return true;
+    }
 }

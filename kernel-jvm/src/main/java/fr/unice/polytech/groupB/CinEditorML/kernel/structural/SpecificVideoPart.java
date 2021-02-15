@@ -38,4 +38,9 @@ public class SpecificVideoPart extends Video {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    public boolean isBackground(){
+        return true;
+    }
 }

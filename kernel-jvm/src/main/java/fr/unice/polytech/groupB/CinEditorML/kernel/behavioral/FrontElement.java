@@ -9,4 +9,6 @@ public interface FrontElement extends Element, Visitable {
     public String getName();
     public FrontElementType getFrontElementType();
     public Time getTime();
+    public boolean isBackground();
+    public int getDuration();
 }

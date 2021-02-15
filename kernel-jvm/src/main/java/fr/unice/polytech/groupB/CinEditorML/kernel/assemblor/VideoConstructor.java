@@ -27,7 +27,9 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 //    private boolean utilForText = false;
     ArrayList<String> utils = new ArrayList<>();
     ArrayList<String> sequence = new ArrayList<>();
-    private LinkedHashMap<String,BackGroundElement> backGroundElements = new LinkedHashMap<>();
+    private LinkedHashMap<String, BackGroundElement> backGroundElements = new LinkedHashMap<>();
+    private LinkedHashMap<String, String> subtitlesTime = new LinkedHashMap<>();
+    private LinkedHashMap<String,FrontElement> frontElements = new LinkedHashMap<>();
 
     public VideoConstructor() {
         this.result = new StringBuffer();
@@ -55,6 +57,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln("");
         wln("");
         this.backGroundElements = app.getBackGroundElements();
+        this.frontElements = app.getFrontElements();
         // Chargement des elements utiles mais pas dans la séquence finale
         Set<String> keys = app.getBackGroundElements().keySet();
         for (String k : keys) {
@@ -95,13 +98,16 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                 w(String.format(", %s", backGroundElement.getName()));
             }
         }
+
+
+
         w("], method='compose')\n");
         wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
         wln("");
         wln("");
         wln("### REMOVE TEMP VIDEOS");
-        for(String s: utils){
-            wln(String.format("os.remove('%s')",s));
+        for (String s : utils) {
+            wln(String.format("os.remove('%s')", s));
         }
         wln("");
     }
@@ -185,32 +191,99 @@ public class VideoConstructor extends Visitor<StringBuffer> {
     @Override
     public void visit(Subtitle subtitle) {
         wln("");
-        int t = 0;
-        if(subtitle.getTime().getType().equals(TimeType.ABSOLUTE)){
+        if (subtitle.getTime().getType().equals(TimeType.ABSOLUTE)) {
+            int t = 0;
             AbsoluteTime absoluteTime = (AbsoluteTime) subtitle.getTime();
             t = absoluteTime.getTime();
-        }else{
+
+            // Setup du subtitle
+            wln("");
+            wln(String.format("%s =  TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
+            wln(String.format("%s =  %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
+            wln(String.format("%s =  %s.set_start(%d)", subtitle.getName(), subtitle.getName(), t));
+        } else {
             RelativeTime relativeTime = (RelativeTime) subtitle.getTime();
-            int time = relativeTime.getTimeComparedToPosition();
-            Position p = relativeTime.getPosition();
-            BackGroundElement b = (BackGroundElement) relativeTime.getElement();
-            // Calcul de la seconde à laquelle doit commencer la vidéo
-            w("TEMPV = 0 ");
-            for(String s : this.sequence){
-                if(s.equals(b.getName())){
-                    break;
-                }else{
+            boolean isBackground = this.backGroundElements.containsKey(relativeTime.getElement());
+
+            if(isBackground){
+                BackGroundElement b = this.backGroundElements.get(relativeTime.getElement());
+                StringBuilder temp = new StringBuilder("TEMPV = 0 ");
+
+                for (String s : this.sequence) {
                     BackGroundElement backGroundElement = this.backGroundElements.get(s);
+
+                    // en fonction de la position au début
+                    if (s.equals(b.getName())) {
+                        if(relativeTime.getPosition().equals(Position.BEFORE_BEGINNING)){
+                            temp.append(" - ").append(relativeTime.getTimeComparedToPosition());
+                            break;
+                        }
+
+                        if(relativeTime.getPosition().equals(Position.AFTER_BEGINNING)){
+                            temp.append(" + ").append(relativeTime.getTimeComparedToPosition());
+                            break;
+                        }
+                    }
+
                     if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
                         TextClip textClip = (TextClip) b;
-                        w(String.format(" + %d", textClip.getTime()));
-                    }else{
-                        w(String.format(" +  int(%s.duration)", backGroundElement.getName()));
+                        temp.append(" + ").append(textClip.getTime());
+                    } else {
+                        temp.append(" +  int(").append(backGroundElement.getName()).append(".duration)");
+                    }
+
+                    // en fonction de la position à la fin
+                    if (s.equals(b.getName())) {
+                        if(relativeTime.getPosition().equals(Position.BEFORE_ENDING)){
+                            temp.append(" - ").append(relativeTime.getTimeComparedToPosition());
+                            break;
+                        }
+
+                        if(relativeTime.getPosition().equals(Position.AFTER_ENDING)){
+                            temp.append(" + ").append(relativeTime.getTimeComparedToPosition());
+                            break;
+                        }
                     }
                 }
-            }
-        }
 
+                // Sauvegarde
+                subtitlesTime.put(subtitle.getName(),temp.toString());
+
+                // Setup du subtitle
+                wln("");
+                wln(temp.toString());
+
+            }else{
+                FrontElement f = this.frontElements.get(relativeTime.getElement());
+                StringBuilder temp2 = new StringBuilder(subtitlesTime.get(f.getName()));
+
+                if(relativeTime.getPosition().equals(Position.BEFORE_BEGINNING)){
+                    temp2.append(" - ").append(relativeTime.getTimeComparedToPosition());
+                }
+
+                if(relativeTime.getPosition().equals(Position.AFTER_BEGINNING)){
+                    temp2.append(" + ").append(relativeTime.getTimeComparedToPosition());
+                }
+
+                if(relativeTime.getPosition().equals(Position.BEFORE_ENDING)){
+                    temp2.append(" + ").append(f.getDuration()).append(" - ").append(relativeTime.getTimeComparedToPosition());
+                }
+
+                if(relativeTime.getPosition().equals(Position.AFTER_ENDING)){
+                    temp2.append(" + ").append(f.getDuration()).append(" + ").append(relativeTime.getTimeComparedToPosition());
+                }
+
+                // Sauvegarde
+                subtitlesTime.put(subtitle.getName(),temp2.toString());
+
+                // Setup du subtitle
+                wln("");
+                wln(temp2.toString());
+            }
+            wln(String.format("%s =  TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
+            wln(String.format("%s =  %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
+            wln(String.format("%s =  %s.set_start(TEMPV)", subtitle.getName(), subtitle.getName()));
+        }
     }
 
     @Override

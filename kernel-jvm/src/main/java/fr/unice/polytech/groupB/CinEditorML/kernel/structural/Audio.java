@@ -44,4 +44,9 @@ public class Audio implements FrontElement {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    public boolean isBackground(){
+        return false;
+    }
 }

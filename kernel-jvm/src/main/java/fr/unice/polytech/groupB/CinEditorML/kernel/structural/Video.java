@@ -37,4 +37,9 @@ public class Video implements BackGroundElement {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    public boolean isBackground(){
+        return true;
+    }
 }

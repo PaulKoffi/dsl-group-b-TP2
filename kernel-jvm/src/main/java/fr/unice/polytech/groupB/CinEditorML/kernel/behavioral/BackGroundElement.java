@@ -8,4 +8,5 @@ public interface BackGroundElement extends Element, Visitable {
 
     public String getName();
     public BackGroundElementType getBackGroundElementType();
+    public boolean isBackground();
 }

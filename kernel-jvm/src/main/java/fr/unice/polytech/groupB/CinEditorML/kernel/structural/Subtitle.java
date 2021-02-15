@@ -8,6 +8,7 @@ public class Subtitle implements FrontElement{
     private Time time;
     private String name;
     private String text;
+    private int duration;
 
     @Override
     public String getName() {
@@ -43,5 +44,19 @@ public class Subtitle implements FrontElement{
     @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
+    }
+
+    @Override
+    public boolean isBackground(){
+        return false;
+    }
+
+    @Override
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

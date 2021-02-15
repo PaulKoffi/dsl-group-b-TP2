@@ -33,4 +33,9 @@ public class SpecificAudioPart extends Audio {
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    public boolean isBackground(){
+        return false;
+    }
 }
