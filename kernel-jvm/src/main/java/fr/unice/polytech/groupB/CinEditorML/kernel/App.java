@@ -2,6 +2,7 @@ package fr.unice.polytech.groupB.CinEditorML.kernel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
@@ -9,15 +10,15 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 public class App implements NamedElement, Visitable {
 
 	private String name;
-	private HashMap<String,BackGroundElement> backGroundElements = new HashMap<>();
-	private HashMap<String,FrontElement> frontElements = new HashMap<>();
+	private LinkedHashMap<String,BackGroundElement> backGroundElements = new LinkedHashMap<>();
+	private LinkedHashMap<String,FrontElement> frontElements = new LinkedHashMap<>();
 	private ArrayList<String> sequence = new ArrayList<>();
 
-	public HashMap<String,BackGroundElement> getBackGroundElements() {
+	public LinkedHashMap<String,BackGroundElement> getBackGroundElements() {
 		return backGroundElements;
 	}
 
-	public HashMap<String,FrontElement> getFrontElements() {
+	public LinkedHashMap<String,FrontElement> getFrontElements() {
 		return frontElements;
 	}
 

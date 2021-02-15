@@ -3,12 +3,20 @@ package fr.unice.polytech.groupB.CinEditorML.kernel.assemblor;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Position;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.TimeType;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Set;
 
 /**
  * Quick and dirty visitor to support the generation of Wiring code
  */
 public class VideoConstructor extends Visitor<StringBuffer> {
-//    enum PASS {ONE, TWO}
+    //    enum PASS {ONE, TWO}
 //    private final static String CURRENT_STATE = "current_state";
 //    private int nbState = 0;
 //    private boolean tonality =false;
@@ -17,6 +25,9 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 //    private ArrayList<TemporalTransition> temporalTransitions = new ArrayList<>();
 //
 //    private boolean utilForText = false;
+    ArrayList<String> utils = new ArrayList<>();
+    ArrayList<String> sequence = new ArrayList<>();
+    private LinkedHashMap<String,BackGroundElement> backGroundElements = new LinkedHashMap<>();
 
     public VideoConstructor() {
         this.result = new StringBuffer();
@@ -33,33 +44,65 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(App app) {
-        wln("# Wiring code generated from an CinEditorML model");
+        wln("# CinEditorML model Code");
         wln(String.format("# Result Video Name: %s\n", app.getName()));
         wln("");
         wln("from moviepy.editor import *");
         wln("import numpy as np");
         wln("from moviepy.video.tools.segmenting import findObjects");
+        wln("from moviepy.video.io.VideoFileClip import VideoFileClip");
+        wln("import os");
         wln("");
         wln("");
-
-        for(BackGroundElement backGroundElement: app.getBackGroundElements().values()){
-            backGroundElement.accept(this);
+        this.backGroundElements = app.getBackGroundElements();
+        // Chargement des elements utiles mais pas dans la séquence finale
+        Set<String> keys = app.getBackGroundElements().keySet();
+        for (String k : keys) {
+            if (!app.getSequence().contains(k)) {
+                BackGroundElement b = app.getBackGroundElements().get(k);
+                if (b.getBackGroundElementType().equals(BackGroundElementType.VIDEO)) {
+                    Video video = (Video) b;
+                    video.accept(this);
+                } else if (b.getBackGroundElementType().equals(BackGroundElementType.SPECIFIC_VIDEO)) {
+                    SpecificVideoPart specificVideoPart = (SpecificVideoPart) b;
+                    specificVideoPart.accept(this);
+                }
+            }
+        }
+        this.sequence = app.getSequence();
+        for (String s : app.getSequence()) {
+            BackGroundElement b = app.getBackGroundElements().get(s);
+            if (b.getBackGroundElementType().equals(BackGroundElementType.VIDEO)) {
+                Video video = (Video) b;
+                video.accept(this);
+            } else if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
+                TextClip textClip = (TextClip) b;
+                textClip.accept(this);
+            } else if (b.getBackGroundElementType().equals(BackGroundElementType.SPECIFIC_VIDEO)) {
+                SpecificVideoPart specificVideoPart = (SpecificVideoPart) b;
+                specificVideoPart.accept(this);
+            }
         }
 
         boolean first = true;
         //        Generate video
         w("final = concatenate_videoclips([");
-        for(BackGroundElement backGroundElement: app.getBackGroundElements().values()){
-            if(first){
+        for (BackGroundElement backGroundElement : app.getBackGroundElements().values()) {
+            if (first) {
                 w(String.format("%s", backGroundElement.getName()));
                 first = false;
-            }else{
+            } else {
                 w(String.format(", %s", backGroundElement.getName()));
             }
         }
         w("], method='compose')\n");
         wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
         wln("");
+        wln("");
+        wln("### REMOVE TEMP VIDEOS");
+        for(String s: utils){
+            wln(String.format("os.remove('%s')",s));
+        }
         wln("");
     }
 
@@ -126,12 +169,12 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 //        wln("# WE USE THE PLUGIN findObjects TO LOCATE AND SEPARATE EACH LETTER\n");
 //        wln("letters = findObjects(cvc)  # a list of ImageClips");
 //
-          wln("### Text ");
-          wln("");
-          wln(String.format("_%s =  TextClip(\"%s\", fontsize=70, color='white')", textClip.getName(), textClip.getText()));
-          wln(String.format("_%s =  _%s.set_position('center').set_duration(%d)", textClip.getName(), textClip.getName(), textClip.getTime()));
-          wln(String.format("%s = CompositeVideoClip([_%s], size=[1920, 1080])", textClip.getName(), textClip.getName()));
-          wln("");
+        wln("### Text ");
+        wln("");
+        wln(String.format("_%s =  TextClip(\"%s\", fontsize=70, color='white')", textClip.getName(), textClip.getText()));
+        wln(String.format("_%s =  _%s.set_position('center').set_duration(%d)", textClip.getName(), textClip.getName(), textClip.getTime()));
+        wln(String.format("%s = CompositeVideoClip([_%s], size=[1920, 1080])", textClip.getName(), textClip.getName()));
+        wln("");
     }
 
     @Override
@@ -141,6 +184,32 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(Subtitle subtitle) {
+        wln("");
+        int t = 0;
+        if(subtitle.getTime().getType().equals(TimeType.ABSOLUTE)){
+            AbsoluteTime absoluteTime = (AbsoluteTime) subtitle.getTime();
+            t = absoluteTime.getTime();
+        }else{
+            RelativeTime relativeTime = (RelativeTime) subtitle.getTime();
+            int time = relativeTime.getTimeComparedToPosition();
+            Position p = relativeTime.getPosition();
+            BackGroundElement b = (BackGroundElement) relativeTime.getElement();
+            // Calcul de la seconde à laquelle doit commencer la vidéo
+            w("TEMPV = 0 ");
+            for(String s : this.sequence){
+                if(s.equals(b.getName())){
+                    break;
+                }else{
+                    BackGroundElement backGroundElement = this.backGroundElements.get(s);
+                    if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
+                        TextClip textClip = (TextClip) b;
+                        w(String.format(" + %d", textClip.getTime()));
+                    }else{
+                        w(String.format(" +  int(%s.duration)", backGroundElement.getName()));
+                    }
+                }
+            }
+        }
 
     }
 
@@ -151,6 +220,12 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(SpecificVideoPart specificVideoPart) {
-
+        wln("### Specific Video Part  ");
+        wln("");
+        wln(String.format("%s = VideoFileClip('%s').subclip('%s','%s')", specificVideoPart.getName(), specificVideoPart.getPath(), specificVideoPart.getBeginning(), specificVideoPart.getEnding()));
+        String path = specificVideoPart.getName() + ".mp4";
+        wln(String.format("%s.write_videofile(\"%s.mp4\", fps=30)", specificVideoPart.getName(), path));
+        wln("");
+        this.utils.add(path);
     }
 }
