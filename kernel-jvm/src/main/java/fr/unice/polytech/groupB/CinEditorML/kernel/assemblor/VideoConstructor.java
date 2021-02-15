@@ -75,16 +75,19 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         this.sequence = app.getSequence();
         for (String s : app.getSequence()) {
             BackGroundElement b = app.getBackGroundElements().get(s);
-            if (b.getBackGroundElementType().equals(BackGroundElementType.VIDEO)) {
-                Video video = (Video) b;
-                video.accept(this);
-            } else if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
-                TextClip textClip = (TextClip) b;
-                textClip.accept(this);
-            } else if (b.getBackGroundElementType().equals(BackGroundElementType.SPECIFIC_VIDEO)) {
-                SpecificVideoPart specificVideoPart = (SpecificVideoPart) b;
-                specificVideoPart.accept(this);
+            if (b!=null){
+                if (b.getBackGroundElementType().equals(BackGroundElementType.VIDEO)) {
+                    Video video = (Video) b;
+                    video.accept(this);
+                } else if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
+                    TextClip textClip = (TextClip) b;
+                    textClip.accept(this);
+                } else if (b.getBackGroundElementType().equals(BackGroundElementType.SPECIFIC_VIDEO)) {
+                    SpecificVideoPart specificVideoPart = (SpecificVideoPart) b;
+                    specificVideoPart.accept(this);
+                }
             }
+
         }
 
         boolean first = true;

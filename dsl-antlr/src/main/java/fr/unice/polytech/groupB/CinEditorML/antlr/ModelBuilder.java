@@ -64,28 +64,23 @@ public class ModelBuilder extends CinEditorBaseListener {
         audio.setPath(ctx.path.getText());
         RelativeTime relativeTime = new RelativeTime();
 
-        if (Position.AT.toString().equals(ctx.position.getText().toUpperCase())) {
 
-            relativeTime.setElement(ctx.element.getText());
+        relativeTime.setElement(ctx.element.getText());
+        int timeFinalValue = 0;
+        String timeText =ctx.time.getText().trim();
+        if (timeText.contains(":")){
+            String[] time = timeText.split(":");
+
+            timeFinalValue= Integer.parseInt(time[0])*60 + Integer.parseInt(time[1]);
 
         }
         else{
-            relativeTime.setElement(ctx.element.getText());
-            int timeFinalValue = 0;
-            String timeText =ctx.time.getText().trim();
-            if (timeText.contains(":")){
-                String[] time = timeText.split(":");
-
-                timeFinalValue= Integer.parseInt(time[0])*60 + Integer.parseInt(time[1]);
-
-            }
-            else{
-                timeFinalValue= Integer.parseInt(timeText);
-            }
-
-            relativeTime.setTimeComparedToPosition(timeFinalValue);
-
+            timeFinalValue= Integer.parseInt(timeText);
         }
+
+        relativeTime.setTimeComparedToPosition(timeFinalValue);
+
+
         audio.setTime(relativeTime);
         theApp.addFrontElement(audio.getName(),audio);
     }
@@ -147,28 +142,22 @@ public class ModelBuilder extends CinEditorBaseListener {
         subtitle.setText(ctx.value.getText().substring(1, textLength-2));
         RelativeTime relativeTime = new RelativeTime();
 
-        if (Position.AT.toString().equals(ctx.position.getText().toUpperCase())) {
+        relativeTime.setElement(ctx.element.getText());
+        int timeFinalValue = 0;
+        String timeText =ctx.time.getText().trim();
+        if (timeText.contains(":")){
+            String[] time = timeText.split(":");
 
-            relativeTime.setElement(ctx.element.getText());
+            timeFinalValue= Integer.parseInt(time[0])*60 + Integer.parseInt(time[1]);
 
         }
         else{
-            relativeTime.setElement(ctx.element.getText());
-            int timeFinalValue = 0;
-            String timeText =ctx.time.getText().trim();
-            if (timeText.contains(":")){
-                String[] time = timeText.split(":");
-
-                timeFinalValue= Integer.parseInt(time[0])*60 + Integer.parseInt(time[1]);
-
-            }
-            else{
-                timeFinalValue= Integer.parseInt(timeText);
-            }
-
-            relativeTime.setTimeComparedToPosition(timeFinalValue);
-
+            timeFinalValue= Integer.parseInt(timeText);
         }
+
+        relativeTime.setTimeComparedToPosition(timeFinalValue);
+
+
         subtitle.setTime(relativeTime);
         theApp.addFrontElement(ctx.name.getText(), subtitle);
     }

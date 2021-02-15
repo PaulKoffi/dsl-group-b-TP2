@@ -14,7 +14,7 @@ createVideo     : 'createVideo' list=FINAL_VIDEO;
 sequence        : (backgroundElement |frontElement |action);
 
 backgroundElement : (textClip| video |specificPartOfVideo);
-textClip        : name=IDENTIFIER '=''textClip('text=TEXT')''->''during('time=TIME')' /*time=TIME 's'?*/;
+textClip        : name=IDENTIFIER '=''textClip('text=TEXT')''->''during('time=TIMELINE')' /*time=TIME 's'?*/;
 specificPartOfVideo   : name=IDENTIFIER '=''video('path=FILE_NAME')''->''start('start=TIMELINE')''.end('end=TIMELINE')';
 video           : name=IDENTIFIER '=''video('path=FILE_NAME')' ;
 
@@ -24,9 +24,9 @@ action          : cutVideo;
 cutVideo        : name=IDENTIFIER '=' source=IDENTIFIER '->from('start=TIMELINE')''->to('end=TIMELINE')' ;
 
 frontElement    : (subtitle| audio | specificPartOfAudio);
-audio           : name=IDENTIFIER '=''audio''('path=FILE_NAME')' ( '.' position=POSITION '(' time=TIMELINE?  ')' ('->''of(' element=IDENTIFIER ')')? )?;
+audio           : name=IDENTIFIER '=''audio''('path=FILE_NAME')' ( position=POSITION '(' time=TIMELINE  ')' ('->''of(' element=IDENTIFIER ')')? )?;
 specificPartOfAudio   : name=IDENTIFIER '=' 'audio(' path=FILE_NAME ')''->''from(' start=TIMELINE ')' '->''to(' end=TIMELINE')';
-subtitle        : name=IDENTIFIER '=' 'subtitle(' value =TEXT')' '->'position=POSITION '(' time=TIMELINE? ')' ('->''of(' element=IDENTIFIER ')')?;
+subtitle        : name=IDENTIFIER '=' 'subtitle(' value =TEXT')' '->'position=POSITION  time=TIMELINE ')' ('->''of(' element=IDENTIFIER ')')?;
 
 
 
@@ -46,10 +46,10 @@ export          : 'export' name=IDENTIFIER;
 /*****************
  ** Lexer rules **
  *****************/
-FILE_EXTENSION  : '.mp4';
-POSITION        :   ('afterBegining'|'beforeBegining'|'afterEnding'|'beforeEnding'|'at');
-TIMELINE        :   (NUMBER NUMBER? ':'NUMBER NUMBER) ;
-TIME            :   NUMBER+;
+POSITION        :   ('afterBeginning'|'beforeBeginning'|'afterEnding'|'beforeEnding')'(';
+
+//TIME            :   NUMBER+;
+TIMELINE        :   NUMBER+  (':'  NUMBER NUMBER)?;
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ ;
 TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ '"';
 FINAL_VIDEO     : '(' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ ')';
