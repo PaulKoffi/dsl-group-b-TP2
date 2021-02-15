@@ -49,4 +49,9 @@ public class Audio implements FrontElement {
     public boolean isBackground(){
         return false;
     }
+
+    @Override
+    public int getDuration(){
+        return 0;
+    }
 }
