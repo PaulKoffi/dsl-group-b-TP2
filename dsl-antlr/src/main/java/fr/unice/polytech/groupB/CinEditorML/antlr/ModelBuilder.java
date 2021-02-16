@@ -88,6 +88,8 @@ public class ModelBuilder extends CinEditorBaseListener {
 
 
         audio.setTime(relativeTime);
+
+        audio.setVolume(Float.parseFloat(ctx.audioSound.getText().substring(1)) );
         theApp.addFrontElement(audio.getName(),audio);
     }
 
@@ -121,15 +123,15 @@ public class ModelBuilder extends CinEditorBaseListener {
         theApp.addBackGroundElement(ctx.name.getText(), part);
     }
 
-    @Override
-    public void exitSpecificPartOfAudio(CinEditorParser.SpecificPartOfAudioContext ctx){
-        SpecificAudioPart part = new SpecificAudioPart();
-        part.setName(ctx.name.getText());
-        part.setPath(ctx.path.getText());
-        part.setBeginning(ctx.start.getText());
-        part.setEnding(ctx.end.getText());
-        theApp.addFrontElement(ctx.name.getText(), part);
-    }
+//    @Override
+//    public void exitSpecificPartOfAudio(CinEditorParser.SpecificPartOfAudioContext ctx){
+//        SpecificAudioPart part = new SpecificAudioPart();
+//        part.setName(ctx.name.getText());
+//        part.setPath(ctx.path.getText());
+//        part.setBeginning(ctx.start.getText());
+//        part.setEnding(ctx.end.getText());
+//        theApp.addFrontElement(ctx.name.getText(), part);
+//    }
 
     @Override
     public void exitCutVideo(CinEditorParser.CutVideoContext ctx){

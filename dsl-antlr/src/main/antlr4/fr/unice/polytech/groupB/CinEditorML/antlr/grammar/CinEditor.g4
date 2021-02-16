@@ -23,9 +23,10 @@ video           : name=IDENTIFIER '=''video('path=FILE_NAME')' ;
 action          : cutVideo;
 cutVideo        : name=IDENTIFIER '=' source=IDENTIFIER '->from('start=TIMELINE')''->to('end=TIMELINE')' ;
 
-frontElement    : (subtitle| audio | specificPartOfAudio);
-audio           : name=IDENTIFIER '=''audio''('path=FILE_NAME')' ( position=POSITION '(' time=TIMELINE  ')' ('->''of(' element=IDENTIFIER ')')? )?;
-specificPartOfAudio   : name=IDENTIFIER '=' 'audio(' path=FILE_NAME ')''->''from(' start=TIMELINE ')' '->''to(' end=TIMELINE')';
+frontElement    : (subtitle| audio /*| specificPartOfAudio*/);
+audio           : name=IDENTIFIER '=''audio''('path=FILE_NAME')' ( '->' position=POSITION  time=TIMELINE  ')'
+                                                                            ('->''of(' element=IDENTIFIER ')')? ('->''vol(' (backGroundSound=FLOAT ',')? audioSound=FLOAT ')')?)?;
+//specificPartOfAudio   : name=IDENTIFIER '=' 'audio(' path=FILE_NAME ')''->''from(' start=TIMELINE ')' '->''to(' end=TIMELINE')';
 subtitle        : name=IDENTIFIER '=' 'subtitle(' value =TEXT')' '->'position=POSITION time=TIMELINE ')' ('->''of(' element=IDENTIFIER ')')?'->''during('duration=TIMELINE')';
 
 
@@ -49,7 +50,9 @@ export          : 'export' name=IDENTIFIER;
 POSITION        :   ('afterBeginning'|'beforeBeginning'|'afterEnding'|'beforeEnding')'(';
 
 //TIME            :   NUMBER+;
+
 TIMELINE        :   NUMBER+  (':'  NUMBER NUMBER)?;
+FLOAT           :   'v'NUMBER+ (('.'|',') NUMBER+)?;
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ ;
 TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ '"';
 FINAL_VIDEO     : '(' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ ')';
