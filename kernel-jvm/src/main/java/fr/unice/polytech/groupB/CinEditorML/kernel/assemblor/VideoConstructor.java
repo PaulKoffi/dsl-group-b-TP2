@@ -4,6 +4,7 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.FrontElementType;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Position;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.TimeType;
 
@@ -73,6 +74,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                 }
             }
         }
+
         this.sequence = app.getSequence();
         for (String s : app.getSequence()) {
             BackGroundElement b = app.getBackGroundElements().get(s);
@@ -87,6 +89,21 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                     specificVideoPart.accept(this);
                 }
         }
+
+        Set<String> keysFront = app.getFrontElements().keySet();
+
+        for (String k : keysFront) {
+            FrontElement f = app.getFrontElements().get(k);
+            if (f.getFrontElementType().equals(FrontElementType.SUBTITLE)) {
+                Subtitle subtitle = (Subtitle) f;
+                subtitle.accept(this);
+            } else if (f.getFrontElementType().equals(FrontElementType.AUDIO)) {
+                Audio audio = (Audio) f;
+                audio.accept(this);
+            }
+        }
+        wln("");
+        wln("");
 
         boolean first = true;
         //        Generate video
