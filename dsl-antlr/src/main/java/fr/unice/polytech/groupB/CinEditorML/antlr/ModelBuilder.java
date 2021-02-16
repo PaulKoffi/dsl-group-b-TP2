@@ -54,7 +54,9 @@ public class ModelBuilder extends CinEditorBaseListener {
         textClip.setTime(Integer.parseInt(ctx.time.getText()));
         textClip.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-2 ));
         textClip.setName(ctx.name.getText());
-        textClip.setAnimation(Animation.valueOf(ctx.animation.getText().toUpperCase()));
+        if (ctx.animation!=null){
+            textClip.setAnimation(Animation.valueOf(ctx.animation.getText().toUpperCase()));
+        }
         theApp.addBackGroundElement(textClip.getName(),textClip);
     }
 
