@@ -119,6 +119,12 @@ public class VideoConstructor extends Visitor<StringBuffer> {
             }
         }
 
+        for (String k : keysFront) {
+            FrontElement f = app.getFrontElements().get(k);
+            if (f.getFrontElementType().equals(FrontElementType.SUBTITLE)) {
+                w(String.format(", %s", f.getName()));
+            }
+        }
 
         w("], method='compose')\n");
         wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
