@@ -210,6 +210,8 @@ public class VideoConstructor extends Visitor<StringBuffer> {
     @Override
     public void visit(Subtitle subtitle) {
         wln("");
+//        System.out.println(subtitle.getTime());
+
         if (subtitle.getTime().getType().equals(TimeType.ABSOLUTE)) {
             int t = 0;
             AbsoluteTime absoluteTime = (AbsoluteTime) subtitle.getTime();
@@ -230,9 +232,9 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
                 for (String s : this.sequence) {
                     BackGroundElement backGroundElement = this.backGroundElements.get(s);
-
                     // en fonction de la position au début
                     if (s.equals(b.getName())) {
+
                         if(relativeTime.getPosition().equals(Position.BEFORE_BEGINNING)){
                             temp.append(" - ").append(relativeTime.getTimeComparedToPosition());
                             break;
@@ -244,12 +246,13 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                         }
                     }
 
-                    if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
-                        TextClip textClip = (TextClip) b;
-                        temp.append(" + ").append(textClip.getTime());
-                    } else {
-                        temp.append(" +  int(").append(backGroundElement.getName()).append(".duration)");
-                    }
+                        if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
+                            TextClip textClip = (TextClip) backGroundElement;
+                            temp.append(" + ").append(textClip.getTime());
+                        } else {
+                            temp.append(" +  int(").append(backGroundElement.getName()).append(".duration)");
+                        }
+
 
                     // en fonction de la position à la fin
                     if (s.equals(b.getName())) {

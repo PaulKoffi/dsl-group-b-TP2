@@ -6,7 +6,7 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Position;
 
-import java.util.Locale;
+import java.util.HashMap;
 
 public class ModelBuilder extends CinEditorBaseListener {
 
@@ -18,6 +18,8 @@ public class ModelBuilder extends CinEditorBaseListener {
 
     private App theApp = null;
     private boolean built = false;
+
+    private final HashMap<String, Position> positions = new HashMap<String, Position>();
 
     public App retrieve() {
         if (built) { return theApp; }
@@ -37,6 +39,10 @@ public class ModelBuilder extends CinEditorBaseListener {
     @Override
     public void enterRoot(CinEditorParser.RootContext ctx) {
         built = false;
+        positions.put("afterBeginning", Position.AFTER_BEGINNING);
+        positions.put("beforeBeginning", Position.BEFORE_BEGINNING);
+        positions.put("afterEnding", Position.AFTER_ENDING);
+        positions.put("beforeEnding", Position.BEFORE_ENDING);
         theApp = new App();
     }
 
@@ -77,7 +83,7 @@ public class ModelBuilder extends CinEditorBaseListener {
         else{
             timeFinalValue= Integer.parseInt(timeText);
         }
-
+        relativeTime.setPosition(positions.get(ctx.position.getText().substring(0,ctx.position.getText().length()-1)));
         relativeTime.setTimeComparedToPosition(timeFinalValue);
 
 
@@ -129,7 +135,7 @@ public class ModelBuilder extends CinEditorBaseListener {
     public void exitCutVideo(CinEditorParser.CutVideoContext ctx){
         SpecificVideoPart part = new SpecificVideoPart();
         part.setName(ctx.name.getText());
-        part.setPath(ctx.source.getText()+ videoExtension);
+        part.setPath(ctx.source.getText());
         part.setBeginning(ctx.start.getText());
         part.setEnding(ctx.end.getText());
         theApp.addBackGroundElement(ctx.name.getText(), part);
@@ -158,7 +164,10 @@ public class ModelBuilder extends CinEditorBaseListener {
             timeFinalValue= Integer.parseInt(timeText);
         }
 
-        timeFinalValue = 0;
+        relativeTime.setTimeComparedToPosition(timeFinalValue);
+        relativeTime.setPosition(positions.get(ctx.position.getText().substring(0,ctx.position.getText().length()-1)));
+        subtitle.setTime(relativeTime);
+
         timeText =ctx.duration.getText().trim();
         if (timeText.contains(":")){
             String[] time = timeText.split(":");
@@ -169,6 +178,7 @@ public class ModelBuilder extends CinEditorBaseListener {
         else{
             timeFinalValue= Integer.parseInt(timeText);
         }
+
 
         subtitle.setDuration(timeFinalValue);
 

@@ -9,6 +9,9 @@ public class RelativeTime extends Time{
     public Position position;
     private int timeComparedToPosition;
 
+    public RelativeTime() {
+    }
+
     @Override
     public TimeType getType() {
         return TimeType.RELATIVE;
