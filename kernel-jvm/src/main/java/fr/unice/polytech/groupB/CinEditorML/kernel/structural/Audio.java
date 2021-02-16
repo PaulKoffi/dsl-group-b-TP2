@@ -7,7 +7,8 @@ public class Audio implements FrontElement {
 
     private Time time;
     private String name;
-    private String path;
+    private String videoName;
+    private float volume;
 
     public Audio() {
     }
@@ -30,12 +31,20 @@ public class Audio implements FrontElement {
         this.name = name;
     }
 
-    public String getPath() {
-        return this.path;
+    public String getVideoName() {
+        return videoName;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
+    }
+
+    public float getVolume() {
+        return volume;
+    }
+
+    public void setVolume(float volume) {
+        this.volume = volume;
     }
 
     @Override

@@ -325,7 +325,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln("");
         wln(String.format("%s = VideoFileClip('%s').subclip('%s','%s')", specificVideoPart.getName(), specificVideoPart.getPath(), specificVideoPart.getBeginning(), specificVideoPart.getEnding()));
         String path = specificVideoPart.getName() + ".mp4";
-        wln(String.format("%s.write_videofile(\"%s.mp4\", fps=30)", specificVideoPart.getName(), path));
+        wln(String.format("%s.write_videofile(\"%s\", fps=30)", specificVideoPart.getName(), path));
         wln("");
         this.utils.add(path);
     }
