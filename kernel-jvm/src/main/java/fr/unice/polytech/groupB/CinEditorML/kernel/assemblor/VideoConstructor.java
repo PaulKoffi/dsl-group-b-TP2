@@ -46,7 +46,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(App app) {
-        wln("TEST");
+//        wln("TEST");
         wln("# CinEditorML model Code");
         wln(String.format("# Result Video Name: %s\n", app.getName()));
         wln("");
@@ -74,8 +74,10 @@ public class VideoConstructor extends Visitor<StringBuffer> {
             }
         }
         this.sequence = app.getSequence();
+
         for (String s : app.getSequence()) {
             BackGroundElement b = app.getBackGroundElements().get(s);
+
                 if (b.getBackGroundElementType().equals(BackGroundElementType.VIDEO)) {
                     Video video = (Video) b;
                     video.accept(this);

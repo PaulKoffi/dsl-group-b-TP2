@@ -6,7 +6,7 @@ video2=video(va2.mp4)
 
 end=textClip("endingText")->during(10)
 
-createVideo(begin, video1, video2, video4, end)
+createVideo(begin, video1, video2, end)
 
 export result
 

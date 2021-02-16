@@ -8,6 +8,9 @@ public class SpecificAudioPart extends Audio {
     private String beginning;
     private String ending;
 
+    public SpecificAudioPart() {
+    }
+
     public String getBeginning() {
         return beginning;
     }
