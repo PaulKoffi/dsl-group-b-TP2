@@ -26,7 +26,7 @@ cutVideo        : name=IDENTIFIER '=' source=IDENTIFIER '->from('start=TIMELINE'
 frontElement    : (subtitle| audio | specificPartOfAudio);
 audio           : name=IDENTIFIER '=''audio''('path=FILE_NAME')' ( position=POSITION '(' time=TIMELINE  ')' ('->''of(' element=IDENTIFIER ')')? )?;
 specificPartOfAudio   : name=IDENTIFIER '=' 'audio(' path=FILE_NAME ')''->''from(' start=TIMELINE ')' '->''to(' end=TIMELINE')';
-subtitle        : name=IDENTIFIER '=' 'subtitle(' value =TEXT')' '->'position=POSITION  time=TIMELINE ')' ('->''of(' element=IDENTIFIER ')')?;
+subtitle        : name=IDENTIFIER '=' 'subtitle(' value =TEXT')' '->'position=POSITION '(' time=TIMELINE ')' ('->''of(' element=IDENTIFIER ')')?;
 
 
 

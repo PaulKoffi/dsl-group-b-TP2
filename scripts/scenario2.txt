@@ -1,0 +1,20 @@
+clip1=video(test3.mp4)
+
+clip1a=clip1->from(00:23)->to(01:47)
+
+clip1b=clip1->from(02:01)->to(02:21)
+
+# add duration for 10 s
+s1 = subtitle(" I m good")->afterBeginning(6)->of(clip1a)
+
+# add duration for 10 s
+s2 = subtitle(" I m bad")->afterEnding(30)->of(clip1a)
+
+# add duration for 10 s
+s3 = subtitle(" I m bad and good")->BeforeBeginning(5)->of(clip1b)
+
+end=textClip("endingText")->during(10)
+
+createVideo(begin, clip1a, clip1b, end)
+
+export result

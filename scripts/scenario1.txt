@@ -1,13 +1,13 @@
 begin=textClip("beginningText")->during(10)
-video1=video(test3.mp4)
-video2=video(va2.mp4)
-end=textClip("endingText")->during(10)
-video4=video2->from(01:00)->to(02:00)
-home=subtitle(" I m good")->afterBeginning( 00 )->of(video1)
 
-#audio1=audio(home.mp3)->at()->of(video1)
+video1=video(test3.mp4)
+
+video2=video(va2.mp4)
+
+end=textClip("endingText")->during(10)
 
 createVideo(begin, video1, video2, video4, end)
+
 export result
 
 

@@ -46,6 +46,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(App app) {
+        wln("TEST");
         wln("# CinEditorML model Code");
         wln(String.format("# Result Video Name: %s\n", app.getName()));
         wln("");
@@ -75,7 +76,6 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         this.sequence = app.getSequence();
         for (String s : app.getSequence()) {
             BackGroundElement b = app.getBackGroundElements().get(s);
-            if (b!=null){
                 if (b.getBackGroundElementType().equals(BackGroundElementType.VIDEO)) {
                     Video video = (Video) b;
                     video.accept(this);
@@ -86,22 +86,19 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                     SpecificVideoPart specificVideoPart = (SpecificVideoPart) b;
                     specificVideoPart.accept(this);
                 }
-            }
-
         }
 
         boolean first = true;
         //        Generate video
         w("final = concatenate_videoclips([");
-        for (BackGroundElement backGroundElement : app.getBackGroundElements().values()) {
+        for (String s : app.getSequence()) {
             if (first) {
-                w(String.format("%s", backGroundElement.getName()));
+                w(String.format("%s", s));
                 first = false;
             } else {
-                w(String.format(", %s", backGroundElement.getName()));
+                w(String.format(", %s", s));
             }
         }
-
 
 
         w("], method='compose')\n");
