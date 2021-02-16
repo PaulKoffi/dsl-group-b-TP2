@@ -8,7 +8,7 @@ public class Subtitle implements FrontElement{
     private Time time;
     private String name;
     private String text;
-    private int duration;
+    private int duration = 10;
 
     @Override
     public String getName() {
