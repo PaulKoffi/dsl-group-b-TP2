@@ -4,9 +4,11 @@ import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.CinEditorBaseListener;
 import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.CinEditorParser;
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Animation;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Position;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 public class ModelBuilder extends CinEditorBaseListener {
 
@@ -52,6 +54,7 @@ public class ModelBuilder extends CinEditorBaseListener {
         textClip.setTime(Integer.parseInt(ctx.time.getText()));
         textClip.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-2 ));
         textClip.setName(ctx.name.getText());
+        textClip.setAnimation(Animation.valueOf(ctx.animation.getText().toUpperCase()));
         theApp.addBackGroundElement(textClip.getName(),textClip);
     }
 

@@ -14,7 +14,7 @@ createVideo     : 'createVideo' list=FINAL_VIDEO;
 sequence        : (backgroundElement |frontElement |action);
 
 backgroundElement : (textClip| video |specificPartOfVideo);
-textClip        : name=IDENTIFIER '=''textClip('text=TEXT')''->''during('time=TIMELINE')' /*time=TIME 's'?*/;
+textClip        : name=IDENTIFIER '=''textClip('text=TEXT')''->''during('time=TIMELINE')''->''animation('animation=ANIMATION')' ;
 specificPartOfVideo   : name=IDENTIFIER '=''video('path=FILE_NAME')''->''start('start=TIMELINE')''.end('end=TIMELINE')';
 video           : name=IDENTIFIER '=''video('path=FILE_NAME')' ;
 
@@ -56,7 +56,7 @@ FLOAT           :   'v'NUMBER+ (('.'|',') NUMBER+)?;
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ ;
 TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ '"';
 FINAL_VIDEO     : '(' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ ')';
-
+ANIMATION       : ( 'vortex'|'cascade'| 'arrive' |'vortexout' | 'scrolling');
 FILE_NAME       :   (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER? '.' (LOWERCASE|UPPERCASE|NUMBER)+;
 
 
