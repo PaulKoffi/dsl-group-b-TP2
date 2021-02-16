@@ -97,7 +97,9 @@ public class ModelBuilder extends CinEditorBaseListener {
 
     @Override
     public void exitCreateVideo(CinEditorParser.CreateVideoContext ctx){
-        String[] text = ctx.list.getText().trim().split(",");
+        int textLength = ctx.list.getText().length();
+        String[] text = ctx.list.getText().substring(1, textLength-1).replaceAll("\\s+","").split(",");
+        //String result = str.replaceAll("\\s+","");
         for (String identifier : text) {
             theApp.getSequence().add(identifier);
         }
@@ -140,6 +142,7 @@ public class ModelBuilder extends CinEditorBaseListener {
         subtitle.setName(ctx.name.getText());
         int textLength = ctx.value.getText().length();
         subtitle.setText(ctx.value.getText().substring(1, textLength-2));
+
         RelativeTime relativeTime = new RelativeTime();
 
         relativeTime.setElement(ctx.element.getText());
@@ -155,10 +158,20 @@ public class ModelBuilder extends CinEditorBaseListener {
             timeFinalValue= Integer.parseInt(timeText);
         }
 
-        relativeTime.setTimeComparedToPosition(timeFinalValue);
+        timeFinalValue = 0;
+        timeText =ctx.duration.getText().trim();
+        if (timeText.contains(":")){
+            String[] time = timeText.split(":");
 
+            timeFinalValue= Integer.parseInt(time[0])*60 + Integer.parseInt(time[1]);
 
-        subtitle.setTime(relativeTime);
+        }
+        else{
+            timeFinalValue= Integer.parseInt(timeText);
+        }
+
+        subtitle.setDuration(timeFinalValue);
+
         theApp.addFrontElement(ctx.name.getText(), subtitle);
     }
 

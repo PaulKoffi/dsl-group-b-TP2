@@ -9,6 +9,9 @@ public class Audio implements FrontElement {
     private String name;
     private String path;
 
+    public Audio() {
+    }
+
     @Override
     public Time getTime() {
         return time;
