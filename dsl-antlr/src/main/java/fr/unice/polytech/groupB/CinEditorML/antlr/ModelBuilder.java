@@ -50,7 +50,7 @@ public class ModelBuilder extends CinEditorBaseListener {
     public void exitTextClip(CinEditorParser.TextClipContext ctx){
         TextClip textClip= new TextClip();
         textClip.setTime(Integer.parseInt(ctx.time.getText()));
-        textClip.setText(ctx.text.getText());
+        textClip.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-2 ));
         textClip.setName(ctx.name.getText());
         theApp.addBackGroundElement(textClip.getName(),textClip);
     }
