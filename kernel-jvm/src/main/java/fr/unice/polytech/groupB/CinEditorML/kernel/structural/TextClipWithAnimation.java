@@ -1,9 +1,12 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
 
-public class TextClipCascade {
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Animation;
+
+public class TextClipWithAnimation extends TextClip {
 
     private float speed;
     private int  animationDuration;
+    private Animation animation;
 
     public float getSpeed() {
         return speed;
@@ -21,7 +24,12 @@ public class TextClipCascade {
         this.animationDuration = animationDuration;
     }
 
-    public String getAnimation() {
-        return "Cascade";
+
+    public Animation getAnimation() {
+        return animation;
+    }
+
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
     }
 }
