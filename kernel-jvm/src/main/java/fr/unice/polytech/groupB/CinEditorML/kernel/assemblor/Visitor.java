@@ -14,7 +14,6 @@ public abstract class Visitor<T> {
 	public abstract void visit(Subtitle subtitle);
 	public abstract void visit(Audio audio);
 	public abstract void visit(SpecificVideoPart specificVideoPart);
-	public abstract void visit(SpecificAudioPart specificAudioPart);
 
 	/***********************
 	 ** Helper mechanisms **

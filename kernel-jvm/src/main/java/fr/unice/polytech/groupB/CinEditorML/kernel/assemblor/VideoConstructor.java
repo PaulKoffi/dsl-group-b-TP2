@@ -8,6 +8,7 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.utils.FrontElementType;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Position;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.TimeType;
 
+import java.security.acl.Acl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -30,7 +31,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
     ArrayList<String> sequence = new ArrayList<>();
     private LinkedHashMap<String, BackGroundElement> backGroundElements = new LinkedHashMap<>();
     private LinkedHashMap<String, String> subtitlesTime = new LinkedHashMap<>();
-    private LinkedHashMap<String,FrontElement> frontElements = new LinkedHashMap<>();
+    private LinkedHashMap<String, FrontElement> frontElements = new LinkedHashMap<>();
 
     public VideoConstructor() {
         this.result = new StringBuffer();
@@ -80,16 +81,16 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         for (String s : app.getSequence()) {
             BackGroundElement b = app.getBackGroundElements().get(s);
 
-                if (b.getBackGroundElementType().equals(BackGroundElementType.VIDEO)) {
-                    Video video = (Video) b;
-                    video.accept(this);
-                } else if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
-                    TextClip textClip = (TextClip) b;
-                    textClip.accept(this);
-                } else if (b.getBackGroundElementType().equals(BackGroundElementType.SPECIFIC_VIDEO)) {
-                    SpecificVideoPart specificVideoPart = (SpecificVideoPart) b;
-                    specificVideoPart.accept(this);
-                }
+            if (b.getBackGroundElementType().equals(BackGroundElementType.VIDEO)) {
+                Video video = (Video) b;
+                video.accept(this);
+            } else if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
+                TextClip textClip = (TextClip) b;
+                textClip.accept(this);
+            } else if (b.getBackGroundElementType().equals(BackGroundElementType.SPECIFIC_VIDEO)) {
+                SpecificVideoPart specificVideoPart = (SpecificVideoPart) b;
+                specificVideoPart.accept(this);
+            }
         }
 
         Set<String> keysFront = app.getFrontElements().keySet();
@@ -210,14 +211,122 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(Audio audio) {
+        wln("");
+        wln("### AUDIO ");
+        wln("");
 
+        if (audio.getTime().getType().equals(TimeType.ABSOLUTE)) {
+//            int t = 0;
+//            AbsoluteTime absoluteTime = (AbsoluteTime) audio.getTime();
+//            t = absoluteTime.getTime();
+//
+//            // Setup de l'AUDIO
+//            wln("");
+//            wln(String.format("audio_%s =  AudioFileClip(\"%s\")", audio.getName(), audio.getPath()));
+//            wln(String.format("audio_%s =  %s.audio", , subtitle.getText()));
+//
+//            wln(String.format("%s =  TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
+//            wln(String.format("%s =  %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
+//            wln(String.format("%s =  %s.set_start(%d)", subtitle.getName(), subtitle.getName(), t));
+//            // Sauvegarde
+//            subtitlesTime.put(subtitle.getName(), "TEMPV = " + t);
+        } else {
+            RelativeTime relativeTime = (RelativeTime) audio.getTime();
+            common(relativeTime, audio.getName());
+
+            wln(String.format("audio_%s =  AudioFileClip(\"%s\")", audio.getName(), audio.getPath()));
+            wln(String.format("audio_%s =  %s.audio", relativeTime.getElement(), relativeTime.getElement()));
+//        String temp = "audio_" + relativeTime.getElement();
+            wln(String.format("compo = CompositeAudioClip([audio_%s.volumex(%f), audio_%s.set_start(TEMPV)])", relativeTime.getElement(), audio.getVolume(), audio.getName()));
+            wln(String.format("%s =  %s.set_audio(compo)", relativeTime.getElement(), relativeTime.getElement()));
+        }
+    }
+
+    private void common(RelativeTime relativeTime, String name) {
+        boolean isBackground = this.backGroundElements.containsKey(relativeTime.getElement());
+
+        if (isBackground) {
+            BackGroundElement b = this.backGroundElements.get(relativeTime.getElement());
+            StringBuilder temp = new StringBuilder("TEMPV = 0 ");
+
+            for (String s : this.sequence) {
+                BackGroundElement backGroundElement = this.backGroundElements.get(s);
+                // en fonction de la position au début
+                if (s.equals(b.getName())) {
+
+                    if (relativeTime.getPosition().equals(Position.BEFORE_BEGINNING)) {
+                        temp.append(" - ").append(relativeTime.getTimeComparedToPosition());
+                        break;
+                    }
+
+                    if (relativeTime.getPosition().equals(Position.AFTER_BEGINNING)) {
+                        temp.append(" + ").append(relativeTime.getTimeComparedToPosition());
+                        break;
+                    }
+                }
+
+                if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
+                    TextClip textClip = (TextClip) backGroundElement;
+                    temp.append(" + ").append(textClip.getTime());
+                } else {
+                    temp.append(" +  int(").append(backGroundElement.getName()).append(".duration)");
+                }
+
+
+                // en fonction de la position à la fin
+                if (s.equals(b.getName())) {
+                    if (relativeTime.getPosition().equals(Position.BEFORE_ENDING)) {
+                        temp.append(" - ").append(relativeTime.getTimeComparedToPosition());
+                        break;
+                    }
+
+                    if (relativeTime.getPosition().equals(Position.AFTER_ENDING)) {
+                        temp.append(" + ").append(relativeTime.getTimeComparedToPosition());
+                        break;
+                    }
+                }
+            }
+
+            // Sauvegarde
+            subtitlesTime.put(name, temp.toString());
+
+            // Setup du subtitle
+            wln("");
+            wln(temp.toString());
+
+        } else {
+            FrontElement f = this.frontElements.get(relativeTime.getElement());
+            StringBuilder temp2 = new StringBuilder(subtitlesTime.get(f.getName()));
+
+            if (relativeTime.getPosition().equals(Position.BEFORE_BEGINNING)) {
+                temp2.append(" - ").append(relativeTime.getTimeComparedToPosition());
+            }
+
+            if (relativeTime.getPosition().equals(Position.AFTER_BEGINNING)) {
+                temp2.append(" + ").append(relativeTime.getTimeComparedToPosition());
+            }
+
+            if (relativeTime.getPosition().equals(Position.BEFORE_ENDING)) {
+                temp2.append(" + ").append(f.getDuration()).append(" - ").append(relativeTime.getTimeComparedToPosition());
+            }
+
+            if (relativeTime.getPosition().equals(Position.AFTER_ENDING)) {
+                temp2.append(" + ").append(f.getDuration()).append(" + ").append(relativeTime.getTimeComparedToPosition());
+            }
+
+            // Sauvegarde
+            subtitlesTime.put(name, temp2.toString());
+
+            // Setup du subtitle
+            wln("");
+            wln(temp2.toString());
+        }
     }
 
     @Override
     public void visit(Subtitle subtitle) {
         wln("");
 //        System.out.println(subtitle.getTime());
-
         if (subtitle.getTime().getType().equals(TimeType.ABSOLUTE)) {
             int t = 0;
             AbsoluteTime absoluteTime = (AbsoluteTime) subtitle.getTime();
@@ -228,96 +337,16 @@ public class VideoConstructor extends Visitor<StringBuffer> {
             wln(String.format("%s =  TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
             wln(String.format("%s =  %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
             wln(String.format("%s =  %s.set_start(%d)", subtitle.getName(), subtitle.getName(), t));
+            // Sauvegarde
+            subtitlesTime.put(subtitle.getName(), "TEMPV = " + t);
         } else {
-            RelativeTime relativeTime = (RelativeTime) subtitle.getTime();
-            boolean isBackground = this.backGroundElements.containsKey(relativeTime.getElement());
-
-            if(isBackground){
-                BackGroundElement b = this.backGroundElements.get(relativeTime.getElement());
-                StringBuilder temp = new StringBuilder("TEMPV = 0 ");
-
-                for (String s : this.sequence) {
-                    BackGroundElement backGroundElement = this.backGroundElements.get(s);
-                    // en fonction de la position au début
-                    if (s.equals(b.getName())) {
-
-                        if(relativeTime.getPosition().equals(Position.BEFORE_BEGINNING)){
-                            temp.append(" - ").append(relativeTime.getTimeComparedToPosition());
-                            break;
-                        }
-
-                        if(relativeTime.getPosition().equals(Position.AFTER_BEGINNING)){
-                            temp.append(" + ").append(relativeTime.getTimeComparedToPosition());
-                            break;
-                        }
-                    }
-
-                        if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
-                            TextClip textClip = (TextClip) backGroundElement;
-                            temp.append(" + ").append(textClip.getTime());
-                        } else {
-                            temp.append(" +  int(").append(backGroundElement.getName()).append(".duration)");
-                        }
-
-
-                    // en fonction de la position à la fin
-                    if (s.equals(b.getName())) {
-                        if(relativeTime.getPosition().equals(Position.BEFORE_ENDING)){
-                            temp.append(" - ").append(relativeTime.getTimeComparedToPosition());
-                            break;
-                        }
-
-                        if(relativeTime.getPosition().equals(Position.AFTER_ENDING)){
-                            temp.append(" + ").append(relativeTime.getTimeComparedToPosition());
-                            break;
-                        }
-                    }
-                }
-
-                // Sauvegarde
-                subtitlesTime.put(subtitle.getName(),temp.toString());
-
-                // Setup du subtitle
-                wln("");
-                wln(temp.toString());
-
-            }else{
-                FrontElement f = this.frontElements.get(relativeTime.getElement());
-                StringBuilder temp2 = new StringBuilder(subtitlesTime.get(f.getName()));
-
-                if(relativeTime.getPosition().equals(Position.BEFORE_BEGINNING)){
-                    temp2.append(" - ").append(relativeTime.getTimeComparedToPosition());
-                }
-
-                if(relativeTime.getPosition().equals(Position.AFTER_BEGINNING)){
-                    temp2.append(" + ").append(relativeTime.getTimeComparedToPosition());
-                }
-
-                if(relativeTime.getPosition().equals(Position.BEFORE_ENDING)){
-                    temp2.append(" + ").append(f.getDuration()).append(" - ").append(relativeTime.getTimeComparedToPosition());
-                }
-
-                if(relativeTime.getPosition().equals(Position.AFTER_ENDING)){
-                    temp2.append(" + ").append(f.getDuration()).append(" + ").append(relativeTime.getTimeComparedToPosition());
-                }
-
-                // Sauvegarde
-                subtitlesTime.put(subtitle.getName(),temp2.toString());
-
-                // Setup du subtitle
-                wln("");
-                wln(temp2.toString());
-            }
+            common((RelativeTime) subtitle.getTime(), subtitle.getName());
             wln(String.format("%s =  TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
             wln(String.format("%s =  %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
             wln(String.format("%s =  %s.set_start(TEMPV)", subtitle.getName(), subtitle.getName()));
         }
     }
 
-    @Override
-    public void visit(SpecificAudioPart specificAudioPart) {
-
-    }
 
     @Override
     public void visit(SpecificVideoPart specificVideoPart) {
