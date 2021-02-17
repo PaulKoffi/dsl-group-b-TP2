@@ -8,15 +8,6 @@ public class TextClip implements BackGroundElement {
     private String name;
     private String text;
     private int time;
-    private Animation animation;
-
-    public Animation getAnimation() {
-        return animation;
-    }
-
-    public void setAnimation(Animation animation) {
-        this.animation = animation;
-    }
 
     public TextClip(){
 
