@@ -1,0 +1,16 @@
+begin=textClip("beginningText")->during(14)
+
+video1=video(test3.mp4)
+
+video2=video(va2.mp4)
+
+audio1 = audio(audio.mp3)->afterBeginning(0)->of(video1)->vol(v10)
+
+end=textClip("endingText")->during(22)->animation(vortex)
+
+
+createVideo(begin, video1, video2, end)
+
+export result
+
+

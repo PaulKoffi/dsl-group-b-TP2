@@ -4,9 +4,11 @@ import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.CinEditorBaseListener;
 import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.CinEditorParser;
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Animation;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Position;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 public class ModelBuilder extends CinEditorBaseListener {
 
@@ -50,8 +52,11 @@ public class ModelBuilder extends CinEditorBaseListener {
     public void exitTextClip(CinEditorParser.TextClipContext ctx){
         TextClip textClip= new TextClip();
         textClip.setTime(Integer.parseInt(ctx.time.getText()));
-        textClip.setText(ctx.text.getText());
+        textClip.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-2 ));
         textClip.setName(ctx.name.getText());
+        if (ctx.animation!=null){
+            textClip.setAnimation(Animation.valueOf(ctx.animation.getText().toUpperCase()));
+        }
         theApp.addBackGroundElement(textClip.getName(),textClip);
     }
 
@@ -88,6 +93,8 @@ public class ModelBuilder extends CinEditorBaseListener {
 
 
         audio.setTime(relativeTime);
+
+        audio.setVolume(Float.parseFloat(ctx.audioSound.getText().substring(1)) );
         theApp.addFrontElement(audio.getName(),audio);
     }
 
@@ -121,15 +128,15 @@ public class ModelBuilder extends CinEditorBaseListener {
         theApp.addBackGroundElement(ctx.name.getText(), part);
     }
 
-    @Override
-    public void exitSpecificPartOfAudio(CinEditorParser.SpecificPartOfAudioContext ctx){
-        SpecificAudioPart part = new SpecificAudioPart();
-        part.setName(ctx.name.getText());
-        part.setPath(ctx.path.getText());
-        part.setBeginning(ctx.start.getText());
-        part.setEnding(ctx.end.getText());
-        theApp.addFrontElement(ctx.name.getText(), part);
-    }
+//    @Override
+//    public void exitSpecificPartOfAudio(CinEditorParser.SpecificPartOfAudioContext ctx){
+//        SpecificAudioPart part = new SpecificAudioPart();
+//        part.setName(ctx.name.getText());
+//        part.setPath(ctx.path.getText());
+//        part.setBeginning(ctx.start.getText());
+//        part.setEnding(ctx.end.getText());
+//        theApp.addFrontElement(ctx.name.getText(), part);
+//    }
 
     @Override
     public void exitCutVideo(CinEditorParser.CutVideoContext ctx){

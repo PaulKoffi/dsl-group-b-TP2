@@ -1,12 +1,22 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.*;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Animation;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
 
 public class TextClip implements BackGroundElement {
     private String name;
     private String text;
     private int time;
+    private Animation animation;
+
+    public Animation getAnimation() {
+        return animation;
+    }
+
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
+    }
 
     public TextClip(){
 
