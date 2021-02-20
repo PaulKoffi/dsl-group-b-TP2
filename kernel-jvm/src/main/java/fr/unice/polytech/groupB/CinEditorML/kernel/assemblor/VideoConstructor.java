@@ -4,23 +4,13 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.*;
-
-import java.security.acl.Acl;
 import java.util.*;
 
 /**
- * Quick and dirty visitor to support the generation of Wiring code
+ * Quick and dirty visitor to support the generation of VideoCode
  */
 public class VideoConstructor extends Visitor<StringBuffer> {
-    //    enum PASS {ONE, TWO}
-//    private final static String CURRENT_STATE = "current_state";
-//    private int nbState = 0;
-//    private boolean tonality =false;
-//    private boolean interrupt =false;
-//    private int INT_MAX= 32000;
-//    private ArrayList<TemporalTransition> temporalTransitions = new ArrayList<>();
-//
-//    private boolean utilForText = false;
+
     ArrayList<String> utils = new ArrayList<>();
     ArrayList<String> sequence = new ArrayList<>();
     private LinkedHashMap<String, BackGroundElement> backGroundElements = new LinkedHashMap<>();
@@ -72,7 +62,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         }
 
         // Ajout des helpers en cas d'animation
-        LinkedHashSet<Animation> linkedset = new LinkedHashSet<Animation>();
+        LinkedHashSet<Animation> linkedset = new LinkedHashSet<>();
         for (String s : app.getSequence()) {
             BackGroundElement b = app.getBackGroundElements().get(s);
             if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP_ANIMATION)) {
@@ -80,7 +70,8 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                 linkedset.add(textClipWithAnimation.getAnimation());
             }
         }
-        if(linkedset.size()>0){
+
+        if (linkedset.size() > 0) {
             wln("# helper function");
             wln("rotMatrix = lambda a: np.array([[np.cos(a), np.sin(a)],\n" +
                     "                                [-np.sin(a), np.cos(a)]])");
@@ -91,13 +82,47 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                     "    return [letter.set_pos(funcpos(letter.screenpos, i, len(letters)))\n" +
                     "            for i, letter in enumerate(letters)]");
 
+            for (Animation animation : linkedset) {
+                if (animation.equals(Animation.ARRIVE)) {
+                    wln("def arrive(screenpos, i, nletters):");
+                    wln("    v = np.array([-1, 0])");
+                    wln("    d = lambda t: max(0, 3 - 3 * t)");
+                    wln("    return lambda t: screenpos - 400 * v * d(t - 0.2 * i)");
+                    wln("");
+                    wln("");
+                } else if (animation.equals(Animation.CASCADE)) {
+                    wln("def cascade(screenpos, i, nletters):");
+                    wln("    v = np.array([0, -1])");
+                    wln("    d = lambda t: 1 if t < 0 else abs(np.sinc(t) / (1 + t ** 4))");
+                    wln("    return lambda t: screenpos + v * 400 * d(t - 0.15 * i)");
+                    wln("");
+                    wln("");
+                } else if (animation.equals(Animation.VORTEX)) {
+                    wln("def vortex(screenpos, i, nletters):");
+                    wln("    d = lambda t: 1.0 / (0.3 + t ** 8)  # damping");
+                    wln("    a = i * np.pi / nletters  # angle of the movement");
+                    wln("    v = rotMatrix(a).dot([-1, 0])");
+                    wln("    if i % 2: v[1] = -v[1]");
+                    wln("    return lambda t: screenpos + 400 * d(t) * rotMatrix(0.5 * d(t) * a).dot(v)");
+                    wln("");
+                    wln("");
+                } else if (animation.equals(Animation.VORTEXOUT)) {
+                    wln("def vortexout(screenpos, i, nletters):");
+                    wln("    d = lambda t: max(0, t)  # damping");
+                    wln("    a = i * np.pi / nletters  # angle of the movement");
+                    wln("    v = rotMatrix(a).dot([-1, 0])");
+                    wln("    if i % 2: v[1] = -v[1]");
+                    wln("    return lambda t: screenpos + 400 * d(t - 0.1 * i) * rotMatrix(-0.2 * d(t) * a).dot(v)");
+                    wln("");
+                    wln("");
+                }
+            }
         }
 
         this.sequence = app.getSequence();
 
         for (String s : app.getSequence()) {
             BackGroundElement b = app.getBackGroundElements().get(s);
-
             if (b.getBackGroundElementType().equals(BackGroundElementType.VIDEO)) {
                 Video video = (Video) b;
                 video.accept(this);
@@ -107,6 +132,9 @@ public class VideoConstructor extends Visitor<StringBuffer> {
             } else if (b.getBackGroundElementType().equals(BackGroundElementType.SPECIFIC_VIDEO)) {
                 SpecificVideoPart specificVideoPart = (SpecificVideoPart) b;
                 specificVideoPart.accept(this);
+            }else if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP_ANIMATION)) {
+                TextClipWithAnimation textClipWithAnimation = (TextClipWithAnimation) b;
+                textClipWithAnimation.accept(this);
             }
         }
 
@@ -148,6 +176,27 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
         wln("");
         wln("");
+        wln("### SET ABSOLUTE AUDIO IF EXIST (AUDIO ON GLOBAL VIDEO)");
+        for (String k : keysFront) {
+            FrontElement f = app.getFrontElements().get(k);
+            if (f.getFrontElementType().equals(FrontElementType.AUDIO)) {
+                Audio audio = (Audio) f;
+                if (audio.getTime().getType().equals(TimeType.ABSOLUTE)) {
+                    AbsoluteTime absoluteTime = (AbsoluteTime) audio.getTime();
+                    wln("");
+                    wln(String.format("final = VideoFileClip('%s')",app.getName()));
+                    wln(String.format("audio_%s =  AudioFileClip(\"%s\")", audio.getName(), audio.getPath()));
+                    wln(String.format("audio_%s =  %s.audio", "final","final"));
+                    wln(String.format("compo = CompositeAudioClip([audio_%s.volumex(%f), audio_%s.set_start(%d)])", "final",audio.getVolume(), audio.getName(), absoluteTime.getTime()));
+                    wln(String.format("%s =  %s.set_audio(compo)", "final", "final"));
+                    wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
+                    wln("");
+                }
+            }
+        }
+
+        wln("");
+        wln("");
         wln("### REMOVE TEMP VIDEOS");
         for (String s : utils) {
             wln(String.format("os.remove('%s')", s));
@@ -163,61 +212,11 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln("");
     }
 
-//    @Override
-//    public void visit(Sequence sequence) {
-//
-//    }
 
     @Override
     public void visit(TextClip textClip) {
-//        wln("####################################################################");
-//        wln("# WE CREATE THE TEXT THAT IS GOING TO MOVE, WE CENTER IT.");
-//        wln("");
-//        wln("screensize = (720, 460)");
-//        wln("txtClip = TextClip('Cool effect', color='white', font=\"Amiri-Bold\",\n" +
-//                "                   kerning=5, fontsize=100)");
-//        wln("cvc = CompositeVideoClip([txtClip.set_pos('center')],\n" +
-//                "                         size=screensize)");
-//        wln("");
-//        wln("# THE NEXT FOUR FUNCTIONS DEFINE FOUR WAYS OF MOVING THE LETTERS");
-//        wln("");
-//        wln("");
-//        wln("# helper function");
-//        wln("rotMatrix = lambda a: np.array([[np.cos(a), np.sin(a)],\n" +
-//                "                                [-np.sin(a), np.cos(a)]])");
-//        wln("");
-//        wln("");
-//        wln("def vortex(screenpos, i, nletters):");
-//        wln("    d = lambda t: 1.0 / (0.3 + t ** 8)  # damping");
-//        wln("    a = i * np.pi / nletters  # angle of the movement");
-//        wln("    v = rotMatrix(a).dot([-1, 0])");
-//        wln("    if i % 2: v[1] = -v[1]");
-//        wln("    return lambda t: screenpos + 400 * d(t) * rotMatrix(0.5 * d(t) * a).dot(v)");
-//        wln("");
-//        wln("");
-//        wln("def cascade(screenpos, i, nletters):");
-//        wln("    v = np.array([0, -1])");
-//        wln("    d = lambda t: 1 if t < 0 else abs(np.sinc(t) / (1 + t ** 4))");
-//        wln("    return lambda t: screenpos + v * 400 * d(t - 0.15 * i)");
-//        wln("");
-//        wln("");
-//        wln("def arrive(screenpos, i, nletters):");
-//        wln("    v = np.array([-1, 0])");
-//        wln("    d = lambda t: max(0, 3 - 3 * t)");
-//        wln("    return lambda t: screenpos - 400 * v * d(t - 0.2 * i)");
-//        wln("");
-//        wln("");
-//        wln("def vortexout(screenpos, i, nletters):");
-//        wln("    d = lambda t: max(0, t)  # damping");
-//        wln("    a = i * np.pi / nletters  # angle of the movement");
-//        wln("    v = rotMatrix(a).dot([-1, 0])");
-//        wln("    if i % 2: v[1] = -v[1]");
-//        wln("    return lambda t: screenpos + 400 * d(t - 0.1 * i) * rotMatrix(-0.2 * d(t) * a).dot(v)");
-//        wln("");
-//        wln("");
 //        wln("# WE USE THE PLUGIN findObjects TO LOCATE AND SEPARATE EACH LETTER\n");
 //        wln("letters = findObjects(cvc)  # a list of ImageClips");
-//
         wln("### Text ");
         wln("");
         wln(String.format("_%s =  TextClip(\"%s\", fontsize=70, color='white')", textClip.getName(), textClip.getText()));
@@ -362,6 +361,11 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(TextClipWithAnimation textClipWithAnimation) {
+
+    }
+
+    @Override
+    public void visit(EndingTextClip endingTextClip) {
 
     }
 }

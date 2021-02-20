@@ -15,12 +15,11 @@ public abstract class Visitor<T> {
 	public abstract void visit(Audio audio);
 	public abstract void visit(SpecificVideoPart specificVideoPart);
 	public abstract void visit(TextClipWithAnimation textClipWithAnimation);
+	public abstract void visit(EndingTextClip endingTextClip);
 
 	/***********************
 	 ** Helper mechanisms **
 	 ***********************/
-
-	protected Map<String,Object> context = new HashMap<>();
 
 	protected T result;
 

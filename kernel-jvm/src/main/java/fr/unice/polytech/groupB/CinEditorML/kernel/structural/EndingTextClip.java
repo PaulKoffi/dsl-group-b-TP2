@@ -6,7 +6,7 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.utils.FrontElementType;
 
 public class EndingTextClip extends TextClip {
 
-    private float speed;
+    private float speed = 1;
 
     public float getSpeed() {
         return speed;
@@ -27,6 +27,6 @@ public class EndingTextClip extends TextClip {
 
     @Override
     public BackGroundElementType getBackGroundElementType() {
-        return BackGroundElementType.TEXT_CLIP_ANIMATION;
+        return BackGroundElementType.TEXT_ENDING;
     }
 }
