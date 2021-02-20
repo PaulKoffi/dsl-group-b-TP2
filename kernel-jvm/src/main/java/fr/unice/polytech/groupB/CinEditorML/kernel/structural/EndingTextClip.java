@@ -1,20 +1,23 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
-
 import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.Visitor;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Animation;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.FrontElementType;
 
-public class TextClipWithAnimation extends TextClip {
+public class EndingTextClip extends TextClip {
 
-    private Animation animation;
+    private float speed;
 
-    public Animation getAnimation() {
-        return animation;
+    public float getSpeed() {
+        return speed;
     }
 
-    public void setAnimation(Animation animation) {
-        this.animation = animation;
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public Animation getAnimation() {
+        return Animation.SCROLL;
     }
 
     @Override

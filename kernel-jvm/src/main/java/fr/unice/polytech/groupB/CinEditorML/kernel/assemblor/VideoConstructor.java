@@ -3,16 +3,10 @@ package fr.unice.polytech.groupB.CinEditorML.kernel.assemblor;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
-import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
-import fr.unice.polytech.groupB.CinEditorML.kernel.utils.FrontElementType;
-import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Position;
-import fr.unice.polytech.groupB.CinEditorML.kernel.utils.TimeType;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.*;
 
 import java.security.acl.Acl;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Quick and dirty visitor to support the generation of Wiring code
@@ -61,6 +55,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln("");
         this.backGroundElements = app.getBackGroundElements();
         this.frontElements = app.getFrontElements();
+
         // Chargement des elements utiles mais pas dans la séquence finale
         Set<String> keys = app.getBackGroundElements().keySet();
         for (String k : keys) {
@@ -74,6 +69,28 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                     specificVideoPart.accept(this);
                 }
             }
+        }
+
+        // Ajout des helpers en cas d'animation
+        LinkedHashSet<Animation> linkedset = new LinkedHashSet<Animation>();
+        for (String s : app.getSequence()) {
+            BackGroundElement b = app.getBackGroundElements().get(s);
+            if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP_ANIMATION)) {
+                TextClipWithAnimation textClipWithAnimation = (TextClipWithAnimation) b;
+                linkedset.add(textClipWithAnimation.getAnimation());
+            }
+        }
+        if(linkedset.size()>0){
+            wln("# helper function");
+            wln("rotMatrix = lambda a: np.array([[np.cos(a), np.sin(a)],\n" +
+                    "                                [-np.sin(a), np.cos(a)]])");
+            wln("");
+            wln("");
+            wln("# WE ANIMATE THE LETTERS");
+            wln("def moveLetters(letters, funcpos):\n" +
+                    "    return [letter.set_pos(funcpos(letter.screenpos, i, len(letters)))\n" +
+                    "            for i, letter in enumerate(letters)]");
+
         }
 
         this.sequence = app.getSequence();
@@ -215,28 +232,12 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln("### AUDIO ");
         wln("");
 
-        if (audio.getTime().getType().equals(TimeType.ABSOLUTE)) {
-//            int t = 0;
-//            AbsoluteTime absoluteTime = (AbsoluteTime) audio.getTime();
-//            t = absoluteTime.getTime();
-//
-//            // Setup de l'AUDIO
-//            wln("");
-//            wln(String.format("audio_%s =  AudioFileClip(\"%s\")", audio.getName(), audio.getPath()));
-//            wln(String.format("audio_%s =  %s.audio", , subtitle.getText()));
-//
-//            wln(String.format("%s =  TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
-//            wln(String.format("%s =  %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
-//            wln(String.format("%s =  %s.set_start(%d)", subtitle.getName(), subtitle.getName(), t));
-//            // Sauvegarde
-//            subtitlesTime.put(subtitle.getName(), "TEMPV = " + t);
-        } else {
+        if (!audio.getTime().getType().equals(TimeType.ABSOLUTE)) {
             RelativeTime relativeTime = (RelativeTime) audio.getTime();
             common(relativeTime, audio.getName());
-
             wln(String.format("audio_%s =  AudioFileClip(\"%s\")", audio.getName(), audio.getPath()));
             wln(String.format("audio_%s =  %s.audio", relativeTime.getElement(), relativeTime.getElement()));
-//        String temp = "audio_" + relativeTime.getElement();
+            //        String temp = "audio_" + relativeTime.getElement();
             wln(String.format("compo = CompositeAudioClip([audio_%s.volumex(%f), audio_%s.set_start(TEMPV)])", relativeTime.getElement(), audio.getVolume(), audio.getName()));
             wln(String.format("%s =  %s.set_audio(compo)", relativeTime.getElement(), relativeTime.getElement()));
         }
@@ -357,5 +358,10 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln(String.format("%s.write_videofile(\"%s\", fps=30)", specificVideoPart.getName(), path));
         wln("");
         this.utils.add(path);
+    }
+
+    @Override
+    public void visit(TextClipWithAnimation textClipWithAnimation) {
+
     }
 }
