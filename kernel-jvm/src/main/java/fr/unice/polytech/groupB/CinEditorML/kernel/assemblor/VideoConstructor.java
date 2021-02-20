@@ -326,16 +326,16 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
             // Setup du subtitle
             wln("");
-            wln(String.format("%s =  TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
-            wln(String.format("%s =  %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
-            wln(String.format("%s =  %s.set_start(%d)", subtitle.getName(), subtitle.getName(), t));
+            wln(String.format("%s = TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
+            wln(String.format("%s = %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
+            wln(String.format("%s = %s.set_start(%d)", subtitle.getName(), subtitle.getName(), t));
             // Sauvegarde
             subtitlesTime.put(subtitle.getName(), "TEMPV = " + t);
         } else {
             common((RelativeTime) subtitle.getTime(), subtitle.getName());
-            wln(String.format("%s =  TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
-            wln(String.format("%s =  %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
-            wln(String.format("%s =  %s.set_start(TEMPV)", subtitle.getName(), subtitle.getName()));
+            wln(String.format("%s = TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
+            wln(String.format("%s = %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
+            wln(String.format("%s = %s.set_start(TEMPV)", subtitle.getName(), subtitle.getName()));
         }
     }
 
