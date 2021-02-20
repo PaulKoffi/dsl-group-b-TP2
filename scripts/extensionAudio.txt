@@ -1,5 +1,4 @@
-
-begin = textClip with text "beginningText" during 10 s with animation scroll
+begin = textClip with text "beginningText" during 10 s with animation arrive
 
 video1 = video  test3.mp4
 
@@ -7,9 +6,9 @@ video2 = video  va2.mp4
 
 end = textClip with text "endingText" during 10 s
 
-audio1 = audio audio.mp3 starting at 0 s afterBeginning of video1 volume 10f
+audio1 = audio audio.mp3 starting at 0 s afterBeginning of video1 volume 1.5f
 
-audio2 = audio audio.mp3 starting at 45 s volume 10f
+audio2 = audio audio.mp3 starting at 45 s volume 2.0f
 
 createVideo with (begin, video1, video2, end)
 
