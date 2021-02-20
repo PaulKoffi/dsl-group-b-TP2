@@ -260,7 +260,13 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                 if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
                     TextClip textClip = (TextClip) backGroundElement;
                     temp.append(" + ").append(textClip.getTime());
-                } else {
+                } if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP_ANIMATION)) {
+                    TextClipWithAnimation textClip = (TextClipWithAnimation) backGroundElement;
+                    temp.append(" + ").append(textClip.getTime());
+                }if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_ENDING)) {
+                    EndingTextClip textClip = (EndingTextClip) backGroundElement;
+                    temp.append(" + ").append(textClip.getTime());
+                }else {
                     temp.append(" + int(").append(backGroundElement.getName()).append(".duration)");
                 }
 
