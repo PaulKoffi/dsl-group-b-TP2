@@ -1,10 +1,11 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
 
+import fr.unice.polytech.groupB.CinEditorML.kernel.NamedElement;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
 
-public class Video implements BackGroundElement {
+public class Video extends BackGroundElement {
     private String name ;
     private String path ;
 
@@ -21,6 +22,7 @@ public class Video implements BackGroundElement {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }

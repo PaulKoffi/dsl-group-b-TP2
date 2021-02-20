@@ -9,25 +9,25 @@ root            : sequences createVideo export ;
 
 sequences       : sequence+;
 
-createVideo     : 'createVideo' list=FINAL_VIDEO;
+createVideo     : 'createVideo' 'with' list=FINAL_VIDEO;
 
 sequence        : (backgroundElement |frontElement |action);
 
 backgroundElement : (textClip| video |specificPartOfVideo);
-textClip        : name=IDENTIFIER '=''textClip('text=TEXT')''->''during('time=TIMELINE')' ('->''animation('animation=ANIMATION')')? ;
-specificPartOfVideo   : name=IDENTIFIER '=''video('path=FILE_NAME')''->''start('start=TIMELINE')''.end('end=TIMELINE')';
-video           : name=IDENTIFIER '=''video('path=FILE_NAME')' ;
+textClip        : name=IDENTIFIER '=''textClip' 'with' 'text' text=TEXT 'during' /*(minutes=TIMELINE 'min')?*/  time=TIMELINE 's'?
+                                                ('with''animation' animation=ANIMATION ('speed' speed=FLOAT)?)? ;
+specificPartOfVideo   : name=IDENTIFIER '=' 'video' 'from'path=FILE_NAME 'starting''at' start=TIMELINE 'ending' 'at'end=TIMELINE;
+video           : name=IDENTIFIER '=''video'  path=FILE_NAME ;
 
 
 
 action          : cutVideo;
-cutVideo        : name=IDENTIFIER '=' source=IDENTIFIER '->from('start=TIMELINE')''->to('end=TIMELINE')' ;
+cutVideo        : name=IDENTIFIER '=' source=IDENTIFIER 'from' start=TIMELINE 'to' end=TIMELINE ;
 
 frontElement    : (subtitle| audio /*| specificPartOfAudio*/);
-audio           : name=IDENTIFIER '=''audio''('path=FILE_NAME')' ( '->' position=POSITION  time=TIMELINE  ')'
-                                                                            ('->''of(' element=IDENTIFIER ')')? ('->''vol(' (backGroundSound=FLOAT ',')? audioSound=FLOAT ')')?)?;
+audio           : name=IDENTIFIER '=' 'audio' path=FILE_NAME 'starting' 'at' time=TIMELINE 's'?  (position=POSITION)? ('of' element=IDENTIFIER)? ('videoVolume' backGroundSound=FLOAT )? ( 'volume' audioSound=FLOAT )?;
 //specificPartOfAudio   : name=IDENTIFIER '=' 'audio(' path=FILE_NAME ')''->''from(' start=TIMELINE ')' '->''to(' end=TIMELINE')';
-subtitle        : name=IDENTIFIER '=' 'subtitle(' value =TEXT')' '->'position=POSITION time=TIMELINE ')' ('->''of(' element=IDENTIFIER ')')?'->''during('duration=TIMELINE')';
+subtitle        : name=IDENTIFIER '=' 'subtitle' 'with''text' value =TEXT 'starting' 'at' time=TIMELINE 's'?  position=POSITION   'of' element=IDENTIFIER  'during' duration=TIMELINE 's'?;
 
 
 
@@ -42,17 +42,17 @@ subtitle        : name=IDENTIFIER '=' 'subtitle(' value =TEXT')' '->'position=PO
 
 //setTextClipTime : name=IDENTIFIER '.setTime(' time=TIME ')';
 
-export          : 'export' name=IDENTIFIER;
+export          : 'video' 'title' '=' name=IDENTIFIER;
 
 /*****************
  ** Lexer rules **
  *****************/
-POSITION        :   ('afterBeginning'|'beforeBeginning'|'afterEnding'|'beforeEnding')'(';
-ANIMATION       : ('vortex'|'cascade'| 'arrive' |'vortexout' | 'scrolling');
-//TIME            :   NUMBER+;
+POSITION        :   ('afterBeginning'|'beforeBeginning'|'afterEnding'|'beforeEnding');
+ANIMATION       : ('vortex'|'cascade'| 'arrive' |'vortexout' | 'scroll');
+//TIME          :   NUMBER+;
 
 TIMELINE        :   NUMBER+  (':'  NUMBER NUMBER)?;
-FLOAT           :   'v'NUMBER+ (('.'|',') NUMBER+)?;
+FLOAT           :   NUMBER+ (('.'|',') NUMBER+)? 'f';
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ ;
 TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ '"';
 FINAL_VIDEO     : '(' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ ')';

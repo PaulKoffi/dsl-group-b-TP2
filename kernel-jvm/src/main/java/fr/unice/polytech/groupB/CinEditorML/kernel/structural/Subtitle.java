@@ -3,10 +3,9 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.Visitor;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.FrontElement;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.FrontElementType;
 
-public class Subtitle implements FrontElement{
+public class Subtitle extends FrontElement{
 
     private Time time;
-    private String name;
     private String text;
     private int duration;
 
@@ -31,6 +30,7 @@ public class Subtitle implements FrontElement{
         this.time = time;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }

@@ -7,12 +7,12 @@ import java.util.LinkedHashMap;
 import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 
-public class App implements NamedElement, Visitable {
+public class App extends NamedElement implements  Visitable {
 
-	private String name;
 	private LinkedHashMap<String,BackGroundElement> backGroundElements = new LinkedHashMap<>();
 	private LinkedHashMap<String,FrontElement> frontElements = new LinkedHashMap<>();
 	private ArrayList<String> sequence = new ArrayList<>();
+
 
 	public LinkedHashMap<String,BackGroundElement> getBackGroundElements() {
 		return backGroundElements;

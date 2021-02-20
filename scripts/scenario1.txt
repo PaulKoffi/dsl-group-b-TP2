@@ -1,14 +1,14 @@
-begin=textClip("beginningText")->during(10)
+begin = textClip with text "beginningText" during 10 s
 
-video1=video(test3.mp4)
+video1 = video from test3.mp4
 
-video2=video(va2.mp4)
+video2 = video from va2.mp4
 
-end=textClip("endingText")->during(10)
+end = textClip with text "endingText" during 15 s
 
-createVideo(begin, video1, video2, end)
+createVideo with (begin, video1, video2, end)
 
-export result
+video title = result1
 
 
 

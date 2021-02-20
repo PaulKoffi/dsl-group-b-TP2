@@ -1,8 +1,9 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.behavioral;
 
+import fr.unice.polytech.groupB.CinEditorML.kernel.NamedElement;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
 
-public interface Element {
-    public boolean isBackground();
-    public String getName();
+public abstract class Element extends NamedElement{
+
+    public abstract boolean isBackground();
 }

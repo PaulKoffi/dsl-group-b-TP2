@@ -50,14 +50,34 @@ public class ModelBuilder extends CinEditorBaseListener {
 
     @Override
     public void exitTextClip(CinEditorParser.TextClipContext ctx){
-        TextClip textClip= new TextClip();
-        textClip.setTime(Integer.parseInt(ctx.time.getText()));
-        textClip.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-2 ));
-        textClip.setName(ctx.name.getText());
         if (ctx.animation!=null){
-            textClip.setAnimation(Animation.valueOf(ctx.animation.getText().toUpperCase()));
+            if (ctx.animation.getText().toUpperCase().equals(Animation.SCROLL.toString())){
+                EndingTextClip endingTextClip = new EndingTextClip();
+                endingTextClip.setTime(Integer.parseInt(ctx.time.getText()));
+                endingTextClip.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-1 ));
+                endingTextClip.setName(ctx.name.getText());
+                theApp.addBackGroundElement(endingTextClip.getName(),endingTextClip);
+            }
+            else{
+                TextClipWithAnimation textClipWithAnimation= new TextClipWithAnimation();
+                textClipWithAnimation.setAnimation(Animation.valueOf(ctx.animation.getText().toUpperCase()));
+                textClipWithAnimation.setTime(Integer.parseInt(ctx.time.getText()));
+                textClipWithAnimation.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-1 ));
+                textClipWithAnimation.setName(ctx.name.getText());
+                theApp.addBackGroundElement(textClipWithAnimation.getName(),textClipWithAnimation);
+            }
+
         }
-        theApp.addBackGroundElement(textClip.getName(),textClip);
+        else {
+            TextClip textClip= new TextClip();
+            textClip.setTime(Integer.parseInt(ctx.time.getText()));
+            textClip.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-1 ));
+            textClip.setName(ctx.name.getText());
+
+
+            theApp.addBackGroundElement(textClip.getName(),textClip);
+        }
+
     }
 
     @Override
@@ -73,10 +93,7 @@ public class ModelBuilder extends CinEditorBaseListener {
         Audio audio = new Audio();
         audio.setName(ctx.name.getText());
         audio.setPath(ctx.path.getText());
-        RelativeTime relativeTime = new RelativeTime();
 
-
-        relativeTime.setElement(ctx.element.getText());
         int timeFinalValue = 0;
         String timeText =ctx.time.getText().trim();
         if (timeText.contains(":")){
@@ -88,13 +105,28 @@ public class ModelBuilder extends CinEditorBaseListener {
         else{
             timeFinalValue= Integer.parseInt(timeText);
         }
-        relativeTime.setPosition(positions.get(ctx.position.getText().substring(0,ctx.position.getText().length()-1)));
-        relativeTime.setTimeComparedToPosition(timeFinalValue);
+
+        if (ctx.position!=null){
+            RelativeTime relativeTime = new RelativeTime();
 
 
-        audio.setTime(relativeTime);
+            relativeTime.setElement(ctx.element.getText());
+            relativeTime.setPosition(positions.get(ctx.position.getText()));
+            relativeTime.setTimeComparedToPosition(timeFinalValue);
+            audio.setTime(relativeTime);
+        }
 
-        audio.setVolume(Float.parseFloat(ctx.audioSound.getText().substring(1)) );
+        else{
+            AbsoluteTime absoluteTime = new AbsoluteTime();
+            absoluteTime.setTime(timeFinalValue);
+            audio.setTime(absoluteTime);
+
+        }
+
+        if (ctx.audioSound!=null){
+            audio.setVolume(Float.parseFloat(ctx.audioSound.getText().substring(0,ctx.audioSound.getText().length()-1 )) );
+        }
+
         theApp.addFrontElement(audio.getName(),audio);
     }
 
@@ -128,15 +160,6 @@ public class ModelBuilder extends CinEditorBaseListener {
         theApp.addBackGroundElement(ctx.name.getText(), part);
     }
 
-//    @Override
-//    public void exitSpecificPartOfAudio(CinEditorParser.SpecificPartOfAudioContext ctx){
-//        SpecificAudioPart part = new SpecificAudioPart();
-//        part.setName(ctx.name.getText());
-//        part.setPath(ctx.path.getText());
-//        part.setBeginning(ctx.start.getText());
-//        part.setEnding(ctx.end.getText());
-//        theApp.addFrontElement(ctx.name.getText(), part);
-//    }
 
     @Override
     public void exitCutVideo(CinEditorParser.CutVideoContext ctx){
@@ -156,9 +179,7 @@ public class ModelBuilder extends CinEditorBaseListener {
         int textLength = ctx.value.getText().length();
         subtitle.setText(ctx.value.getText().substring(1, textLength-2));
 
-        RelativeTime relativeTime = new RelativeTime();
 
-        relativeTime.setElement(ctx.element.getText());
         int timeFinalValue = 0;
         String timeText =ctx.time.getText().trim();
         if (timeText.contains(":")){
@@ -171,9 +192,22 @@ public class ModelBuilder extends CinEditorBaseListener {
             timeFinalValue= Integer.parseInt(timeText);
         }
 
-        relativeTime.setTimeComparedToPosition(timeFinalValue);
-        relativeTime.setPosition(positions.get(ctx.position.getText().substring(0,ctx.position.getText().length()-1)));
-        subtitle.setTime(relativeTime);
+        if (ctx.position!=null){
+            RelativeTime relativeTime = new RelativeTime();
+
+
+            relativeTime.setElement(ctx.element.getText());
+            relativeTime.setPosition(positions.get(ctx.position.getText()));
+            relativeTime.setTimeComparedToPosition(timeFinalValue);
+            subtitle.setTime(relativeTime);
+        }
+
+        else{
+            AbsoluteTime absoluteTime = new AbsoluteTime();
+            absoluteTime.setTime(timeFinalValue);
+            subtitle.setTime(absoluteTime);
+
+        }
 
         timeText =ctx.duration.getText().trim();
         if (timeText.contains(":")){

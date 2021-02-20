@@ -5,10 +5,8 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.structural.Time;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.FrontElementType;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.TimeType;
 
-public interface FrontElement extends Element, Visitable {
-    public String getName();
-    public FrontElementType getFrontElementType();
-    public Time getTime();
-    public boolean isBackground();
-    public int getDuration();
+public abstract class FrontElement  extends Element implements  Visitable {
+    public abstract FrontElementType getFrontElementType();
+    public abstract Time getTime();
+    public abstract int getDuration();
 }

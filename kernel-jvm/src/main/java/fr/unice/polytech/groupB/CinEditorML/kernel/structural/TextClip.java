@@ -4,8 +4,7 @@ import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Animation;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.BackGroundElementType;
 
-public class TextClip implements BackGroundElement {
-    private String name;
+public class TextClip extends BackGroundElement {
     private String text;
     private int time;
 
@@ -20,9 +19,10 @@ public class TextClip implements BackGroundElement {
 
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
