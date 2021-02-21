@@ -62,7 +62,7 @@ txt = 10*"\n" +txt + 10*"\n"
 
 clip_txt = TextClip(txt,color='white', align='West',fontsize=25,
                     font='Xolonium-Bold', method='label')
-clip_txt = clip_txt.set_position(lambda t: ('center',(-10 *t))).set_duration(20)
+clip_txt = clip_txt.set_position(lambda t: ('center',(-20 *(t + 5)))).set_duration(20)
 
 # SCROLL THE TEXT IMAGE BY CROPPING A MOVING AREA
 
@@ -109,7 +109,7 @@ clip_txt = clip_txt.set_position(lambda t: ('center',(-10 *t))).set_duration(20)
 # final = CompositeVideoClip([
 #          warped_txt.set_pos(('center','bottom'))],
 #          size = moviesize)
-imgtxt = CompositeVideoClip([mountainmask, clip_txt.crossfadein(1)])
+imgtxt = CompositeVideoClip([mountainmask, clip_txt.crossfadein(2)])
 
 final = concatenate_videoclips([clip,imgtxt],method="compose")
 # WRITE TO A FILE
