@@ -136,7 +136,7 @@ public class ModelBuilder extends CinEditorBaseListener {
     }
 
     @Override
-    public void enterExport(CinEditorParser.ExportContext ctx) {
+    public void exitExport(CinEditorParser.ExportContext ctx) {
         theApp.setName(ctx.name.getText());
     }
 

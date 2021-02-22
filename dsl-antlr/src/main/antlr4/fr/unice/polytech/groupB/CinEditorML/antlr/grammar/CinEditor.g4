@@ -29,7 +29,7 @@ audio           : name=IDENTIFIER '=' 'audio' path=FILE_NAME 'starting' 'at' tim
 //specificPartOfAudio   : name=IDENTIFIER '=' 'audio(' path=FILE_NAME ')''->''from(' start=TIMELINE ')' '->''to(' end=TIMELINE')';
 subtitle        : name=IDENTIFIER '=' 'subtitle' 'with''text' value =TEXT 'starting' 'at' time=TIMELINE 's'?  position=POSITION   'of' element=IDENTIFIER  'during' duration=TIMELINE 's'?;
 
-
+export          : 'video' 'title' '=' name=IDENTIFIER;
 
 
 
@@ -42,7 +42,7 @@ subtitle        : name=IDENTIFIER '=' 'subtitle' 'with''text' value =TEXT 'start
 
 //setTextClipTime : name=IDENTIFIER '.setTime(' time=TIME ')';
 
-export          : 'video' 'title' '=' name=IDENTIFIER;
+
 
 /*****************
  ** Lexer rules **
