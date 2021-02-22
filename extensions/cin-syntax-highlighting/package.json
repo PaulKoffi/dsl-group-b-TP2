@@ -1,0 +1,25 @@
+{
+    "name": "cin",
+    "displayName": "Cin language",
+    "description": "Syntax highlighting for cin language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.53.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "cin",
+            "aliases": ["Cin", "cin"],
+            "extensions": [".cin"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "cin",
+            "scopeName": "source.cin",
+            "path": "./syntaxes/cin.tmLanguage.json"
+        }]
+    }
+}
