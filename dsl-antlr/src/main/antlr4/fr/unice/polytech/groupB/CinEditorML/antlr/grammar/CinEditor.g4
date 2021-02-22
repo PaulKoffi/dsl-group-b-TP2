@@ -25,7 +25,7 @@ action          : cutVideo;
 cutVideo        : name=IDENTIFIER '=' source=IDENTIFIER 'from' start=TIMELINE 'to' end=TIMELINE ;
 
 frontElement    : (subtitle| audio /*| specificPartOfAudio*/);
-audio           : name=IDENTIFIER '=' 'audio' path=FILE_NAME 'starting' 'at' time=TIMELINE 's'?  (position=POSITION)? ('of' element=IDENTIFIER)? ('videoVolume' backGroundSound=FLOAT )? ( 'volume' audioSound=FLOAT )?;
+audio           : name=IDENTIFIER '=' 'audio' path=FILE_NAME 'starting' 'at' time=TIMELINE 's'?  (position=POSITION)? ('of' element=IDENTIFIER)? /*('videoVolume' backGroundSound=FLOAT )?*/ ( 'volume' audioSound=FLOAT )?;
 //specificPartOfAudio   : name=IDENTIFIER '=' 'audio(' path=FILE_NAME ')''->''from(' start=TIMELINE ')' '->''to(' end=TIMELINE')';
 subtitle        : name=IDENTIFIER '=' 'subtitle' 'with''text' value =TEXT 'starting' 'at' time=TIMELINE 's'?  position=POSITION   'of' element=IDENTIFIER  'during' duration=TIMELINE 's'?;
 

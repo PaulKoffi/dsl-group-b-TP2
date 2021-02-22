@@ -11,6 +11,7 @@ import {
 	InitializeParams,
 	DidChangeConfigurationNotification,
 	CompletionItem,
+	CompletionItemTag,
 	CompletionItemKind,
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
@@ -18,8 +19,15 @@ import {
 	Command
 } from 'vscode-languageserver/node';
 
-import * as backgroundElement from "./interfaces/backgroundElement";
 import * as video from "./structure/video";
+import * as textclip from "./structure/textclip";
+import * as specificPartOfVideo from "./structure/specificPartOfVideo";
+import * as subtitle from "./structure/subtitle";
+import * as cuttingVideo from "./actions/cutVideo";
+import * as createVideo from "./actions/createVideo";
+import * as videoTitle from "./actions/videoTitle";
+import * as subtitleRelativeToElement from "./structure/subtitleRelativeToElement";
+import * as audio from "./structure/audio";
 
 import {
 	TextDocument
@@ -197,14 +205,125 @@ connection.onCompletion(
 		// which code complete got requested. For the example we ignore this
 		// info and always provide the same completion items.
 		return [
+			// {
+			// 	label: backgroundElement.getLabel(),
+			// 	kind: backgroundElement.completionKind(),
+			// },
 			{
-				label: backgroundElement.getLabel(),
-				kind: backgroundElement.completionKind(),
+				label: createVideo.getLabel(),
+				kind: createVideo.completionKind(),
+				detail: createVideo.getName(),
+				documentation: createVideo.getDetails()
+			},
+			{
+				label: videoTitle.getLabel(),
+				kind: videoTitle.completionKind(),
+				detail: videoTitle.getName(),
+				documentation: videoTitle.getDetails()
 			},
 			{
 				label: video.getLabel(),
 				kind: video.completionKind(),
+				detail: video.getName(),
+				documentation: video.getDetails()
+			},
+			{
+				label: textclip.getLabel(),
+				kind: textclip.completionKind(),
+				detail: textclip.getName(),
+				documentation: textclip.getDetails() 
+			},
+			{
+				label: specificPartOfVideo.getLabel(),
+				kind: specificPartOfVideo.completionKind(),
+				detail: specificPartOfVideo.getName(),
+				documentation: specificPartOfVideo.getDetails()
+			},
+			{
+				label: cuttingVideo.getLabel(),
+				kind: cuttingVideo.completionKind(),
+				detail: cuttingVideo.getName(),
+				documentation: cuttingVideo.getDetails()
+			},
+			{
+				label: subtitle.getLabel(),
+				kind: subtitle.completionKind(),
+				detail: subtitle.getName(),
+				documentation: subtitle.getDetails()
+			},
+			{
+				label: subtitleRelativeToElement.getLabel(),
+				kind: subtitleRelativeToElement.completionKind(),
+				detail: subtitleRelativeToElement.getName(),
+				documentation: subtitleRelativeToElement.getDetails()
+			},
+			{
+				label: audio.getLabel(),
+				kind: audio.completionKind(),
+				detail: audio.getName(),
+				documentation: audio.getDetails()
+			},
+			{
+				label: audio.getLabelWithVolume(),
+				kind: audio.completionKind(),
+				detail: audio.getName(),
+				documentation: audio.getDetailsWithVolume()
+			},
+			{
+				label: audio.getLabelForAudioWithRelative(),
+				kind: audio.completionKind(),
+				detail: audio.getName(),
+				documentation: audio.getDetailsForAudioWithRelative()
+			},
+			{
+				label: audio.getLabelForAudioWithRelativeWithVolume(),
+				kind: audio.completionKind(),
+				detail: audio.getName(),
+				documentation: audio.getDetailsForAudioWithRelativeWithVolume()
+			},
+			{
+				label: "afterBegining",
+				kind: CompletionItemKind.Enum,
+				detail: "Position"
+			},
+			
+			{
+				label: "afterEnding",
+				kind: CompletionItemKind.Enum,
+				detail: "Position"
+			},
+			{
+				label: "beforeBeginning",
+				kind: CompletionItemKind.Enum,
+				detail: "Position"
+			},
+			{
+				label: "beforeEnding",
+				kind: CompletionItemKind.Enum,
+				detail: "Position"
+			},
+			{
+				label: "with",
+				kind: CompletionItemKind.Keyword,
+				detail: "Keyword"
+			},
+			{
+				label: "starting",
+				kind: CompletionItemKind.Keyword,
+				detail: "Keyword"
+			},
+			{
+				label: "text",
+				kind: CompletionItemKind.Keyword,
+				detail: "Keyword for textual values"
+			},
+			{
+				label: "at",
+				kind: CompletionItemKind.Keyword,
+				detail: "Keyword for time values"
 			}
+
+			
 		];
 	} 
 );
@@ -214,14 +333,7 @@ connection.onCompletion(
 // the completion list.
 connection.onCompletionResolve(
 	(item: CompletionItem): CompletionItem => {
-		if (item.label === backgroundElement.getLabel()) {
-			item.detail = backgroundElement.getName();
-			item.documentation = backgroundElement.getDetails() ;
-		}
-		else if (item.label === video.getLabel()) {
-			item.detail = video.getName();
-			item.documentation = video.getDetails() ;
-		}
+		
 		return item;
 	}
 );

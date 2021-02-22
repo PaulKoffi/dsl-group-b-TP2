@@ -6,16 +6,11 @@ import {
 
 
 export const getName = () =>{
-	return "video";
+	return "video (BackgroundElement)";
 }
 
 export const getDetails =() =>{
-	return "You can use existing video using  this object \n Rplace 'source.mp4' by your video name. \n Your video must be added in the folder ";
-}
-
-
-export const getBackElementData =() =>{
-	return 50;
+	return "You can use existing video using  this object \nReplace 'source.mp4' by your video name. \nYour video must be added in the folder script/input";
 }
 
 export const completionKind = () =>{

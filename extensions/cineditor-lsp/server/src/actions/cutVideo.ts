@@ -1,6 +1,3 @@
-/***
- * Get background Element informations
- */
 import {
 
 	CompletionItemKind,
@@ -8,12 +5,13 @@ import {
 } from 'vscode-languageserver/node';
 
 
+
 export const getName = () =>{
-	return "BackgroundElement";
+	return "cutting an existing video";
 }
 
 export const getDetails =() =>{
-	return "You can use those elements to create back elements like videos , or textClips";
+	return "You can cut a video you have created before \nReplace 'videoName' by a video you have created before.";
 }
 
 
@@ -22,9 +20,10 @@ export const getBackElementData =() =>{
 }
 
 export const completionKind = () =>{
-	return CompletionItemKind.Interface;
+	return CompletionItemKind.Method;
 }
 
 export const getLabel = () =>{
-	return "backgroundElelemt";
+	return "videoName from 00:00 ending at 00:30 ";
 }
+
