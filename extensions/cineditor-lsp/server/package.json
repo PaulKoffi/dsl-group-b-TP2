@@ -1,9 +1,8 @@
 {
-	"name": "lsp-sample-server",
-	"description": "Example implementation of a language server in node.",
-	"version": "1.0.0",
-	"author": "Microsoft Corporation",
-	"license": "MIT",
+	"name": "lsp-cineditor-server",
+	"description": "A language server for cineditor",
+	"publisher": "SI5-dsl-groupB",
+	"version": "0.1.0",
 	"engines": {
 		"node": "*"
 	},

@@ -18,5 +18,5 @@ export const completionKind = () =>{
 }
 
 export const getLabel = () =>{
-	return "video title = vidoName ";
+	return "videoTitle is vidoName ";
 }
