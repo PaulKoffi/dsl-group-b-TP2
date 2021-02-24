@@ -1,14 +1,8 @@
 {
-	"name": "lsp-sample-client",
-	"description": "VSCode part of a language server",
-	"author": "Microsoft Corporation",
-	"license": "MIT",
-	"version": "0.0.1",
-	"publisher": "vscode",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
-	},
+	"name": "lsp-cineditor-client",
+	"description": "A language server for cineditor",
+	"publisher": "SI5-dsl-groupB",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.52.0"
 	},

@@ -1,0 +1,53 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "cineditor",
+	"patterns": [
+	  {
+		"include": "#keywords"
+	  },
+		  {
+			  "include": "#strings"
+		  },
+		  {
+			  "include": "#comments"
+		  }
+	],
+	"repository": {
+	  "keywords": {
+		"patterns": [
+		  {
+			"name": "keyword.other.cin",
+			"match": "\\b(video|videoName|audio|subtitle|textClip|specificPartOfVideo)\\b"
+		  },
+		  {
+			"name": "keyword.control.cin",
+			"match": "\\b(cutVideo|createVideo)\\b"
+		  },
+		  {
+			"name": "keyword.other.unit.cin",
+			"match": "\\b(with|text|starting|at|beforeBeginning|afterEnding|of|during|s|is)\\b"
+		  }
+		]
+	  },
+	  "strings": {
+			  "name": "string.quoted.double.cin",
+			  "begin": "\"",
+			  "end": "\"",
+			  "patterns": [
+				  {
+					  "name": "constant.character.escape.cin",
+					  "match": "\\\\."
+				  }
+			  ]
+		  },
+	  "comments": {
+			  "patterns": [
+				  {
+					  "match": "(#).*$\\n?",
+					  "name": "comment.line.number-sign.cin"
+				  }
+			  ]
+		  }
+	},
+	"scopeName": "source.cin"
+  }

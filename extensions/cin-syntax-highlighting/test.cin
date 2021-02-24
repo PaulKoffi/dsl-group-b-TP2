@@ -1,6 +1,6 @@
 begin = textClip(beginningText).setDuration(10)
-video1 = video(test3.mp4)
-video2 = video(va2.mp4)
+video1 = video (test3.mp4)
+video2 = video (va2.mp4)
 end = textClip(endingText).setDuration(10)
 
 #finalClip =
@@ -9,5 +9,4 @@ export result
 #video named video1 test3.mp4
 #video named video2 va2.mp4
 #textClip end endingText lasting 10 s
-
 

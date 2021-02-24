@@ -21,4 +21,4 @@ createVideo with (begin, clip1a, clip1b, end)
 
 #createVideo(clip1a, clip1b)
 
-video title = result2
+videoTitle is result2
