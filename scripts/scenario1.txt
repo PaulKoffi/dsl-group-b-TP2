@@ -2,7 +2,7 @@ begin = textClip with text "beginningText" during 10 s
 
 video1 = video test3.mp4
 
-video2 = video va2.mp4
+video2 = video V2.mp4
 
 end = textClip with text "endingText" during 15 s
 

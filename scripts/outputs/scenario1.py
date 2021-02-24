@@ -1,0 +1,41 @@
+# CinEditorML model Code
+# Result Video Name: result1
+
+from moviepy.editor import *
+import numpy as np
+from moviepy.video.tools.segmenting import findObjects
+from moviepy.video.io.VideoFileClip import VideoFileClip
+import os
+
+### Text 
+
+_begin = TextClip("beginningText", fontsize=70, color='white')
+_begin = _begin.set_position('center').set_duration(10)
+begin = CompositeVideoClip([_begin], size=[1920, 1080])
+
+### Video 
+
+video1 = VideoFileClip('test3.mp4')
+
+### Video 
+
+video2 = VideoFileClip('V2.mp4')
+
+### Text 
+
+_end = TextClip("endingText", fontsize=70, color='white')
+_end = _end.set_position('center').set_duration(15)
+end = CompositeVideoClip([_end], size=[1920, 1080])
+
+
+# CREATE FINAL VIDEO
+
+final = concatenate_videoclips([begin, video1, video2, end], method='compose')
+final.write_videofile("result1.mp4", fps=30)
+
+
+### SET ABSOLUTE AUDIO IF EXIST (AUDIO ON GLOBAL VIDEO)
+
+### REMOVE TEMP VIDEOS
+
+

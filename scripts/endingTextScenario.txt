@@ -1,0 +1,10 @@
+begin = textClip with text "ending credits, credit1, credit2, credit3" during 10 s with animation scroll
+
+end = textClip with text "end" during 10 s with animation vortex
+
+createVideo with (begin, end)
+
+video title = resultEnding
+
+
+
