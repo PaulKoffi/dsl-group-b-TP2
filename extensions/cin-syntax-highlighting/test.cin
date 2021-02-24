@@ -1,13 +1,24 @@
-begin = textClip(beginningText).setDuration(10)
-video1 = video(test3.mp4)
-video2 = video(va2.mp4)
-end = textClip(endingText).setDuration(10)
+begin = textClip with text "beginningText" during 10 s
 
-#finalClip =
-export result
+clip1 = video  test3.mp4
 
-#video named video1 test3.mp4
-#video named video2 va2.mp4
-#textClip end endingText lasting 10 s
+clip1a = clip1 from 00:23 to 01:47
 
+clip1b = clip1 from 02:01 to 02:21
 
+# add duration for 15 s
+s1 = subtitle with text " I m good" starting at 10 afterBeginning of clip1  during 20 s
+
+# add duration for 10 s
+s2 = subtitle with text " I m bad" starting at 0:10 s afterEnding of s1  during 30 s
+
+# add duration for 20 s
+s3 = subtitle with text " I m bad and good" starting  at 5 s beforeBeginning of clip1b during 20 s
+
+end= textClip with text "endingText" during 10 s
+
+createVideo with (begin, clip1a, clip1b, end)
+
+#createVideo(clip1a, clip1b)
+
+videoName is result2

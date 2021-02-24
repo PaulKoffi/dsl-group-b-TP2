@@ -1,18 +1,56 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Cin",
-	"patterns": [
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Cin",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
 		{
-			"include": "#keywords"
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#variables"
 		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.cin",
-				"match": "\\b(video|export|textClip)\\b"
-			}]
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other.cin",
+          "match": "\\b(video|videoName|audio|subtitle|textClip|specificPartOfVideo)\\b"
+        },
+        {
+          "name": "keyword.control.cin",
+          "match": "\\b(cutVideo|createVideo)\\b"
+        },
+        {
+          "name": "keyword.other.unit.cin",
+          "match": "\\b(with|text|starting|at|beforeBeginning|afterBeginning|afterEnding|of|during|s|is|from|to)\\b"
+        }
+      ]
+    },
+    "strings": {
+			"name": "string.quoted.double.cin",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.cin",
+					"match": "\\\\."
+				}
+			]
+		},
+    "comments": {
+			"patterns": [
+				{
+					"match": "(#).*$\\n?",
+					"name": "comment.line.number-sign.cin"
+				}
+			]
 		}
-	},
-	"scopeName": "source.cin"
+  },
+  "scopeName": "source.cin"
 }
