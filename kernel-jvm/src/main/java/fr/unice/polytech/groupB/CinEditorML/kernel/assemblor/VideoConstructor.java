@@ -379,7 +379,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(EndingTextClip endingTextClip) {
-        wln(String.format("blackmask = ImageClip('Black.png').resize(0.2).set_duration(%d)",endingTextClip.getTime()));
+        wln(String.format("blackmask = ImageClip('image_mountain.jpg').resize(0.2).set_duration(%d)",endingTextClip.getTime()));
         wln("w = 720");
         wln("h = w * 9 / 16 ");
         wln("moviesize = w, h");
@@ -390,7 +390,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln("");
         wln(String.format("%s = TextClip(txt, color='white', align='West', fontsize=25,\n" +
                 "                    font='Xolonium-Bold', method='label')", endingTextClip.getName()));
-        wln(String.format("%s = %s.set_position(lambda t: ('center', (-20 * (t + 5)))).set_duration(20)", endingTextClip.getName(), endingTextClip.getName()));
+        wln(String.format("%s = %s.set_position(lambda t: ('center', (-20 * (t + 5)))).set_duration(%d)", endingTextClip.getName(), endingTextClip.getName(), endingTextClip.getTime()));
         wln("");
         wln(String.format("%s = CompositeVideoClip([blackmask, %s.crossfadein(2)])", endingTextClip.getName(),endingTextClip.getName()));
         wln("");
