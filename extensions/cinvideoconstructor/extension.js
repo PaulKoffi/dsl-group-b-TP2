@@ -30,14 +30,7 @@ function activate(context) {
 				value = value+ '\\' +wf[index] ;
 			}			
 		}
-		// let f = vscode.workspace.workspaceFolders[0].uri.fsPath ; 
-		// shell.series([
-		// 	'cd '+ pathToRunSh,
-		// 	'ls -l '
-		// 	// 'git commit --verbose'
-		// ], function(err){
-		//    console.log('executed many commands in a row'); 
-		// });
+
 		cmd2 ='.\\run.sh '+ wp +' home';
 		cmd = ' cd ../../scripts '   ; /*pathToRunSh*/
 		var cd = exec('cd '+value+ ' & ' + cmd + ' & ' +cmd2,function(err,stdout,strerr)

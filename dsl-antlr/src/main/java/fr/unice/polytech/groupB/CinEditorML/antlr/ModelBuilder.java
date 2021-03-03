@@ -177,7 +177,7 @@ public class ModelBuilder extends CinEditorBaseListener {
         Subtitle subtitle = new Subtitle();
         subtitle.setName(ctx.name.getText());
         int textLength = ctx.value.getText().length();
-        subtitle.setText(ctx.value.getText().substring(1, textLength-2));
+        subtitle.setText(ctx.value.getText().substring(1, textLength-1));
 
 
         int timeFinalValue = 0;
