@@ -190,7 +190,10 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 //                    wln(String.format("final = VideoFileClip('%s.mp4')",app.getName()));
                     wln(String.format("audio_%s = AudioFileClip(\"%s\")", audio.getName(), audio.getPath()));
                     wln(String.format("audio_%s = %s.audio", "final","final"));
-                    wln(String.format("compo = CompositeAudioClip([audio_%s.volumex(1), audio_%s.set_start(%d).volumex(%s)])", "final", audio.getName(), absoluteTime.getTime(), String.valueOf(audio.getVolume()).replace(',','.') ));
+                    wln("if audio_final is None:");
+                    wln(String.format("    compo = CompositeAudioClip([audio_%s.set_start(%d).volumex(%s)])", audio.getName(), absoluteTime.getTime(), String.valueOf(audio.getVolume()).replace(',','.')));
+                    wln("else:");
+                    wln(String.format("    compo = CompositeAudioClip([audio_%s.volumex(1), audio_%s.set_start(%d).volumex(%s)])", "final", audio.getName(), absoluteTime.getTime(), String.valueOf(audio.getVolume()).replace(',','.') ));
                     wln(String.format("%s = %s.set_audio(compo)", "final", "final"));
                 }
             }
@@ -236,7 +239,10 @@ public class VideoConstructor extends Visitor<StringBuffer> {
             wln(String.format("audio_%s = AudioFileClip(\"%s\")", audio.getName(), audio.getPath()));
             wln(String.format("audio_%s = %s.audio", relativeTime.getElement(), relativeTime.getElement()));
             //        String temp = "audio_" + relativeTime.getElement();
-            wln(String.format("compo = CompositeAudioClip([audio_%s.volumex(1), audio_%s.set_start(TEMPV).volumex(%s)])", relativeTime.getElement(), audio.getName(), String.valueOf(audio.getVolume()).replace(',','.')));
+            wln(String.format("if audio_%s is None:", relativeTime.getElement()));
+            wln(String.format("    compo = CompositeAudioClip([audio_%s.set_start(TEMPV).volumex(%s)])", audio.getName(), String.valueOf(audio.getVolume()).replace(',','.')));
+            wln("else:");
+            wln(String.format("    compo = CompositeAudioClip([audio_%s.volumex(1), audio_%s.set_start(TEMPV).volumex(%s)])", relativeTime.getElement(), audio.getName(), String.valueOf(audio.getVolume()).replace(',','.')));
             wln(String.format("%s = %s.set_audio(compo)", relativeTime.getElement(), relativeTime.getElement()));
         }
     }
