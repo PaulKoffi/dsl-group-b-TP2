@@ -28,7 +28,8 @@ public class VideoConstructor extends Visitor<StringBuffer> {
     private void w(String s) {
         result.append(String.format("%s", s));
     }
-
+    private boolean sub = false;
+    private boolean absoluteAudio = false;
 
     @Override
     public void visit(App app) {
@@ -130,7 +131,10 @@ public class VideoConstructor extends Visitor<StringBuffer> {
             }else if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP_ANIMATION)) {
                 TextClipWithAnimation textClipWithAnimation = (TextClipWithAnimation) b;
                 textClipWithAnimation.accept(this);
-            }
+            }else if (b.getBackGroundElementType().equals(BackGroundElementType.TEXT_ENDING)) {
+                EndingTextClip endingTextClip = (EndingTextClip) b;
+                endingTextClip.accept(this);
+        }
         }
 
         Set<String> keysFront = app.getFrontElements().keySet();
@@ -160,17 +164,20 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                 w(String.format(", %s", s));
             }
         }
+        w("], method='compose')\n");
 
-        for (String k : keysFront) {
-            FrontElement f = app.getFrontElements().get(k);
-            if (f.getFrontElementType().equals(FrontElementType.SUBTITLE)) {
-                w(String.format(", %s", f.getName()));
+        if(sub){
+            w("final = CompositeVideoClip([final");
+            for (String k : keysFront) {
+                FrontElement f = app.getFrontElements().get(k);
+                if (f.getFrontElementType().equals(FrontElementType.SUBTITLE)) {
+                    w(String.format(", %s", f.getName()));
+                }
             }
+            w("], size=[1920, 1080])\n");
         }
 
-        w("], method='compose')\n");
-        wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
-        wln("");
+
         wln("");
         wln("### SET ABSOLUTE AUDIO IF EXIST (AUDIO ON GLOBAL VIDEO)");
         for (String k : keysFront) {
@@ -180,15 +187,18 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                 if (audio.getTime().getType().equals(TimeType.ABSOLUTE)) {
                     AbsoluteTime absoluteTime = (AbsoluteTime) audio.getTime();
                     wln("");
-                    wln(String.format("final = VideoFileClip('%s.mp4')",app.getName()));
+//                    wln(String.format("final = VideoFileClip('%s.mp4')",app.getName()));
                     wln(String.format("audio_%s = AudioFileClip(\"%s\")", audio.getName(), audio.getPath()));
                     wln(String.format("audio_%s = %s.audio", "final","final"));
-                    wln(String.format("compo = CompositeAudioClip([audio_%s.volumex(%s), audio_%s.set_start(%d)])", "final", String.valueOf(audio.getVolume()).replace(',','.'), audio.getName(), absoluteTime.getTime()));
+                    wln("if audio_final is None:");
+                    wln(String.format("    compo = CompositeAudioClip([audio_%s.set_start(%d).volumex(%s)])", audio.getName(), absoluteTime.getTime(), String.valueOf(audio.getVolume()).replace(',','.')));
+                    wln("else:");
+                    wln(String.format("    compo = CompositeAudioClip([audio_%s.volumex(1), audio_%s.set_start(%d).volumex(%s)])", "final", audio.getName(), absoluteTime.getTime(), String.valueOf(audio.getVolume()).replace(',','.') ));
                     wln(String.format("%s = %s.set_audio(compo)", "final", "final"));
-                    wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
                 }
             }
         }
+        wln(String.format("final.write_videofile(\"%s.mp4\", fps=30)", app.getName()));
 
         wln("");
         wln("### REMOVE TEMP VIDEOS");
@@ -229,7 +239,10 @@ public class VideoConstructor extends Visitor<StringBuffer> {
             wln(String.format("audio_%s = AudioFileClip(\"%s\")", audio.getName(), audio.getPath()));
             wln(String.format("audio_%s = %s.audio", relativeTime.getElement(), relativeTime.getElement()));
             //        String temp = "audio_" + relativeTime.getElement();
-            wln(String.format("compo = CompositeAudioClip([audio_%s.volumex(%s), audio_%s.set_start(TEMPV)])", relativeTime.getElement(), String.valueOf(audio.getVolume()).replace(',','.'), audio.getName()));
+            wln(String.format("if audio_%s is None:", relativeTime.getElement()));
+            wln(String.format("    compo = CompositeAudioClip([audio_%s.set_start(TEMPV).volumex(%s)])", audio.getName(), String.valueOf(audio.getVolume()).replace(',','.')));
+            wln("else:");
+            wln(String.format("    compo = CompositeAudioClip([audio_%s.volumex(1), audio_%s.set_start(TEMPV).volumex(%s)])", relativeTime.getElement(), audio.getName(), String.valueOf(audio.getVolume()).replace(',','.')));
             wln(String.format("%s = %s.set_audio(compo)", relativeTime.getElement(), relativeTime.getElement()));
         }
     }
@@ -260,10 +273,10 @@ public class VideoConstructor extends Visitor<StringBuffer> {
                 if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP)) {
                     TextClip textClip = (TextClip) backGroundElement;
                     temp.append(" + ").append(textClip.getTime());
-                } if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP_ANIMATION)) {
+                }else if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_CLIP_ANIMATION)) {
                     TextClipWithAnimation textClip = (TextClipWithAnimation) backGroundElement;
                     temp.append(" + ").append(textClip.getTime());
-                }if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_ENDING)) {
+                }else if (backGroundElement.getBackGroundElementType().equals(BackGroundElementType.TEXT_ENDING)) {
                     EndingTextClip textClip = (EndingTextClip) backGroundElement;
                     temp.append(" + ").append(textClip.getTime());
                 }else {
@@ -323,6 +336,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(Subtitle subtitle) {
+        this.sub = true;
         wln("");
         //        System.out.println(subtitle.getTime());
         if (subtitle.getTime().getType().equals(TimeType.ABSOLUTE)) {
@@ -333,14 +347,14 @@ public class VideoConstructor extends Visitor<StringBuffer> {
             // Setup du subtitle
             wln("");
             wln(String.format("%s = TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
-            wln(String.format("%s = %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
+            wln(String.format("%s = %s.set_position(('center','bottom')).set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
             wln(String.format("%s = %s.set_start(%d)", subtitle.getName(), subtitle.getName(), t));
             // Sauvegarde
             subtitlesTime.put(subtitle.getName(), "TEMPV = " + t);
         } else {
             common((RelativeTime) subtitle.getTime(), subtitle.getName());
             wln(String.format("%s = TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
-            wln(String.format("%s = %s.set_position('center').set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
+            wln(String.format("%s = %s.set_position(('center','bottom')).set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
             wln(String.format("%s = %s.set_start(TEMPV)", subtitle.getName(), subtitle.getName()));
         }
     }
@@ -350,7 +364,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
     public void visit(SpecificVideoPart specificVideoPart) {
         wln("### Specific Video Part  ");
         wln("");
-        wln(String.format("%s = VideoFileClip('%s').subclip('%s', '%s')", specificVideoPart.getName(), specificVideoPart.getPath(), specificVideoPart.getBeginning(), specificVideoPart.getEnding()));
+        wln(String.format("%s = %s.subclip('%s', '%s')", specificVideoPart.getName(), specificVideoPart.getPath(), specificVideoPart.getBeginning(), specificVideoPart.getEnding()));
         String path = specificVideoPart.getName() + ".mp4";
         wln(String.format("%s.write_videofile(\"%s\", fps=30)", specificVideoPart.getName(), path));
         wln("");
@@ -371,6 +385,20 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
     @Override
     public void visit(EndingTextClip endingTextClip) {
-
+        wln(String.format("blackmask = ImageClip('image_mountain.jpg').resize(0.2).set_duration(%d)",endingTextClip.getTime()));
+        wln("w = 720");
+        wln("h = w * 9 / 16 ");
+        wln("moviesize = w, h");
+        wln("");
+        wln(String.format("txt = \"%s\".replace(\",\", \"\\n\")",endingTextClip.getText()));
+        wln("# Add blanks");
+        wln("txt = 10 * \"\\n\" + txt + 10 * \"\\n\"");
+        wln("");
+        wln(String.format("%s = TextClip(txt, color='white', align='West', fontsize=25,\n" +
+                "                    font='Xolonium-Bold', method='label')", endingTextClip.getName()));
+        wln(String.format("%s = %s.set_position(lambda t: ('center', (-20 * (t + 5)))).set_duration(%d)", endingTextClip.getName(), endingTextClip.getName(), endingTextClip.getTime()));
+        wln("");
+        wln(String.format("%s = CompositeVideoClip([blackmask, %s.crossfadein(2)])", endingTextClip.getName(),endingTextClip.getName()));
+        wln("");
     }
 }

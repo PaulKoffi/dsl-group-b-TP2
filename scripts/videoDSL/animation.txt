@@ -1,0 +1,9 @@
+endingText = textClip with text " By CinEditorML  " during 10 s
+
+creditsText = textClip with text "Credits, Projet CinEditorML, dans le cadre du cours de, DSL, realise par,  Florian AINADOU,  Djotiham NABAGOU,  Paul KOFFI,  Paul Marie DJEKINNOU, ETUDIANTS en SI5, Specialisation AL, Nous tenons egalement , A remercier, Msr Julien DEANTONI, pour ce super cours, et ce projet , que nous avons adorer,       MERCI,       POUR,       TOUT" during 37 s with animation scroll
+
+audioE = audio audioEnding.mp3 starting at 0 afterBeginning of endingText volume 2.0f
+
+createVideo with (endingText, creditsText)
+
+videoTitle is resultCredits
