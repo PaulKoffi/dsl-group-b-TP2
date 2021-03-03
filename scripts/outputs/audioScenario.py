@@ -19,7 +19,7 @@ video1 = VideoFileClip('test3.mp4')
 
 ### Video 
 
-video2 = VideoFileClip('V2.mp4')
+video2 = VideoFileClip('video2.mp4')
 
 ### Text 
 
@@ -44,9 +44,8 @@ final = concatenate_videoclips([begin, video1, video2, end], method='compose')
 
 audio_audio2 = AudioFileClip("audio.mp3")
 audio_final = final.audio
-compo = CompositeAudioClip([audio_final.volumex(1), audio_audio2.set_start(30).volumex(2.0)])
+compo = CompositeAudioClip([audio_final.volumex(1), audio_audio2.set_start(31).volumex(2.0)])
 final = final.set_audio(compo)
-final.write_videofile("resultAudio.mp4", fps=30)
 final.write_videofile("resultAudio.mp4", fps=30)
 
 ### REMOVE TEMP VIDEOS

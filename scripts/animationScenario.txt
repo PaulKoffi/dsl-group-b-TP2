@@ -8,7 +8,7 @@ end = textClip with text "end" during 10 s with animation vortex
 
 createVideo with (begin, video1, video2, end)
 
-video title = resultAnimation
+videoTitle is resultAnimation
 
 
 
