@@ -88,3 +88,5 @@ local.properties
 ######################
 build_and_deploy_all.sh
 
+extensions/*/node_modules
+extensions/*/package-lock.json
