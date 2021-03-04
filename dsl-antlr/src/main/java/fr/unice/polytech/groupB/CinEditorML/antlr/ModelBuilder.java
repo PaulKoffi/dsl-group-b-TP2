@@ -50,10 +50,20 @@ public class ModelBuilder extends CinEditorBaseListener {
 
     @Override
     public void exitTextClip(CinEditorParser.TextClipContext ctx){
+        int timeFinalValue = 0;
+        String timeText =ctx.time.getText().trim();
+        if (timeText.contains(":")){
+            String[] time = timeText.split(":");
+            timeFinalValue= Integer.parseInt(time[0])*60 + Integer.parseInt(time[1]);
+        }
+        else{
+            timeFinalValue= Integer.parseInt(timeText);
+        }
+
         if (ctx.animation!=null){
             if (ctx.animation.getText().toUpperCase().equals(Animation.SCROLL.toString())){
                 EndingTextClip endingTextClip = new EndingTextClip();
-                endingTextClip.setTime(Integer.parseInt(ctx.time.getText()));
+                endingTextClip.setTime(timeFinalValue);
                 endingTextClip.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-1 ));
                 endingTextClip.setName(ctx.name.getText());
                 theApp.addBackGroundElement(endingTextClip.getName(),endingTextClip);
@@ -61,7 +71,7 @@ public class ModelBuilder extends CinEditorBaseListener {
             else{
                 TextClipWithAnimation textClipWithAnimation= new TextClipWithAnimation();
                 textClipWithAnimation.setAnimation(Animation.valueOf(ctx.animation.getText().toUpperCase()));
-                textClipWithAnimation.setTime(Integer.parseInt(ctx.time.getText()));
+                textClipWithAnimation.setTime(timeFinalValue));
                 textClipWithAnimation.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-1 ));
                 textClipWithAnimation.setName(ctx.name.getText());
                 theApp.addBackGroundElement(textClipWithAnimation.getName(),textClipWithAnimation);
@@ -70,7 +80,7 @@ public class ModelBuilder extends CinEditorBaseListener {
         }
         else {
             TextClip textClip= new TextClip();
-            textClip.setTime(Integer.parseInt(ctx.time.getText()));
+            textClip.setTime(timeFinalValue);
             textClip.setText(ctx.text.getText().substring(1,ctx.text.getText().length()-1 ));
             textClip.setName(ctx.name.getText());
 
