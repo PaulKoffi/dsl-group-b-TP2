@@ -2,7 +2,7 @@
     "name": "cin",
     "displayName": "Cin language",
     "description": "Syntax highlighting for cin language",
-    "publisher": "SI5-dsl-groupB",
+    "publisher": "SI5-dsl-groupB-syntax-highlighting",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.53.0"
