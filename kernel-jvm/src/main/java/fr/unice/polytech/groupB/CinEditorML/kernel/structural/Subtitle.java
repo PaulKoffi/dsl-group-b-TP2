@@ -1,6 +1,7 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
 import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.Visitor;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.FrontElement;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Color;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.FrontElementType;
 
 public class Subtitle extends FrontElement{
@@ -8,7 +9,7 @@ public class Subtitle extends FrontElement{
     private Time time;
     private String text;
     private int duration;
-    private String color="white";
+    private Color color;
 
     public Subtitle() {
     }
@@ -64,11 +65,11 @@ public class Subtitle extends FrontElement{
         this.duration = duration;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 }
