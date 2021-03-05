@@ -70,33 +70,33 @@ else:
 texteV = texteV.set_audio(compo)
 
 
-TEMPV = 0 + 10 + 2 + int(videoMulti.duration) + 5 + 5 + 5 + 5 + 2
+TEMPV = 0 + 10 + 2 + int(videoMulti.duration) + 5 + 5 + 5 + 5 + 1
 sV1 = TextClip("Alors notre 6eme et dernier scenario ", fontsize=70, color='white')
 sV1 = sV1.set_position(('center','bottom')).set_duration(2)
 sV1 = sV1.set_start(TEMPV)
 
 
-TEMPV = 0 + 10 + 2 + int(videoMulti.duration) + 5 + 5 + 5 + 5 + 5
-sV2 = TextClip("Notre deuxieme extension le timed transition donc", fontsize=70, color='white')
-sV2 = sV2.set_position(('center','bottom')).set_duration(1)
+TEMPV = 0 + 10 + 2 + int(videoMulti.duration) + 5 + 5 + 5 + 5 + 3
+sV2 = TextClip("Notre deuxieme extension donc le timed transition", fontsize=70, color='white')
+sV2 = sV2.set_position(('center','bottom')).set_duration(4)
 sV2 = sV2.set_start(TEMPV)
 
 
 TEMPV = 0 + 10 + 2 + int(videoMulti.duration) + 5 + 5 + 5 + 5 + 7
 sV3 = TextClip("Notre transition temporelle", fontsize=70, color='white')
-sV3 = sV3.set_position(('center','bottom')).set_duration(1)
+sV3 = sV3.set_position(('center','bottom')).set_duration(2)
 sV3 = sV3.set_start(TEMPV)
 
 
-TEMPV = 0 + 10 + 2 + int(videoMulti.duration) + 5 + 5 + 5 + 5 + 9
+TEMPV = 0 + 10 + 2 + int(videoMulti.duration) + 5 + 5 + 5 + 5 + 8
 sV4 = TextClip("On demarre la simulation lorsquon clique sur le bouton", fontsize=70, color='white')
-sV4 = sV4.set_position(('center','bottom')).set_duration(1)
+sV4 = sV4.set_position(('center','bottom')).set_duration(3)
 sV4 = sV4.set_start(TEMPV)
 
 
-TEMPV = 0 + 10 + 2 + int(videoMulti.duration) + 5 + 5 + 5 + 5 + 10
+TEMPV = 0 + 10 + 2 + int(videoMulti.duration) + 5 + 5 + 5 + 5 + 11
 sV5 = TextClip("Clic jattends et elle seteint toute seule", fontsize=70, color='white')
-sV5 = sV5.set_position(('center','bottom')).set_duration(1)
+sV5 = sV5.set_position(('center','bottom')).set_duration(3)
 sV5 = sV5.set_start(TEMPV)
 
 # CREATE FINAL VIDEO

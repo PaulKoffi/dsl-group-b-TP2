@@ -20,13 +20,13 @@ audioD = audio audioDecoupage.mp3 starting at 0 afterBeginning of texteV volume 
 
 sV1 = subtitle with text "Alors notre 6eme et dernier scenario " starting at 1 afterBeginning of clip1 during 2 s
 
-sV2 = subtitle with text "Notre deuxieme extension le timed transition donc" starting at 3 afterBeginning of clip1 during  2 s
+sV2 = subtitle with text "Notre deuxieme extension donc le timed transition" starting at 3 afterBeginning of clip1 during  4 s
 
-sV3 = subtitle with text "Notre transition temporelle" starting at 6 afterBeginning of clip1 during 2 s
+sV3 = subtitle with text "Notre transition temporelle" starting at 7 afterBeginning of clip1 during 2 s
 
-sV4 = subtitle with text "On demarre la simulation lorsquon clique sur le bouton" starting at 8 afterBeginning of clip1 during 2 s
+sV4 = subtitle with text "On demarre la simulation lorsquon clique sur le bouton" starting at 8 afterBeginning of clip1 during  3 s
 
-sV5 = subtitle with text "Clic jattends et elle seteint toute seule" starting at 10 afterBeginning of clip1 during 2 s
+sV5 = subtitle with text "Clic jattends et elle seteint toute seule" starting at 11 afterBeginning of clip1 during 3 s
 
 createVideo with (texteV, texteV9, videoMulti, texteV1, texteV2, texteV3, texteV4, clip1, clip1b)
 
