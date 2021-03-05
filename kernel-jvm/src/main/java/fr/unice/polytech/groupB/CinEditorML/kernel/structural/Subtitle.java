@@ -9,7 +9,7 @@ public class Subtitle extends FrontElement{
     private Time time;
     private String text;
     private int duration;
-    private Color color;
+    private Color color=Color.white;
 
     public Subtitle() {
     }
