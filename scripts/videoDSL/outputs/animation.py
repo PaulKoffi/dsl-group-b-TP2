@@ -1,5 +1,5 @@
 # CinEditorML model Code
-# Result Video Name: resultCredits
+# Result Video Name: temporal
 
 from moviepy.editor import *
 import numpy as np
@@ -9,44 +9,76 @@ import os
 
 ### Text 
 
-_endingText = TextClip(" By CinEditorML  ", fontsize=70, color='white')
-_endingText = _endingText.set_position('center').set_duration(10)
-endingText = CompositeVideoClip([_endingText], size=[1920, 1080])
+_texteV = TextClip("CinEditorMl cest egalement du decoupage de videos", fontsize=70, color='white')
+_texteV = _texteV.set_position('center').set_duration(10)
+texteV = CompositeVideoClip([_texteV], size=[1920, 1080])
 
-blackmask = ImageClip('image_mountain.jpg').resize(0.2).set_duration(37)
-w = 720
-h = w * 9 / 16 
-moviesize = w, h
+### Video 
 
-txt = "Credits, Projet CinEditorML, dans le cadre du cours de, DSL, realise par,  Florian AINADOU,  Djotiham NABAGOU,  Paul KOFFI,  Paul Marie DJEKINNOU, ETUDIANTS en SI5, Specialisation AL, Nous tenons egalement , A remercier, Msr Julien DEANTONI, pour ce super cours, et ce projet , que nous avons adorer,       MERCI,       POUR,       TOUT".replace(",", "\n")
-# Add blanks
-txt = 10 * "\n" + txt + 10 * "\n"
+videoMulti = VideoFileClip('MultiState.mp4')
 
-creditsText = TextClip(txt, color='white', align='West', fontsize=25,
-                    font='Xolonium-Bold', method='label')
-creditsText = creditsText.set_position(lambda t: ('center', (-20 * (t + 5)))).set_duration(37)
+### Specific Video Part  
 
-creditsText = CompositeVideoClip([blackmask, creditsText.crossfadein(2)])
+clip1 = videoMulti.subclip('00:00', '00:10')
+clip1.write_videofile("clip1.mp4", fps=30)
+
+### Specific Video Part  
+
+clip1b = videoMulti.subclip('00:27', '00:30')
+clip1b.write_videofile("clip1b.mp4", fps=30)
+
+### Text 
+
+_texteExt = TextClip("Prise en main facile", fontsize=70, color='white')
+_texteExt = _texteExt.set_position('center').set_duration(10)
+texteExt = CompositeVideoClip([_texteExt], size=[1920, 1080])
 
 
 ### AUDIO 
 
 TEMPV = 0 + 0
-audio_audioE = AudioFileClip("audioEnding.mp3")
-audio_endingText = endingText.audio
-if audio_endingText is None:
-    compo = CompositeAudioClip([audio_audioE.set_start(TEMPV).volumex(2.0)])
+audio_audioD = AudioFileClip("audioDecoupage.mp3")
+audio_texteV = texteV.audio
+if audio_texteV is None:
+    compo = CompositeAudioClip([audio_audioD.set_start(TEMPV).volumex(2.0)])
 else:
-    compo = CompositeAudioClip([audio_endingText.volumex(1), audio_audioE.set_start(TEMPV).volumex(2.0)])
-endingText = endingText.set_audio(compo)
+    compo = CompositeAudioClip([audio_texteV.volumex(1), audio_audioD.set_start(TEMPV).volumex(2.0)])
+texteV = texteV.set_audio(compo)
+
+
+TEMPV = 0 + 10 + int(videoMulti.duration) + 1
+sV1 = TextClip("Alors ici 4eme scenario ", fontsize=70, color='white')
+sV1 = sV1.set_position(('center','bottom')).set_duration(2)
+sV1 = sV1.set_start(TEMPV)
+
+
+TEMPV = 0 + 10 + int(videoMulti.duration) + 4
+sV2 = TextClip("Le multiStateAlarm on demarre la simulation ", fontsize=70, color='white')
+sV2 = sV2.set_position(('center','bottom')).set_duration(3)
+sV2 = sV2.set_start(TEMPV)
+
+
+TEMPV = 0 + 10 + int(videoMulti.duration) + 7
+sV3 = TextClip("Appuie sur le bouton alarme allumee ", fontsize=70, color='white')
+sV3 = sV3.set_position(('center','bottom')).set_duration(3)
+sV3 = sV3.set_start(TEMPV)
+
+
+TEMPV = 0 + 10 + int(videoMulti.duration) + int(clip1.duration) + 0
+sV4 = TextClip("Etat initial ", fontsize=70, color='white')
+sV4 = sV4.set_position(('center','bottom')).set_duration(3)
+sV4 = sV4.set_start(TEMPV)
 
 # CREATE FINAL VIDEO
 
-final = concatenate_videoclips([endingText, creditsText], method='compose')
+final = concatenate_videoclips([texteV, videoMulti, clip1, clip1b, texteExt], method='compose')
+final = CompositeVideoClip([final, sV1, sV2, sV3, sV4], size=[1920, 1080])
 
 ### SET ABSOLUTE AUDIO IF EXIST (AUDIO ON GLOBAL VIDEO)
-final.write_videofile("resultCredits.mp4", fps=30)
+final.write_videofile("temporal.mp4", fps=30)
 
 ### REMOVE TEMP VIDEOS
+os.remove('clip1.mp4')
+os.remove('clip1b.mp4')
 
 

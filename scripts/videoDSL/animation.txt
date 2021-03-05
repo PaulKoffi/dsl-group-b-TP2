@@ -1,9 +1,24 @@
-endingText = textClip with text " By CinEditorML  " during 10 s
+texteV = textClip with text "CinEditorMl cest egalement du decoupage de videos" during 10 s
 
-creditsText = textClip with text "Credits, Projet CinEditorML, dans le cadre du cours de, DSL, realise par,  Florian AINADOU,  Djotiham NABAGOU,  Paul KOFFI,  Paul Marie DJEKINNOU, ETUDIANTS en SI5, Specialisation AL, Nous tenons egalement , A remercier, Msr Julien DEANTONI, pour ce super cours, et ce projet , que nous avons adorer,       MERCI,       POUR,       TOUT" during 37 s with animation scroll
+videoMulti = video MultiState.mp4
 
-audioE = audio audioEnding.mp3 starting at 0 afterBeginning of endingText volume 2.0f
+clip1 = videoMulti from 00:00 to 00:10
 
-createVideo with (endingText, creditsText)
+clip1b = videoMulti from 00:27 to 00:30
 
-videoTitle is resultCredits
+audioD = audio audioDecoupage.mp3 starting at 0 afterBeginning of texteV volume 2.0f
+
+texteExt = textClip with text "Prise en main facile" during 10 s
+
+sV1 = subtitle with text "Alors ici 4eme scenario " starting at 1 afterBeginning of clip1 during 2 s
+
+sV2 = subtitle with text "Le multiStateAlarm on demarre la simulation " starting at 4 afterBeginning of clip1 during 3 s
+
+sV3 = subtitle with text "Appuie sur le bouton alarme allumee " starting at 7 afterBeginning of clip1 during 3 s
+
+sV4 = subtitle with text "Etat initial " starting at 0 afterBeginning of clip1b during 3 s
+
+createVideo with (texteV, videoMulti, clip1, clip1b, texteExt)
+
+videoTitle is temporal
+
