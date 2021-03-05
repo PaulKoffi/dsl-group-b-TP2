@@ -5,14 +5,11 @@ import fr.unice.polytech.groupB.CinEditorML.antlr.grammar.CinEditorParser;
 import fr.unice.polytech.groupB.CinEditorML.kernel.App;
 import fr.unice.polytech.groupB.CinEditorML.kernel.structural.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Animation;
+import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Color;
 import fr.unice.polytech.groupB.CinEditorML.kernel.utils.Position;
-
 import java.util.HashMap;
-import java.util.Locale;
 
 public class ModelBuilder extends CinEditorBaseListener {
-
-    String videoExtension = ".mp4";
     /********************
      ** Business Logic **
      ********************/
@@ -21,22 +18,16 @@ public class ModelBuilder extends CinEditorBaseListener {
     private App theApp = null;
     private boolean built = false;
 
-    private final HashMap<String, Position> positions = new HashMap<String, Position>();
+    private final HashMap<String, Position> positions;
+
+    {
+        positions = new HashMap<>();
+    }
 
     public App retrieve() {
         if (built) { return theApp; }
         throw new RuntimeException("Cannot retrieve a model that was not created!");
     }
-
-    /*******************
-     ** Symbol tables **
-     *******************/
-
-
-
-    /**************************
-     ** Listening mechanisms **
-     **************************/
 
     @Override
     public void enterRoot(CinEditorParser.RootContext ctx) {
@@ -50,7 +41,7 @@ public class ModelBuilder extends CinEditorBaseListener {
 
     @Override
     public void exitTextClip(CinEditorParser.TextClipContext ctx){
-        int timeFinalValue = 0;
+        int timeFinalValue;
         String timeText =ctx.time.getText().trim();
         if (timeText.contains(":")){
             String[] time = timeText.split(":");
@@ -104,7 +95,7 @@ public class ModelBuilder extends CinEditorBaseListener {
         audio.setName(ctx.name.getText());
         audio.setPath(ctx.path.getText());
 
-        int timeFinalValue = 0;
+        int timeFinalValue;
         String timeText =ctx.time.getText().trim();
         if (timeText.contains(":")){
             String[] time = timeText.split(":");
@@ -232,7 +223,7 @@ public class ModelBuilder extends CinEditorBaseListener {
 
 
         subtitle.setDuration(timeFinalValue);
-
+        subtitle.setColor(Color.valueOf(ctx.color.getText()));
         theApp.addFrontElement(ctx.name.getText(), subtitle);
     }
 
