@@ -7,5 +7,5 @@
 # vsce package
 
 # install extensions
-code --install-extension cin-0.0.1.vsix
+# code --install-extension lsp-cineditor-0.1.0.vsix
 code --install-extension cinvideoconstructor-0.0.1.vsix
