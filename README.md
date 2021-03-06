@@ -2,9 +2,9 @@
 
 * Auteurs: **Team B**
   ### *Gestion du Kernel + scenarios python*
-  > * KOFFI Paul
   > * DJEKINOU Paul-Marie
-  ### *DSL Antlr + extensions*
+  > * KOFFI Paul
+    ### *DSL Antlr + extensions*
   >  * AINADOU Florian
   > * NABAGOU Djotiham
 * Version actuelle : __Basic scenarios__ + __Support for customized animated texts__ + __Support for audio__
@@ -23,17 +23,17 @@
 * `Scenario1` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👉 [ici](https://drive.google.com/file/d/19RyqV8oVMZ8SNIQ71oXbLt3mdt5Y3ou1/view?usp=sharing)
 * `Scenario2` :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1m-97sSkBXMuvHhR0sY43K60d9z-EbGZW/view?usp=sharing)
 * `Support for audio` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1XQG8X36FR4e23ONn1-RCl5AVm3z95tvY/view?usp=sharing)
-* `Support video clip customizations and effects` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1Gk-Z64GswuqCTPo54cjSjKeaVHRz1ffB/view?usp=sharing)
+* `Support video clip customizations and effects` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1Gk-Z64GswuqCTPo54cjSjKeaVHRz1ffB/view?usp=sharing)
 
-Les éléments relatifs à la génération de la vidéo de démo se trouve dans le dossier <kbd>__scripts/videoDSL__</kbd> : 
-###  La video finale demo est un rassemblement de 6 parties distinctes , elle se trouve : 👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
-> * Part1.mp4 généré à partir du fichier ( [introduction_animation.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) ) 
-> * Part2.mp4 généré à partir du fichier ( [introduction_decoupage.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
-> * Part3.mp4 généré à partir du fichier ( [decoupage_subtitle.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
-> * Part4.mp4 généré à partir du fichier ( [introduction_extension.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
-> * Part5.mp4 généré à partir du fichier ( [extension_presentation.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
-> * Part6.mp4 généré à partir du fichier ( [credits.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
-> * Demo.mp4 généré à partir du fichier ( [final_assemblage.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
+Les éléments relatifs à la génération de la vidéo de démo se trouve dans le dossier <kbd>__scripts/videoDSL__</kbd> :  👉 [ici](https://github.com/wak-nda/dsl-group-b-TP2/tree/main/scripts/videoDSL)
+###  La video finale demo est un rassemblement de 6 parties distinctes , elle se trouve : 👉 [ici](https://drive.google.com/file/d/1Jj-X-3iDsYPwLDa-D5_aisl66eCBpRr0/view?usp=sharing)
+> * Part1.mp4 généré à partir du fichier ( [introduction_animation.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/introduction_animation.cin) ) 
+> * Part2.mp4 généré à partir du fichier ( [introduction_decoupage.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/introduction_decoupage.cin) )
+> * Part3.mp4 généré à partir du fichier ( [decoupage_subtitle.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/decoupage_subtitle.cin) )
+> * Part4.mp4 généré à partir du fichier ( [introduction_extension.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/introduction_extension.cin) )
+> * Part5.mp4 généré à partir du fichier ( [extension_presentation.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/extension_presentation.cin) )
+> * Part6.mp4 généré à partir du fichier ( [credits.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/credits.cin) )
+> * Demo.mp4 généré à partir du fichier ( [final_assemblage.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/final_assemblage.cin) )
 
 Le temps de traitement des différentes parties étant assez conséquent, on a préféré séparer la vidéo en plusieurs scripts qui peuvent
 être exécutés en simultanée ce qui nous permet d'avoir plus rapidement toutes les parties pour ensuite procéder à la réunion de toutes 
@@ -47,15 +47,15 @@ ces parties ensuite.
 
 ## <img src="https://icon-icons.com/icons2/1369/PNG/64/-get-app_90101.png"/>  Récupération du projet
 
-Effectuer un clone classique du projet en faisant ```git clone https://github.com/wak-nda/dsl-groupe-b.git``` ou en récupérant le zip depuis cette page.
+Effectuer un clone classique du projet en faisant ```git clone https://github.com/wak-nda/dsl-group-b-TP2.git``` ou en récupérant le zip depuis cette page.
 
 ## <img src="https://icon-icons.com/icons2/7/PNG/64/runbuild_1068.png"/>  Compilation
-Lancez à la racine du projet le script <kbd>__prepare.sh__</kbd> 👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
+Lancez à la racine du projet le script <kbd>__prepare.sh__</kbd> 👉 [ici](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/prepare.sh)
 
 
 ## <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/git-compare-48.png"/> Générer une vidéo à partir du DSL
 
-Tout est expliqué ici 👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
+Tout est expliqué ici 👉 [ici](https://drive.google.com/file/d/1Ks0EjS60qsceqzKUzWvuS2U2Ljrz43qh/view?usp=sharing)
 
 La vidéo générée se trouvera dans le dossier `scripts/ouputs` 
 
