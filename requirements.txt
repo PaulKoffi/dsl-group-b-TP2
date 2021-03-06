@@ -1,2 +1,4 @@
-# Flask Framework
-Flask >= 1.1.2
+moviepy
+sklearn
+numpy
+scipy
