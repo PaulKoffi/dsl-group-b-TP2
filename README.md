@@ -12,7 +12,7 @@
 ## <img src="https://cdn.icon-icons.com/icons2/82/PNG/64/button_important_15722.png"/>  Pré-requis
  <kbd>__MoviePy__</kbd> : Pour l'installation, c'est par 👉 [ici](https://github.com/Zulko/moviepy)
 
- <kbd>ImageMagick</kbd> : Pour l'installation, c'est par 👉 [ici](https://www.imagemagick.org/script/index.php)
+ <kbd>__ImageMagick__</kbd> : Pour l'installation, c'est par 👉 [ici](https://www.imagemagick.org/script/index.php)
 
  <kbd>__Visual Studio Code__</kbd> : Pour l'installation, c'est par 👉 [ici](https://code.visualstudio.com/)
 
@@ -23,10 +23,10 @@
 * `Scenario1` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👉 [ici](https://drive.google.com/file/d/19RyqV8oVMZ8SNIQ71oXbLt3mdt5Y3ou1/view?usp=sharing)
 * `Scenario2` :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1m-97sSkBXMuvHhR0sY43K60d9z-EbGZW/view?usp=sharing)
 * `Support for audio` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1XQG8X36FR4e23ONn1-RCl5AVm3z95tvY/view?usp=sharing)
-* `Support video clip customizations and effects` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1Gk-Z64GswuqCTPo54cjSjKeaVHRz1ffB/view?usp=sharing)
+* `Support video clip customizations and effects` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1Gk-Z64GswuqCTPo54cjSjKeaVHRz1ffB/view?usp=sharing)
 
 Les éléments relatifs à la génération de la vidéo de démo se trouve dans le dossier <kbd>__scripts/videoDSL__</kbd> :  👉 [ici](https://github.com/wak-nda/dsl-group-b-TP2/tree/main/scripts/videoDSL)
-###  La video finale demo est un rassemblement de 6 parties distinctes , elle se trouve : 👉 [ici](https://drive.google.com/file/d/1Jj-X-3iDsYPwLDa-D5_aisl66eCBpRr0/view?usp=sharing)
+###  La video finale demo est un rassemblement de 6 parties distinctes , elle se trouve : 👉 [ici](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/outputs/demo.mp4)
 > * Part1.mp4 généré à partir du fichier ( [introduction_animation.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/introduction_animation.cin) ) 
 > * Part2.mp4 généré à partir du fichier ( [introduction_decoupage.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/introduction_decoupage.cin) )
 > * Part3.mp4 généré à partir du fichier ( [decoupage_subtitle.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/decoupage_subtitle.cin) )
@@ -55,7 +55,7 @@ Lancez à la racine du projet le script <kbd>__prepare.sh__</kbd> 👉 [ici](htt
 
 ## <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/git-compare-48.png"/> Générer une vidéo à partir du DSL
 
-Tout est expliqué ici 👉 [ici](https://drive.google.com/file/d/1Ks0EjS60qsceqzKUzWvuS2U2Ljrz43qh/view?usp=sharing)
+Tout est expliqué ici 👉 [ici](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/outputs/part5.mp4)
 
 La vidéo générée se trouvera dans le dossier `scripts/ouputs` 
 
