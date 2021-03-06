@@ -78,7 +78,8 @@ La syntaxe du DSL est la suivante :
 * #### Decoupage d'une Vidéo : <kbd>`@name` = `@videoName` from `XX:XX` to `ZZ:ZZ`</kbd>
 
 * #### Déclaration d'un Sous-titre :  
-<kbd>`@name` =  subtitle with text `@text` starting at `@time | XX:XX` s  `afterBeginning | beforeBeginning | afterEnding | beforeEnding`  of `@subtitle | @textClip | @video`  during `@time | XX:XX` s </kbd>
+<kbd>`@name` =  subtitle with text `@text` starting at `@time | XX:XX` s  `afterBeginning | beforeBeginning | afterEnding | beforeEnding`  of `@subtitle | 
+@textClip | @video`  during `@time | XX:XX` s </kbd>
 
 * #### Déclaration d'un Audio général   : <kbd>`@name` = audio `@fileName` starting at `@time | XX:XX` s  volume `[0.1-2.0]f` </kbd>
 
