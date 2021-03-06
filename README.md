@@ -10,7 +10,7 @@
 * Version actuelle : __Basic scenarios__ + __Support for customized animated texts__ + __Support for audio__
 
 ## <img src="https://cdn.icon-icons.com/icons2/82/PNG/64/button_important_15722.png"/>  Pré-requis
- <kbd>__MoviePy__</kbd> : Pour l'installation, c'est par 👉 [ici](https://github.com/Zulko/moviepy)
+ <kbd>__MoviePy__</kbd> : Pour l'installation, c'est par 👉 [ici](https://github.com/Zulko/moviepy) , 👉 [ici](https://zulko.github.io/moviepy/install.html)
 
  <kbd>__ImageMagick__</kbd> : Pour l'installation, c'est par 👉 [ici](https://www.imagemagick.org/script/index.php)
 

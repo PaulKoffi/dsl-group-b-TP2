@@ -25,19 +25,11 @@ action          : cutVideo;
 cutVideo        : name=IDENTIFIER '=' source=IDENTIFIER 'from' start=TIMELINE 'to' end=TIMELINE ;
 
 frontElement    : (subtitle| audio /*| specificPartOfAudio*/);
-audio           : name=IDENTIFIER '=' 'audio' path=FILE_NAME 'starting' 'at' time=TIMELINE 's'?  (position=POSITION)? ('of' element=IDENTIFIER)? /*('videoVolume' backGroundSound=FLOAT )?*/ ( 'volume' audioSound=FLOAT )?;
+audio           : name=IDENTIFIER '=' 'audio' path=FILE_NAME 'starting' 'at' time=TIMELINE 's'?  (position=POSITION)? ('of' element=IDENTIFIER)? ( 'volume' audioSound=FLOAT )?;
 //specificPartOfAudio   : name=IDENTIFIER '=' 'audio(' path=FILE_NAME ')''->''from(' start=TIMELINE ')' '->''to(' end=TIMELINE')';
 subtitle        : name=IDENTIFIER'=''subtitle''with''text' value =TEXT 'starting''at' time=TIMELINE 's'?  position=POSITION 'of' element=IDENTIFIER  'during' duration=TIMELINE 's'?;
 
 export          : 'videoTitle' 'is' name=IDENTIFIER;
-
-//setAudio        :
-//chainage
-//Plusieurs videos extraites de la meme vido ?
-
-//setTextClipTime : name=IDENTIFIER '.setTime(' time=TIME ')';
-
-
 
 /*****************
  ** Lexer rules **
@@ -54,18 +46,6 @@ TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER| '!' | '?' | ':' | '-'
 FINAL_VIDEO     : '(' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ ')';
 
 FILE_NAME       :   (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER? '.' (LOWERCASE|UPPERCASE|NUMBER)+;
-
-
-
-
-//DEFINITION      :   '"' LOWERCASE (LOWERCASE|UPPERCASE)+ NUMBER? '"';
-
-
-
-
-
-
-
 
 /*************
  ** Helpers **
