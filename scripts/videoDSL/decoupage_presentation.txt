@@ -2,19 +2,9 @@ texteV = textClip with text "CinEditorMl cest egalement du decoupage de videos" 
 
 texteV9 = textClip with text "Ci apres la video quon va decouper" during 2 s
 
-videoMulti = video TimedTransition.mp4
-
-texteV1 = textClip with text "Nous allons decouper la video precedente en prenant" during 5 s
-
-texteV2 = textClip with text "respectivement les 11 premieres secondes et les 3 dernieres" during 5 s
-
-texteV3 = textClip with text "Nous allons egalement placer les sous titres " during 5 s
-
-texteV4 = textClip with text "pour chaque seconde de la video" during 5 s
-
 audioD = audio audioDecoupage.mp3 starting at 0 afterBeginning of texteV volume 1.5f
 
-createVideo with (texteV, texteV9, videoMulti, texteV1, texteV2, texteV3, texteV4)
+createVideo with (texteV, texteV9)
 
 videoTitle is part2
 
