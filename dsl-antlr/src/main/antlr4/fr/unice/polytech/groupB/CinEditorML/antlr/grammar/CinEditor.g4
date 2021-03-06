@@ -50,7 +50,7 @@ ANIMATION       : ('vortex'|'cascade'| 'arrive' |'vortexout' | 'scroll');
 TIMELINE        :   NUMBER+  (':'  NUMBER NUMBER)?;
 FLOAT           :   NUMBER+ (('.'|',') NUMBER+)? 'f';
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ ;
-TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER| '!' | '?' | ':' | '-')+ '"';
+TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER| '!' | '?' | ':' | '-' | '+')+ '"';
 FINAL_VIDEO     : '(' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ ')';
 
 FILE_NAME       :   (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER? '.' (LOWERCASE|UPPERCASE|NUMBER)+;

@@ -27,10 +27,14 @@ video4 = VideoFileClip('part4.mp4')
 
 video5 = VideoFileClip('part5.mp4')
 
+### Video 
+
+video6 = VideoFileClip('part6.mp4')
+
 
 # CREATE FINAL VIDEO
 
-final = concatenate_videoclips([video1, video2, video3, video4, video5], method='compose')
+final = concatenate_videoclips([video1, video2, video3, video4, video5, video6], method='compose')
 
 ### SET ABSOLUTE AUDIO IF EXIST (AUDIO ON GLOBAL VIDEO)
 final.write_videofile("demo.mp4", fps=30)

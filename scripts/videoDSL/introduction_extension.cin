@@ -1,0 +1,14 @@
+texteExt = textClip with text "Prise en main facile grace a notre extension qui est presente" during 4 s
+
+texteExt1 = textClip with text "pour vous aider dans lecriture de votre montage video" during 4 s
+
+texteExt2 = textClip with text "Ainsi que dans la generation de la video en question" during 4 s
+
+texteExt3 = textClip with text "Notre devise : vous faciliter la vie" during 6 s
+
+audioE = audio audioExtension.mp3 starting at 0 volume 1.5f
+
+createVideo with (texteExt, texteExt1, texteExt2, texteExt3)
+
+videoTitle is part4
+

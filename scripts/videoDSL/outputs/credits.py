@@ -1,5 +1,5 @@
 # CinEditorML model Code
-# Result Video Name: part5
+# Result Video Name: part6
 
 from moviepy.editor import *
 import numpy as np
@@ -10,8 +10,14 @@ import os
 ### Text 
 
 _endingText = TextClip(" By CinEditorML  ", fontsize=70, color='white')
-_endingText = _endingText.set_position('center').set_duration(10)
+_endingText = _endingText.set_position('center').set_duration(5)
 endingText = CompositeVideoClip([_endingText], size=[1920, 1080])
+
+### Text 
+
+_endingText2 = TextClip(" Plus de details pour la syntaxe sur la page du projet ! ", fontsize=70, color='white')
+_endingText2 = _endingText2.set_position('center').set_duration(5)
+endingText2 = CompositeVideoClip([_endingText2], size=[1920, 1080])
 
 blackmask = ImageClip('image_mountain.jpg').resize(0.2).set_duration(37)
 w = 720
@@ -42,10 +48,10 @@ endingText = endingText.set_audio(compo)
 
 # CREATE FINAL VIDEO
 
-final = concatenate_videoclips([endingText, creditsText], method='compose')
+final = concatenate_videoclips([endingText, endingText2, creditsText], method='compose')
 
 ### SET ABSOLUTE AUDIO IF EXIST (AUDIO ON GLOBAL VIDEO)
-final.write_videofile("part5.mp4", fps=30)
+final.write_videofile("part6.mp4", fps=30)
 
 ### REMOVE TEMP VIDEOS
 
