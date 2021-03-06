@@ -27,7 +27,7 @@ cutVideo        : name=IDENTIFIER '=' source=IDENTIFIER 'from' start=TIMELINE 't
 frontElement    : (subtitle| audio /*| specificPartOfAudio*/);
 audio           : name=IDENTIFIER '=' 'audio' path=FILE_NAME 'starting' 'at' time=TIMELINE 's'?  (position=POSITION)? ('of' element=IDENTIFIER)? /*('videoVolume' backGroundSound=FLOAT )?*/ ( 'volume' audioSound=FLOAT )?;
 //specificPartOfAudio   : name=IDENTIFIER '=' 'audio(' path=FILE_NAME ')''->''from(' start=TIMELINE ')' '->''to(' end=TIMELINE')';
-subtitle        : name=IDENTIFIER'=''subtitle''with''text' value =TEXT 'with''color'color=COLOR 'starting''at' time=TIMELINE 's'?  position=POSITION 'of' element=IDENTIFIER  'during' duration=TIMELINE 's'?;
+subtitle        : name=IDENTIFIER'=''subtitle''with''text' value =TEXT ('with''color'color=COLOR)? 'starting''at' time=TIMELINE 's'?  position=POSITION 'of' element=IDENTIFIER  'during' duration=TIMELINE 's'?;
 
 export          : 'videoTitle' 'is' name=IDENTIFIER;
 
@@ -50,7 +50,7 @@ COLOR           : ('white'|'black'|'red'|'blue'|'pink');
 TIMELINE        :   NUMBER+  (':'  NUMBER NUMBER)?;
 FLOAT           :   NUMBER+ (('.'|',') NUMBER+)? 'f';
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ ;
-TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER| 'é' |'\''|'à'| '!' | '?' | ':boum:' | ':cœur:'| ':parfait:'| ':feu:' | ':applaudissements:')+ '"';
+TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER| '!' | '?' | ':')+ '"';
 FINAL_VIDEO     : '(' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ ')';
 
 FILE_NAME       :   (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER? '.' (LOWERCASE|UPPERCASE|NUMBER)+;

@@ -223,7 +223,9 @@ public class ModelBuilder extends CinEditorBaseListener {
 
 
         subtitle.setDuration(timeFinalValue);
-        subtitle.setColor(Color.valueOf(ctx.color.getText()));
+        if(ctx.color!=null){
+            subtitle.setColor(Color.valueOf(ctx.color.getText()));
+        }
         theApp.addFrontElement(ctx.name.getText(), subtitle);
     }
 
