@@ -9,49 +9,59 @@
   > * NABAGOU Djotiham
 * Version actuelle : __Basic scenarios__ + __Support for customized animated texts__ + __Support for audio__
 
+## <img src="https://cdn.icon-icons.com/icons2/82/PNG/64/button_important_15722.png"/>  Pré-requis
+ <kbd>__MoviePy__</kbd> : Pour l'installation, c'est par 👉 [ici](https://github.com/Zulko/moviepy)
+
+ <kbd>ImageMagick</kbd> : Pour l'installation, c'est par 👉 [ici](https://www.imagemagick.org/script/index.php)
+
+ <kbd>__Visual Studio Code__</kbd> : Pour l'installation, c'est par 👉 [ici](https://code.visualstudio.com/)
+
+ <kbd>__JAVA , MAVEN, PYTHON__</kbd>
+
 
 ## <img src="https://icon-icons.com/icons2/1147/PNG/64/1486486316-arrow-film-movie-play-player-start-video_81236.png"/>  Démo rapide de nos fonctionnalités
-* `Very Simple Alarm` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👉 [ici](https://drive.google.com/file/d/19RyqV8oVMZ8SNIQ71oXbLt3mdt5Y3ou1/view?usp=sharing)
-* `Dual-check alarm` :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1m-97sSkBXMuvHhR0sY43K60d9z-EbGZW/view?usp=sharing)
-* `State-based alarm`  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1XQG8X36FR4e23ONn1-RCl5AVm3z95tvY/view?usp=sharing)
-* `Multi-state alarm` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1Gk-Z64GswuqCTPo54cjSjKeaVHRz1ffB/view?usp=sharing)
-* `Signaling stuff by using sounds` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1lv3JnBRAOmwbYhtBqW3b_fPNmovczSaQ/view?usp=sharing)
-* `Temporal transitions` <kbd>+ __reset to initial state for temporal transitions__</kbd> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
+* `Scenario1` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👉 [ici](https://drive.google.com/file/d/19RyqV8oVMZ8SNIQ71oXbLt3mdt5Y3ou1/view?usp=sharing)
+* `Scenario2` :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1m-97sSkBXMuvHhR0sY43K60d9z-EbGZW/view?usp=sharing)
+* `Support for audio` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1XQG8X36FR4e23ONn1-RCl5AVm3z95tvY/view?usp=sharing)
+* `Support video clip customizations and effects` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1Gk-Z64GswuqCTPo54cjSjKeaVHRz1ffB/view?usp=sharing)
 
-Les éléments relatifs à la génération de la vidéo de démo se trouve dans le dossier <kbd>__videoDSL__</kbd>: 👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
+Les éléments relatifs à la génération de la vidéo de démo se trouve dans le dossier <kbd>__scripts/videoDSL__</kbd> : 
+###  La video finale demo est un rassemblement de 6 parties distinctes , elle se trouve : 👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
+> * Part1.mp4 généré à partir du fichier ( [introduction_animation.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) ) 
+> * Part2.mp4 généré à partir du fichier ( [introduction_decoupage.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
+> * Part3.mp4 généré à partir du fichier ( [decoupage_subtitle.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
+> * Part4.mp4 généré à partir du fichier ( [introduction_extension.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
+> * Part5.mp4 généré à partir du fichier ( [extension_presentation.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
+> * Part6.mp4 généré à partir du fichier ( [credits.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
+> * Demo.mp4 généré à partir du fichier ( [final_assemblage.cin](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing) )
 
-
-## <img src="https://icon-icons.com/icons2/621/PNG/64/link-symbol-of-two-chains-links-linked_icon-icons.com_56928.png"/>  Liens des circuits de test TinkerCad
-* `Very Simple Alarm` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👉 [ici](https://www.tinkercad.com/things/htXg7yBnZFz-copy-of-two-leds-and-two-push-buttons/editel?sharecode=1g8OGSQbYqB41tXgSGBLVfwz28pJeCfvBTyhICYf13s)
-* `Dual-check alarm` :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://www.tinkercad.com/things/bsGUi3A4AC7-copy-of-dualcheck/editel?sharecode=XJ8RHG5773DdFlTWN9dPixxvR2fG-2VAuCJdnvLM544)
-* `State-based alarm`  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://www.tinkercad.com/things/cK7Df9GFPSc-copy-of-two-leds-and-two-push-buttons/editel?sharecode=goajfUehBalWURv0YFDR4BtOZ9ESfxFJcHRQ4aZOqkE)
-* `Multi-state alarm` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://www.tinkercad.com/things/6QrnopHUtKE-copy-of-two-leds-and-two-push-buttons/editel?sharecode=mxiFKdLX44aTZad5Fyg7G0CQEIZNXnTGS1HG9AsouGI)
-* `Signaling stuff by using sounds` :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://www.tinkercad.com/things/2D4hoaXBBbl-signaling/editel?sharecode=XdgBwhE-5mOG2FR5I0B5Z-YMvrbEBitsvVfbLDAFcb8)
-* `Temporal transitions` <kbd>+ __reset to initial state for temporal transitions__</kbd> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
+Le temps de traitement des différentes parties étant assez conséquent, on a préféré séparer la vidéo en plusieurs scripts qui peuvent
+être exécutés en simultanée ce qui nous permet d'avoir plus rapidement toutes les parties pour ensuite procéder à la réunion de toutes 
+ces parties ensuite.
 
 ## <img src="https://icon-icons.com/icons2/933/PNG/64/help-button-speech-bubble-with-question-mark_icon-icons.com_72707.png"/>  Comment utiliser ce repository
 
 * La branche `main` (la branche par défaut) représente la dernière version stable du système.
-* La branche `external` représente le système en cours de développement spécifique au DSL externe en Antlr.
-* La branche `feature/internalDSLab` représente le système en cours de développement spécifique au DSL interne en groovy.
+* La branche `develop` représente la branche de developpement du DSL. 
+* La branche `scenarios` c'est sur cette branche qu'on a développer les scénarios en python que l'on devait générer depuis notre DSL.
 
 ## <img src="https://icon-icons.com/icons2/1369/PNG/64/-get-app_90101.png"/>  Récupération du projet
 
 Effectuer un clone classique du projet en faisant ```git clone https://github.com/wak-nda/dsl-groupe-b.git``` ou en récupérant le zip depuis cette page.
 
 ## <img src="https://icon-icons.com/icons2/7/PNG/64/runbuild_1068.png"/>  Compilation
-1 - Effectuez à la racine du projet `mvn clean install`  
-2 -`cd dsl-antlr` puis ensuite `mvn clean compile assembly:single` pour la génération avec Antlr  
-3 - `cd dsl-groovy` puis ensuite `mvn clean compile assembly:single` pour la génération avec Groovy
+Lancez à la racine du projet le script <kbd>__prepare.sh__</kbd> 👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
 
-## <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/git-compare-48.png"/> Générer le code Arduino à partir du DSL
-1 - Pour générer avec Groovy (exemple de VerySimpleAlarm.groovy):
-* `runInternal.sh VerySimpleAlarm.groovy VerySimpleAlarm` , le fichier généré se trouvera dans le dossier `scripts/ouputs`
 
-2 - Pour générer avec Antlr (exemple de VerySimpleAlarm.groovy):
-* `runExternal.sh VerySimpleAlarm.groovy VerySimpleAlarm` , le fichier généré se trouvera dans le dossier `scripts/ouputsExternal`
+## <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/git-compare-48.png"/> Générer une vidéo à partir du DSL
 
-3 - Dans le cas d'un nouveau script groovy, placez le fichier dans le dossier `scripts`, puis suivez les deux précédentes étapes selon votre choix. Un fichier `.ino` sera généré dans le dossier approprié.
+Tout est expliqué ici 👉 [ici](https://drive.google.com/file/d/1I46yfE0j3oK-w-emfjAi7bt3pc_IjSZB/view?usp=sharing)
+
+La vidéo générée se trouvera dans le dossier `scripts/ouputs` 
+
+Vous devez également placer toutes les vidéos et les pistes audio utilisé par vos scripts dans ce dossier. (`scripts/ouputs`)
+
+Dans le cas d'un nouveau script, placez le fichier dans le dossier `scripts`, puis suivez les étapes dans la vidéo.
 
 
 
