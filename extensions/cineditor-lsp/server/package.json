@@ -1,0 +1,18 @@
+{
+	"name": "lsp-cineditor-server",
+	"description": "A language server for cineditor",
+	"publisher": "SI5-dsl-groupB",
+	"version": "0.1.0",
+	"engines": {
+		"node": "*"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"dependencies": {
+		"vscode-languageserver": "^7.0.0",
+		"vscode-languageserver-textdocument": "^1.0.1"
+	},
+	"scripts": {}
+}

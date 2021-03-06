@@ -1,0 +1,14 @@
+begin = textClip with text "beginningText" during 10 s
+
+video1 = video videoTest1.mp4
+
+video2 = video videoTest2.mp4
+
+end = textClip with text "endingText" during 15 s
+
+createVideo with (begin, video1, video2, end)
+
+videoTitle is scenario1
+
+#monacoooo editor
+

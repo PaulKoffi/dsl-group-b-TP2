@@ -1,0 +1,5 @@
+begin = textClip with text "beginningText" during 10 s
+
+createVideo with (begin)
+
+videoTitle is test

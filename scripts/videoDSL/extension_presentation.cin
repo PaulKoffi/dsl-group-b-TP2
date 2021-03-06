@@ -1,0 +1,14 @@
+videoEx = video videoExtension.mp4
+
+sV1 = subtitle with text "Appuyez sur la touche : F5 du clavier" starting at 73 afterBeginning of videoEx during 6 s
+
+sV2 = subtitle with text "Auto completion : CTRL + ESPACE" starting at 106 afterBeginning of videoEx during  6 s
+
+sV3 = subtitle with text "Execution : CTRL + SHIFT + P" starting at 120 afterBeginning of videoEx during 3 s
+
+sV4 = subtitle with text "et choisir ensuite GENERATE VIDEO"  starting at 123 afterBeginning of videoEx during 3 s
+
+createVideo with (videoEx)
+
+videoTitle is part5
+
