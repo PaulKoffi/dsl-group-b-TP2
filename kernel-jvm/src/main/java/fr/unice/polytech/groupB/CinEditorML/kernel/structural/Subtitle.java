@@ -9,7 +9,6 @@ public class Subtitle extends FrontElement{
     private Time time;
     private String text;
     private int duration;
-    private Color color=Color.white;
 
     public Subtitle() {
     }
@@ -63,13 +62,5 @@ public class Subtitle extends FrontElement{
 
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 }

@@ -4,11 +4,9 @@ texteV9 = textClip with text "Ci apres la video qu on va decouper" during 2 s
 
 audioD = audio audioDecoupage.mp3 starting at 0 afterBeginning of texteV volume 1.5f
 
-video3 = video TimedTransition.mp4
+video3 = video video.mp4
 
-clip = video3 from 00:00 to 00:32
-
-createVideo with (texteV, texteV9, clip)
+createVideo with (texteV, texteV9, video3)
 
 videoTitle is part2
 

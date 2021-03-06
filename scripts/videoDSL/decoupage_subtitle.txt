@@ -1,26 +1,24 @@
-videoMulti = video TimedTransition.mp4
+videoMulti = video video.mp4
 
-clip1 = videoMulti from 00:00 to 00:11
+clip1 = videoMulti from 00:09 to 00:20
 
-clip1b = videoMulti from 00:29 to 00:32
+clip1b = videoMulti from 00:32 to 00:35
 
 texteV1 = textClip with text "Nous allons decouper la video precedente en prenant" during 5 s
 
-texteV2 = textClip with text "respectivement les 11 premieres secondes et les 3 dernieres" during 5 s
+texteV2 = textClip with text "de la 9em - 20eme seconde et les 3 dernieres secondes" during 5 s
 
 texteV3 = textClip with text "Nous allons egalement placer les sous titres " during 5 s
 
-texteV4 = textClip with text "pour chaque seconde de la video" during 5 s
+texteV4 = textClip with text "pour la video assemblee avec les 2 decoupages" during 5 s
 
-sV1 = subtitle with text "Alors notre 6eme et dernier scenario " with color black starting at 2 afterBeginning of clip1 during 2 s
+sV1 = subtitle with text "Tout commence A Paris en 1328" starting at 0 afterBeginning of clip1 during 3 s
 
-sV2 = subtitle with text "Notre deuxieme extension  donc le timed transition" with color black starting at 4 afterBeginning of clip1 during  3 s
+sV2 = subtitle with text "Charles le bel, dernier roi capetien" starting at 4 afterBeginning of clip1 during  4 s
 
-sV3 = subtitle with text "Notre transition temporelle" with color black starting at 7 afterBeginning of clip1 during 3 s
+sV3 = subtitle with text "vient de mourrir sans heritier" starting at 8 afterBeginning of clip1 during 3 s
 
-sV4 = subtitle with text "On demarre la simulation lorsquon clique sur le bouton" with color black starting at 10 afterBeginning of clip1 during 2 s
-
-sV5 = subtitle with text "Clic jattends et elle s eteint toute seule" with color black starting at 12 afterBeginning of clip1 during 2 s
+sV4 = subtitle with text "Dans un premier temps, tout se passe bien"  starting at 0 afterBeginning of clip1b during 3 s
 
 createVideo with (texteV1, texteV2, texteV3, texteV4, clip1, clip1b)
 

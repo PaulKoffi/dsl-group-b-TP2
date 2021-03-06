@@ -346,14 +346,14 @@ public class VideoConstructor extends Visitor<StringBuffer> {
 
             // Setup du subtitle
             wln("");
-            wln(String.format("%s = TextClip(\"%s\", fontsize=70, color='%s')", subtitle.getName(), subtitle.getText(),subtitle.getColor().toString()));
+            wln(String.format("%s = TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
             wln(String.format("%s = %s.set_position(('center','bottom')).set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
             wln(String.format("%s = %s.set_start(%d)", subtitle.getName(), subtitle.getName(), t));
             // Sauvegarde
             subtitlesTime.put(subtitle.getName(), "TEMPV = " + t);
         } else {
             common((RelativeTime) subtitle.getTime(), subtitle.getName());
-            wln(String.format("%s = TextClip(\"%s\", fontsize=70, color='%s')", subtitle.getName(), subtitle.getText(),subtitle.getColor().toString()));
+            wln(String.format("%s = TextClip(\"%s\", fontsize=70, color='white')", subtitle.getName(), subtitle.getText()));
             wln(String.format("%s = %s.set_position(('center','bottom')).set_duration(%d)", subtitle.getName(), subtitle.getName(), subtitle.getDuration()));
             wln(String.format("%s = %s.set_start(TEMPV)", subtitle.getName(), subtitle.getName()));
         }
@@ -394,7 +394,7 @@ public class VideoConstructor extends Visitor<StringBuffer> {
         wln("# Add blanks");
         wln("txt = 10 * \"\\n\" + txt + 10 * \"\\n\"");
         wln("");
-        wln(String.format("%s = TextClip(txt, color='white', align='West', fontsize=25,\n" +
+        wln(String.format("%s = TextClip(txt, color='black', align='West', fontsize=25,\n" +
                 "                    font='Xolonium-Bold', method='label')", endingTextClip.getName()));
         wln(String.format("%s = %s.set_position(lambda t: ('center', (-20 * (t + 5)))).set_duration(%d)", endingTextClip.getName(), endingTextClip.getName(), endingTextClip.getTime()));
         wln("");
