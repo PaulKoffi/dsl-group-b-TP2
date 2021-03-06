@@ -50,7 +50,7 @@ COLOR           : ('white'|'black'|'red'|'blue'|'pink');
 TIMELINE        :   NUMBER+  (':'  NUMBER NUMBER)?;
 FLOAT           :   NUMBER+ (('.'|',') NUMBER+)? 'f';
 IDENTIFIER      :   LOWERCASE (LOWERCASE|UPPERCASE|NUMBER)+ ;
-TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ '"';
+TEXT            : '"' (LOWERCASE|UPPERCASE|','|' '|NUMBER| 'é' |'\''|'à'| '!' | '?' | ':boum:' | ':cœur:'| ':parfait:'| ':feu:' | ':applaudissements:')+ '"';
 FINAL_VIDEO     : '(' (LOWERCASE|UPPERCASE|','|' '|NUMBER)+ ')';
 
 FILE_NAME       :   (LOWERCASE|UPPERCASE) (LOWERCASE|UPPERCASE|NUMBER)+ NUMBER? '.' (LOWERCASE|UPPERCASE|NUMBER)+;

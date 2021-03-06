@@ -1,5 +1,4 @@
 package fr.unice.polytech.groupB.CinEditorML.kernel.structural;
-
 import fr.unice.polytech.groupB.CinEditorML.kernel.NamedElement;
 import fr.unice.polytech.groupB.CinEditorML.kernel.behavioral.*;
 import fr.unice.polytech.groupB.CinEditorML.kernel.assemblor.*;
