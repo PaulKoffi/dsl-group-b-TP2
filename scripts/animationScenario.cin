@@ -1,10 +1,10 @@
-begin = textClip with text "start" during 10 s with animation arrive
+begin = textClip with text "start" during 5 s with animation arrive
 
 video1 = video videoTest1.mp4
 
 video2 = video videoTest2.mp4
 
-end = textClip with text "end" during 10 s with animation vortex
+end = textClip with text "end" during 5 s with animation vortex
 
 createVideo with (begin, video1, video2, end)
 

@@ -18,13 +18,17 @@
 
  <kbd>__JAVA , MAVEN, PYTHON__</kbd>
 
+## <img src="https://icon-icons.com/icons2/621/PNG/64/link-symbol-of-two-chains-links-linked_icon-icons.com_56928.png"/>  Liens vers les démos des scénarios
+* `scenario1` : 👉 [ici](https://drive.google.com/file/d/1HpaZhzGw9GEZy64Op070qolkQJHCdkpl/view?usp=sharing)
+* `scenario2` : 👉 [ici](https://drive.google.com/file/d/1EXuQnuITFeLYK_zAZRmlbhtD4_Q_e_o1/view?usp=sharing)
+* `support for audio` : 👉 [ici](https://drive.google.com/file/d/1HEDOMFrdU0wP-7NoiBvb_ZJl3poBt8Mo/view?usp=sharing)
+* `animations` : 👉 [ici](https://drive.google.com/file/d/1vK3LHLjgUfa9lsE2vxa-jcI5F3OLJcMx/view?usp=sharing)
+* `credits` : 👉 [ici](https://drive.google.com/file/d/1xgLGuf3hQK3eHjpHTkF5Prt-SFiwBE66/view?usp=sharing)
+  ### *⛔ Ces vidéos sont assez longues ⛔*
+  >  Servant de preuve que notre système marche, ces vidéos commencent avec le lancement de la génération, explication du script 
+  > et finit avec la vérification du résultat obtenu. Bien sûr vous allez roulez la partie de génération (qui prend la globalité du temps). NB : (Il se peut que le drive fasse apparaître les vidéos en mauvaise qualité, dans ce cas vaut mieux les télécharger en local car la qualité de toutes les vidéos est bonne 😉)
 
-## <img src="https://icon-icons.com/icons2/1147/PNG/64/1486486316-arrow-film-movie-play-player-start-video_81236.png"/>  Démo rapide de nos fonctionnalités
-* `Scenario1` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 👉 [ici](https://drive.google.com/file/d/19RyqV8oVMZ8SNIQ71oXbLt3mdt5Y3ou1/view?usp=sharing)
-* `Scenario2` :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1m-97sSkBXMuvHhR0sY43K60d9z-EbGZW/view?usp=sharing)
-* `Support for audio` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1XQG8X36FR4e23ONn1-RCl5AVm3z95tvY/view?usp=sharing)
-* `Support for customized animated texts` : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👉 [ici](https://drive.google.com/file/d/1Gk-Z64GswuqCTPo54cjSjKeaVHRz1ffB/view?usp=sharing)
-
+## <img src="https://icon-icons.com/icons2/1147/PNG/64/1486486316-arrow-film-movie-play-player-start-video_81236.png"/>  Démo rapide des fonctionnalités de CinEditorML
 Les éléments relatifs à la génération de la vidéo de démo se trouve dans le dossier <kbd>__scripts/videoDSL__</kbd> :  👉 [ici](https://github.com/wak-nda/dsl-group-b-TP2/tree/main/scripts/videoDSL)
 ###  La video finale demo est un rassemblement de 6 parties distinctes , elle se trouve : 👉 [ici](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/outputs/demo.mp4)
 > * Part1.mp4 généré à partir du fichier ( [introduction_animation.cin](https://github.com/wak-nda/dsl-group-b-TP2/blob/main/scripts/videoDSL/introduction_animation.cin) ) 
