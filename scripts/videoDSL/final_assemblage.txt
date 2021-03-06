@@ -1,0 +1,15 @@
+#video1 = video part1.mp4
+
+video2 = video part2.mp4
+
+video3 = video TimedTransition.mp4
+
+#video4 = video part3.mp4
+
+#video5 = video part4.mp4
+
+#video6 = video part5.mp4
+
+createVideo with (video2, video3)
+
+videoTitle is demo

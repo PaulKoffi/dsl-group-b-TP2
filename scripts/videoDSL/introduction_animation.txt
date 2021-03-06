@@ -1,6 +1,6 @@
-begin = textClip with text ":cœur: Video de présentation de CinEditorML By CinEditorML :cœur:" during 10 s
+begin = textClip with text "Video de presentation de CinEditorML By CinEditorML !" during 10 s
 
-s5 = subtitle with text "Enjoy It !!!:feu:" starting at 5 afterBeginning of begin during 5 s
+s5 = subtitle with text "Enjoy It !!!" starting at 5 afterBeginning of begin during 5 s
 
 audio1 = audio audioDebut.mp3 starting at 0 s volume 2.0f
 
@@ -12,13 +12,13 @@ t3 = textClip with text "cool effect" during 5 s with animation cascade
 
 t4 = textClip with text "cool effect" during 5 s with animation vortexout
 
-s1 = subtitle with text "Animation de texte ARRIVE :boum:" starting at 0 afterBeginning of t1 during 5 s
+s1 = subtitle with text "Animation de texte ARRIVE" starting at 0 afterBeginning of t1 during 5 s
 
-s2 = subtitle with text "Animation de texte VORTEX :boum:" starting at 0 afterBeginning of t2 during 5 s
+s2 = subtitle with text "Animation de texte VORTEX" starting at 0 afterBeginning of t2 during 5 s
 
-s3 = subtitle with text "Animation de texte CASCADE :boum:" starting at 0 afterBeginning of t3 during 5 s
+s3 = subtitle with text "Animation de texte CASCADE" starting at 0 afterBeginning of t3 during 5 s
 
-s4 = subtitle with text "Animation de texte VORTEXOUT :boum:" starting at 0 afterBeginning of t4 during 5 s
+s4 = subtitle with text "Animation de texte VORTEXOUT" starting at 0 afterBeginning of t4 during 5 s
 
 audio2 = audio audioA.mp3 starting at 11 s volume 2.0f
 

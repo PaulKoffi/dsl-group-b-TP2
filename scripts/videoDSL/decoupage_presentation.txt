@@ -1,10 +1,14 @@
-texteV = textClip with text "CinEditorMl cest egalement du decoupage de videos" during 10 s
+texteV = textClip with text "CinEditorMl c est egalement du decoupage de videos" during 10 s
 
-texteV9 = textClip with text "Ci apres la video quon va decouper" during 2 s
+texteV9 = textClip with text "Ci apres la video qu on va decouper" during 2 s
 
 audioD = audio audioDecoupage.mp3 starting at 0 afterBeginning of texteV volume 1.5f
 
-createVideo with (texteV, texteV9)
+video3 = video TimedTransition.mp4
+
+clip = video3 from 00:00 to 00:32
+
+createVideo with (texteV, texteV9, clip)
 
 videoTitle is part2
 
